@@ -1,6 +1,6 @@
 # GitFolio
 
-### about.me + medium but for every github User
+### about.me + medium but for every github user
 
 Gitfolio will help get started with a portfolio website where you could showcase your work + a blog that will help you spread your ideas into  real world.
 
