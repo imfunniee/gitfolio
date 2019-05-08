@@ -1,0 +1,16 @@
+{
+  "name": "gitfolio",
+  "version": "1.0.0",
+  "description": "portfolio website for showcasing your work",
+  "main": "build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "imfunny",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.20.0",
+    "got": "^9.6.0",
+    "jsdom": "^15.0.0"
+  }
+}

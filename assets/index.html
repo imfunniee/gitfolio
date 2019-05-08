@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="loading">
+        <div id="spinner"></div>
+    </div>
+    <div id="profile">
+        <div id="profile_img"></div>
+        <div id="username">
+            <div id="fullname"></div>
+        </div>
+        <div id="userbio"></div>
+        <div id="about"></div>
+    </div>
+    <div id="display">
+        <div id="work">
+            <h1>Work.</h1>
+            <div id="projects"></div>
+        </div>
+        <div id="blog_section" style="display:none;">
+            <h1>Blog.</h1>
+            <div id="blogs"></div>
+        </div>
+        <div id="footer">
+            <a href="https://github.com/imfunniee" target="_blank">made on earth by a human</a>
+        </div>
+    </div>
+    <script type="text/javascript">
+    setTimeout(function(){
+        document.getElementById("loading").classList.add("animated");
+        document.getElementById("loading").classList.add("fadeOut");
+        setTimeout(function(){
+        document.getElementById("loading").classList.remove("animated");
+        document.getElementById("loading").classList.remove("fadeOut");
+        document.getElementById("loading").style.display = "none";
+        },800);
+    },1500);
+    $.getJSON("./blog/blog.json", function(blog){
+        for(var i = 0; i < blog.length; i++){
+            $("#blogs").append(`
+            <a href="/blog/${blog[i].url_title}/" target="_blank">
+                <section>
+                    <img src="${blog[i].top_image}">
+                    <div class="blog_container">
+                        <div class="section_title">${blog[i].title}</div>
+                        <div class="about_section">
+                            ${blog[i].sub_title}
+                        </div>
+                    </div>
+                </section>
+            </a>
+            `)
+        }
+    });
+    </script>
+</body>
+</html>
