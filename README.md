@@ -1,4 +1,4 @@
-# GitFolio
+<img src="https://i.imgur.com/eA6clZr.png">
 
 ### about.me + medium but for every github user
 
