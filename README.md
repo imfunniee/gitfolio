@@ -8,7 +8,7 @@ Gitfolio will help get started with a portfolio website where you could showcase
 
 ### Fork this repository
 
-Get yourself a copy of this repository by forking it as "your username.github.io" so you could customize it.
+Get yourself a copy of this repository by forking it as `username.github.io` so you could customize it.
 
 ### Let's build
 
