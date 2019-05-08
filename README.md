@@ -1,32 +1,12 @@
-# gitfolio
-portfolio website that showcases your work
+### about.me + medium but for every github User
+
+Gitfolio will help you up and running with a portfolio website where you could showcase your work + a blog that will help you spread your ideas in real world.
+
 
 # Getting Started
 
-First of all you need to fork this repo as "your_username.github.io"
+### Fork this repo
 
-```
-$ git clone "your repo you just forked"
-$ cd "your repo name"
-$ npm i
-```
 
-# Building
-
-```
-$ node build --name "your_username"
-```
-
-# Customizing 
-
-To add your background image 
-
-```
-$ node build --name "your github username" --background "background url"
-```
-
-To enable Dark theme
-
-```
-$ node build --name "your github username" --dark
-```
+## License
+GNU General Public License v3.0
