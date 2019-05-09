@@ -74,7 +74,7 @@ To add your first blog run this command, make sure the title don't have spaces.
 $ node blog --title my-first-blog
 ```
 
-This will create a `my-first-blog` folder inside `blog`. Inside `my-first-blog` you will find an `index.html` file which will all the necessary elements for writing a blog. Customize the content of the file to write your first blog.
+This will create a `my-first-blog` folder inside `blog`. Inside `my-first-blog` you will find an `index.html` file which contains all the necessary elements for writing a blog. Customize the content of the file to write your first blog.
 
 This also adds it to `blog.json` file. This files helps in showing blogs on your personal website as cards. You could customize the file content to match your current blog.
 
