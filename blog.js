@@ -8,9 +8,9 @@ options = {
 program
   .version('0.1.1')
   .option('-t, --title [title]', 'give blog a title')
-  .option('-t, --subtitle [subtitle]', 'give blog asubtitle', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
-  .option('-t, --pagetitle [pagetitle]', 'give page a title')
-  .option('-t, --folder [folder]', 'give folder a title')
+  .option('-s, --subtitle [subtitle]', 'give blog asubtitle', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
+  .option('-p, --pagetitle [pagetitle]', 'give page a title')
+  .option('-f, --folder [folder]', 'give folder a title')
   .parse(process.argv);
 
 function createBlog(title, subtitle, pagetitle, folder) {
