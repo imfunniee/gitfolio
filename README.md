@@ -83,7 +83,7 @@ This also adds content to `blog.json` file. This file helps in showcasing your b
 Default JSON Format
 ```
 {
-  "url_title": "my-first-blog", // the title you provide while creating a new blog
+  "url_title": "my-first-blog", // the title you provide while creating a new blog, this appears in url
   "title": "Lorem ipsum dolor sit amet", // main title of blog
   "sub_title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", // sub-title of blog
   "top_image": "https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450", // main image of blog
