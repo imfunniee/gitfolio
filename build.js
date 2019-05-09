@@ -102,6 +102,7 @@ jsdom.fromFile("./assets/index.html", options).then(function (dom) {
         document.getElementById("userbio").innerHTML = convertToEmoji(user.bio);
         document.getElementById("userbio").style.display = user.bio == null || !user.bio ? 'none' : 'block';
         document.getElementById("about").innerHTML = `
+        <span style="display:${user.company == null || !user.company ? 'none' : 'block'};"><i class="fas fa-users"></i> &nbsp; ${user.company}</span>
         <span style="display:${user.email == null || !user.email ? 'none' : 'block'};"><i class="fas fa-envelope"></i> &nbsp; ${user.email}</span>
         <span style="display:${user.blog == null || !user.blog ? 'none' : 'block'};"><i class="fas fa-link"></i> &nbsp; ${user.blog}</span>
         <span style="display:${user.location == null || !user.location ? 'none' : 'block'};"><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp; ${user.location}</span>`;
