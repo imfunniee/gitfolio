@@ -1,13 +1,14 @@
 const program = require('commander');
 const fs = require('fs');
 const got = require('got');
+const emoji = require('github-emoji');
 const jsdom = require('jsdom').JSDOM,
 options = {
     resources: "usable"
 };
 
 program
-  .version('0.1.0')
+  .version('0.1.1')
   .option('-n, --name [username]', 'get username')
   .option('-d, --dark', 'enable dark mode')
   .option('-b, --background [background]', 'set background image')
@@ -46,6 +47,20 @@ if (program.background) {
     populateCSS();
 }
 
+function convertToEmoji(text){
+    if (text == null) return;
+    text = text.toString();
+    if(text.match(/\:(.*)\:/) != null){
+        var str = text.match(/\:(.*)\:/)[1];
+        var output = emoji.of(str);
+        var emojiImage = output.url.replace("assets-cdn.github", "github.githubassets");
+        text = text.replace(/\:(.*)\:/, `<img src="${emojiImage}" class="emoji">`);
+        return text;
+    }else{
+        return text;
+    }
+}
+
 function populateHTML(username){
 //add data to assets/index.html
 jsdom.fromFile("./assets/index.html", options).then(function (dom) {
@@ -62,7 +77,7 @@ jsdom.fromFile("./assets/index.html", options).then(function (dom) {
                     <section>
                         <div class="section_title">${repos[i].name}</div>
                         <div class="about_section">
-                        ${repos[i].description}
+                        ${convertToEmoji(repos[i].description)}
                         </div>
                         <div class="bottom_section">
                             <span><i class="fas fa-code"></i>&nbsp; ${repos[i].language}</span>
@@ -84,7 +99,7 @@ jsdom.fromFile("./assets/index.html", options).then(function (dom) {
         document.getElementById("profile_img").style.background = `url('${user.avatar_url}') center center`
         document.getElementById("username").innerHTML = `<span>${user.name}</span><br>@${user.login}`;
         //document.getElementById("github_link").href = `https://github.com/${user.login}`;
-        document.getElementById("userbio").innerHTML = user.bio;
+        document.getElementById("userbio").innerHTML = convertToEmoji(user.bio);
         document.getElementById("userbio").style.display = user.bio == null || !user.bio ? 'none' : 'block';
         document.getElementById("about").innerHTML = `
         <span style="display:${user.email == null || !user.email ? 'none' : 'block'};"><i class="fas fa-envelope"></i> &nbsp; ${user.email}</span>

@@ -6,7 +6,7 @@ options = {
 };
 
 program
-  .version('0.1.0')
+  .version('0.1.1')
   .option('-t, --title [title]', 'give blog a title')
   .parse(process.argv);
 

@@ -74,6 +74,10 @@ body{
     font-family: 'Questrial', sans-serif;
 }
 
+.emoji {
+    width:18px;
+    height:18px;
+}
 
 #profile_img_blog {
     border-radius:50%;
