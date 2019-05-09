@@ -76,7 +76,20 @@ $ node blog --title my-first-blog
 
 This will create a `my-first-blog` folder inside `blog`. Inside `my-first-blog` you will find an `index.html` file which contains all the necessary elements for writing a blog. Customize the content of the file to write your first blog.
 
-This also adds it to `blog.json` file. This files helps in showing blogs on your personal website as cards. You could customize the file content to match your current blog.
+This also adds content to `blog.json` file. This file helps in showcasing your blogs on your personal website as cards. You could customize the JSON object that corresponds your current blog.
+
+Default JSON Format
+```
+{
+  "url_title": "my-first-blog", // the title you provide while creating a new blog
+  "title": "Lorem ipsum dolor sit amet", // main title of blog
+  "sub_title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", // sub-title of blog
+  "top_image": "https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450", // main image of blog
+  "visible": true // don't worry about this
+}
+```
+
+### Enable Blogs
 
 Blog are disabled by default. To enable them head over to `assets/index.html` and find `<div id="blog_section" style="display:none;">`. Remove the style attribute to show your blogs on your personal website.
 
