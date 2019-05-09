@@ -88,6 +88,9 @@ Default JSON Format
   "visible": true // don't worry about this
 }
 ```
+Card view of blog
+
+<img src="https://i.imgur.com/ys9AMwt.png" width="50%">
 
 ### Enable Blogs
 
