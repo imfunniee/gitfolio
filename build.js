@@ -8,7 +8,7 @@ options = {
 };
 
 program
-  .version('0.1.1')
+  .version('0.1.2')
   .option('-n, --name [username]', 'get username')
   .option('-d, --dark', 'enable dark mode')
   .option('-b, --background [background]', 'set background image')
@@ -47,14 +47,22 @@ if (program.background) {
     populateCSS();
 }
 
+
 function convertToEmoji(text){
     if (text == null) return;
     text = text.toString();
-    if(text.match(/\:(.*)\:/) != null){
-        var str = text.match(/\:(.*)\:/)[1];
-        var output = emoji.of(str);
-        var emojiImage = output.url.replace("assets-cdn.github", "github.githubassets");
-        text = text.replace(/\:(.*)\:/, `<img src="${emojiImage}" class="emoji">`);
+    if(text.match(/(?<=:\s*).*?(?=\s*:)/gs) != null){
+        var str = text.match(/(?<=:\s*).*?(?=\s*:)/gs);
+        str = str.filter(function(arr) {
+            return /\S/.test(arr);
+        });
+        for(i=0;i<str.length;i++){
+            if(emoji.URLS[str[i]] != undefined){
+                var output = emoji.of(str[i]);
+                var emojiImage = output.url.replace("assets-cdn.github", "github.githubassets");
+                text = text.replace(`:${str[i]}:`, `<img src="${emojiImage}" class="emoji">`);
+            }
+        }
         return text;
     }else{
         return text;

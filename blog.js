@@ -6,7 +6,7 @@ options = {
 };
 
 program
-  .version('0.1.1')
+  .version('0.1.2')
   .option('-t, --title [title]', 'give blog a title')
   .option('-s, --subtitle [subtitle]', 'give blog a subtitle', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
   .option('-p, --pagetitle [pagetitle]', 'give page a title')
