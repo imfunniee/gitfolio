@@ -60,13 +60,18 @@ You could also add in your custom CSS inside `index.css` to give it a more perso
 
 ### Let's Publish
 
-You can host your website using github pages and use a custom domain aswell or simply use `username.github.io`.
+You can host your website using github pages and use a custom domain as well or simply use `username.github.io`.
 
 
 ### Updating
 
 To update your info, follow the same steps shown in `Let's build` part
 
+The repo list can be updated independently with the following command:
+
+```
+$ node repos --name username
+```
 
 ### Add a Blog
 
