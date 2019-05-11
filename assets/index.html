@@ -62,6 +62,25 @@
             `)
         }
     });
+    $.getJSON("repos.json", function(repos){
+        for(var i = 0; i < repos.length; i++){
+            $("#projects").append(`
+                    <a href="${repos[i].html_url}" target="_blank">
+                    <section>
+                        <div class="section_title">${repos[i].name}</div>
+                        <div class="about_section">
+                        ${repos[i].description}
+                        </div>
+                        <div class="bottom_section">
+                            <span><i class="fas fa-code"></i>&nbsp; ${repos[i].language}</span>
+                            <span><i class="fas fa-star"></i>&nbsp; ${repos[i].stargazers_count}</span>
+                            <span><i class="fas fa-code-branch"></i>&nbsp; ${repos[i].forks_count}</span>
+                        </div>
+                    </section>
+                    </a>
+                    `)
+        }
+    });
     </script>
 </body>
 </html>
