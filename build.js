@@ -76,7 +76,26 @@ jsdom.fromFile("./assets/index.html", options).then(function (dom) {
     (async () => {
         try {
             console.log("Building HTML/CSS...");
-            
+            var repos = await got(`https://api.github.com/users/${username}/repos?sort=created`);
+            repos = JSON.parse(repos.body);
+            for(var i = 0;i < repos.length;i++){
+                if(repos[i].fork == false){
+                    document.getElementById("projects").innerHTML += `
+                    <a href="${repos[i].html_url}" target="_blank">
+                    <section>
+                        <div class="section_title">${repos[i].name}</div>
+                        <div class="about_section">
+                        ${convertToEmoji(repos[i].description)}
+                        </div>
+                        <div class="bottom_section">
+                            <span><i class="fas fa-code"></i>&nbsp; ${repos[i].language}</span>
+                            <span><i class="fas fa-star"></i>&nbsp; ${repos[i].stargazers_count}</span>
+                            <span><i class="fas fa-code-branch"></i>&nbsp; ${repos[i].forks_count}</span>
+                        </div>
+                    </section>
+                    </a>`;
+                }
+            }
         var user = await got(`https://api.github.com/users/${username}`);
         user = JSON.parse(user.body);
         document.title = user.login;
@@ -136,38 +155,8 @@ jsdom.fromFile("./blog/blog_template.html", options).then(function (dom) {
 });
 }
 
-function populateRepos(username){
-    var repoData = [];
-    (async () => {
-        try {
-    var repos = await got(`https://api.github.com/users/${username}/repos?sort=created`);
-    repos = JSON.parse(repos.body);
-    for(var i = 0;i < repos.length;i++){
-        if(repos[i].fork == false){
-            repoData.push({
-                "html_url": repos[i].html_url, 
-                "name": repos[i].name,
-                "description": repos[i].description,
-                "language": repos[i].language,
-                "stargazers_count": repos[i].stargazers_count,
-                "forks_count" :repos[i].forks_count
-            });
-        }
-
-    }
-    fs.writeFile('./repos/repos.json', JSON.stringify(repoData), function(err){
-        if (err) throw err;
-        console.log('Repos Created Successfully in root folder.');
-      });
-    } catch (error) {
-        console.log(error);
-    }
-})();
-}
-
 if (program.name) {
     populateHTML(('%s', program.name));
-    populateRepos(('%s', program.name));
 } else {
     console.log("Provide a username");
 }
