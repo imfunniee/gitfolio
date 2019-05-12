@@ -8,15 +8,11 @@ Gitfolio will help get started with a portfolio website where you could showcase
 
 # Getting Started
 
-### Fork this repository
-
-Get yourself a copy of this repository by forking it as `username.github.io` so you could customize it.
-
 ### Let's build
 
-a. Clone the repository you just forked using ``git clone`` or just simply download it.
+a. Clone this repository using ``git clone https://github.com/imfunniee/gitfolio.git`` or just simply download it.
 
-b. Now ``cd`` into the repository you just cloned and run the below command
+b. Now ``cd`` into the repository you just cloned ``cd gitfolio`` and run the below command
 
 ```
 $ npm i
@@ -60,17 +56,24 @@ You could also add in your custom CSS inside `index.css` to give it a more perso
 
 ### Let's Publish
 
-You can host your website using github pages and use a custom domain aswell or simply use `username.github.io`.
+Push the files to github. You can host your website using github pages by naming your repo ``username.github.io``. You can also your cutsom domain.
 
 
 ### Updating
 
-To update your info, follow the same steps shown in `Let's build` part
+To update your info, simply run
+
+```
+$ node update
+```
+This will update your info and your repository info.
+
+To Update background or theme you need to run `build` command again.
 
 
 ### Add a Blog
 
-To add your first blog run this command, make sure the title don't have spaces.
+To add your first blog run this command, make sure the title don't have spaces instead use "-".
 
 ```
 $ node blog --title my-first-blog
@@ -90,6 +93,17 @@ Default JSON Format
   "visible": true // don't worry about this
 }
 ```
+
+More Arguments for Blog
+
+```
+--subtitle [subtitle] : gives blog a subtitle (Deafult : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
+--pagetitle [pagetitle] : gives blog page a title
+--folder [folder] : give folder a title
+```
+
+> (use "-" instead of spaces)
+
 Card view of blog
 
 <img src="https://i.imgur.com/ys9AMwt.png" width="50%">
@@ -98,8 +112,7 @@ Card view of blog
 
 Blog are disabled by default. To enable them head over to `assets/index.html` and find `<div id="blog_section" style="display:none;">`. Remove the style attribute to show your blogs on your personal website.
 
-After enabling blogs you need to run the `build` command to update your personal website.
-
+If you have run build command before adding a blog you need have to remove the style attribute from `index.html` file aswell.
 
 ## License
 ![GitHub](https://img.shields.io/github/license/imfunniee/gitfolio.svg)
