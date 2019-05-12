@@ -1,6 +1,6 @@
 <img src="https://i.imgur.com/eA6clZr.png">
 
-# Gitfolio  [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=about.me%20and%20medium%20but%20for%20every%20github%20user&url=https://github.com/imfunniee/gitfolio) ![GitHub top language](https://img.shields.io/github/languages/top/imfunniee/gitfolio.svg) ![GitHub last commit](https://img.shields.io/github/last-commit/imfunniee/gitfolio.svg) ![GitHub](https://img.shields.io/github/license/imfunniee/gitfolio.svg)
+# Gitfolio  [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=about.me%20and%20medium%20but%20for%20every%20github%20user&url=https://github.com/imfunniee/gitfolio) ![GitHub release](https://img.shields.io/github/release/imfunniee/gitfolio.svg) ![GitHub top language](https://img.shields.io/github/languages/top/imfunniee/gitfolio.svg) ![GitHub last commit](https://img.shields.io/github/last-commit/imfunniee/gitfolio.svg) ![GitHub](https://img.shields.io/github/license/imfunniee/gitfolio.svg)
   
 ### about.me + medium but for every github user
 
@@ -11,6 +11,10 @@ Gitfolio will help get started with a portfolio website where you could showcase
 ### Let's build
 
 a. Clone this repository using ``git clone https://github.com/imfunniee/gitfolio.git`` or just simply download it.
+
+```
+$ git clone https://github.com/imfunniee/gitfolio.git
+```
 
 b. Now ``cd`` into the repository you just cloned ``cd gitfolio`` and run the below command
 
