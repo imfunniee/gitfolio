@@ -18,13 +18,13 @@ function populateCSS(){
             if (err) throw err;
             fs.appendFile('index.css', dark, function (err) {
                 if (err) throw err;
-                fs.readFile("config.json", function (err , data) {
-                    if (err) throw err;
-                    data = JSON.parse(data);
-                    data[0].theme = "dark";
-                    fs.writeFile('config.json', JSON.stringify(data, null, ' '), function(err){
-                      if (err) throw err;
-                    });
+            });
+            fs.readFile("config.json", function (err , data) {
+                if (err) throw err;
+                data = JSON.parse(data);
+                data[0].theme = "dark";
+                fs.writeFile('config.json', JSON.stringify(data, null, ' '), function(err){
+                  if (err) throw err;
                 });
             });
         });
@@ -33,13 +33,13 @@ function populateCSS(){
             if (err) throw err;
             fs.appendFile('index.css', light, function (err) {
                 if (err) throw err;
-                fs.readFile("config.json", function (err , data) {
-                    if (err) throw err;
-                    data = JSON.parse(data);
-                    data[0].theme = "light";
-                    fs.writeFile('config.json', JSON.stringify(data, null, ' '), function(err){
-                      if (err) throw err;
-                    });
+            });
+            fs.readFile("config.json", function (error , data) {
+                if (error) throw err;
+                data = JSON.parse(data);
+                data[0].theme = "light";
+                fs.writeFile('config.json', JSON.stringify(data, null, ' '), function(error){
+                  if (error) throw err;
                 });
             });
         });
