@@ -85,7 +85,9 @@ $ node blog --title my-first-blog
 
 This will create a `my-first-blog` folder inside `blog`. Inside `my-first-blog` you will find an `index.html` file which contains all the necessary elements for writing a blog. Customize the content of the file to write your first blog.
 
-This also adds content to `blog.json` file. This file helps in showcasing your blogs on your personal website as cards. You could customize the JSON object that corresponds your current blog.
+This also adds content to `blog.json` file. This file helps in showcasing your blogs on your personal website as [cards](https://imfunniee.github.io/gitfolio/#blog_section). You could customize the JSON object that corresponds your current blog.
+
+Blog Demo? [here](https://imfunniee.github.io/gitfolio/blog/my-first-blog/)
 
 Default JSON Format
 ```
@@ -107,10 +109,6 @@ More Arguments for Blog
 ```
 
 > (use "-" instead of spaces)
-
-Card view of blog
-
-<img src="https://i.imgur.com/ys9AMwt.png" width="50%">
 
 ### Enable Blogs
 
