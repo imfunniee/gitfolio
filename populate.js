@@ -32,12 +32,15 @@ module.exports.updateHTML = (username) => {
 jsdom.fromFile("./assets/index.html", options).then(function (dom) {
     let window = dom.window, document = window.document;
     (async () => {
+		let hasRepos = false;
+		let hasForks = false;
         try {
             console.log("Building HTML/CSS...");
             var repos = await got(`https://api.github.com/users/${username}/repos?sort=created`);
             repos = JSON.parse(repos.body);
             for(var i = 0;i < repos.length;i++){
                 if(repos[i].fork == false){
+					hasRepos = true;
                     document.getElementById("projects").innerHTML += `
                     <a href="${repos[i].html_url}" target="_blank">
                     <section>
@@ -52,8 +55,33 @@ jsdom.fromFile("./assets/index.html", options).then(function (dom) {
                         </div>
                     </section>
                     </a>`;
-                }
+                } else {
+					hasForks = true;
+					document.getElementById("forks").innerHTML += `
+                    <a href="${repos[i].html_url}" target="_blank">
+                    <section>
+                        <div class="section_title">${repos[i].name}</div>
+                        <div class="about_section">
+                        <span style="display:${repos[i].description == undefined ? 'none' : 'block'};">${convertToEmoji(repos[i].description)}</span>
+                        </div>
+                        <div class="bottom_section">
+                            <span style="display:${repos[i].language == null ? 'none' : 'inline-block'};"><i class="fas fa-code"></i>&nbsp; ${repos[i].language}</span>
+                            <span><i class="fas fa-star"></i>&nbsp; ${repos[i].stargazers_count}</span>
+                            <span><i class="fas fa-code-branch"></i>&nbsp; ${repos[i].forks_count}</span>
+                        </div>
+                    </section>
+                    </a>`;
+				}
             }
+			
+			if(hasRepos){
+				document.getElementById("navbar").innerHTML += `
+				<a href="#projects">Projects</a>`;
+			}
+			if(hasForks){
+				document.getElementById("navbar").innerHTML += `
+				<a href="#forks">Forks</a>`;
+			}
         var user = await got(`https://api.github.com/users/${username}`);
         user = JSON.parse(user.body);
         document.title = user.login;

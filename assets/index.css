@@ -56,7 +56,28 @@ body{
     background-size: cover !important;
     background-repeat:no-repeat;
     position:fixed;
-    color:#fff !important;
+}
+
+#profile #navbar nav {
+list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #e7e7e7;
+  background-color: #f3f3f3;
+}
+
+#profile #navbar a {	
+  text-align: left;
+  display: block;
+  color: #666;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+#profile #navbar a:hover:not(.active) {
+  background-color: #ddd;
 }
 
 #display {
@@ -278,6 +299,30 @@ body{
     transform:scale(1.03);
 }
 
+#forks {
+    columns:2;
+}
+
+#forks section {
+    width:85%;
+    padding:2.5vh 5%;
+    display:inline-block;
+    border-radius:5px;
+    color:var(--text-color);
+    border:1px solid rgb(0, 0, 0, 0.08);
+    box-shadow:0px 0px 0px rgb(0, 0, 0, 0);
+    transition:0.4s ease-in-out;
+    margin:2vh 0px;
+    transform:scale(1);
+}
+
+#forks section:hover {
+    cursor: pointer;
+    border:1px solid rgb(0, 0, 0, 0);
+    box-shadow:0px 15px 35px rgb(0, 0, 0, 0.06);
+    transform:scale(1.03);
+}
+
 .section_title {
     font-size:24px;
     font-weight:bold;
@@ -364,6 +409,27 @@ body{
         text-align:center;
         position: relative;
     }
+	#profile #navbar nav {
+      padding:4vh 5vw;
+      text-align:center;
+	  list-style-type: none;
+	  overflow: hidden;
+	  border: 1px solid #e7e7e7;
+	  background-color: #f3f3f3;
+	  position: relative;
+	}
+	#profile #navbar a {
+      text-align: center;
+	  display: block;
+	  color: #666;
+	  text-align: center;
+	  padding: 14px 16px;
+	  text-decoration: none;
+	  margin:0px auto !important;
+	}
+	#profile #navbar a:hover:not(.active) {
+	  background-color: #ddd;
+	}
     #display {
         width:90vw;
         padding:4vh 5vw;
