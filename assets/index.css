@@ -56,28 +56,29 @@ body{
     background-size: cover !important;
     background-repeat:no-repeat;
     position:fixed;
+	color:#fff !important;
 }
 
 #profile #navbar nav {
-list-style-type: none;
+  list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   border: 1px solid #e7e7e7;
-  background-color: #f3f3f3;
+  background-color: rgba(32, 32, 32, 0.2);
 }
 
 #profile #navbar a {	
   text-align: left;
   display: block;
-  color: #666;
+  color: #fff;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 
 #profile #navbar a:hover:not(.active) {
-  background-color: #ddd;
+  background-color: rgba(32, 32, 32, 0.3);
 }
 
 #display {
@@ -415,20 +416,20 @@ list-style-type: none;
 	  list-style-type: none;
 	  overflow: hidden;
 	  border: 1px solid #e7e7e7;
-	  background-color: #f3f3f3;
+	  background-color: rgba(32, 32, 32, 0.5);
 	  position: relative;
 	}
 	#profile #navbar a {
-      text-align: center;
+	  text-align: left;
 	  display: block;
-	  color: #666;
+	  color: #fff;
 	  text-align: center;
 	  padding: 14px 16px;
 	  text-decoration: none;
 	  margin:0px auto !important;
 	}
 	#profile #navbar a:hover:not(.active) {
-	  background-color: #ddd;
+	  background-color: rgba(32, 32, 32, 0.3);
 	}
     #display {
         width:90vw;
