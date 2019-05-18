@@ -43,10 +43,10 @@ jsdom.fromFile("./assets/index.html", options).then(function (dom) {
                     <section>
                         <div class="section_title">${repos[i].name}</div>
                         <div class="about_section">
-                        ${convertToEmoji(repos[i].description)}
+                        <span style="display:${repos[i].description == undefined ? 'none' : 'block'};">${convertToEmoji(repos[i].description)}</span>
                         </div>
                         <div class="bottom_section">
-                            <span><i class="fas fa-code"></i>&nbsp; ${repos[i].language}</span>
+                            <span style="display:${repos[i].language == null ? 'none' : 'inline-block'};"><i class="fas fa-code"></i>&nbsp; ${repos[i].language}</span>
                             <span><i class="fas fa-star"></i>&nbsp; ${repos[i].stargazers_count}</span>
                             <span><i class="fas fa-code-branch"></i>&nbsp; ${repos[i].forks_count}</span>
                         </div>
