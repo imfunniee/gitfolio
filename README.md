@@ -1,10 +1,10 @@
 <img src="https://i.imgur.com/eA6clZr.png">
 
-# Gitfolio  [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=about.me%20and%20medium%20but%20for%20every%20github%20user&url=https://github.com/imfunniee/gitfolio) ![GitHub release](https://img.shields.io/github/release/imfunniee/gitfolio.svg) ![GitHub top language](https://img.shields.io/github/languages/top/imfunniee/gitfolio.svg) ![GitHub last commit](https://img.shields.io/github/last-commit/imfunniee/gitfolio.svg) ![GitHub](https://img.shields.io/github/license/imfunniee/gitfolio.svg)
+# Gitfolio  [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=personal%20website%20blog%20for%20every%20github%20user&url=https://github.com/imfunniee/gitfolio) ![GitHub release](https://img.shields.io/github/release/imfunniee/gitfolio.svg) ![GitHub top language](https://img.shields.io/github/languages/top/imfunniee/gitfolio.svg) ![GitHub last commit](https://img.shields.io/github/last-commit/imfunniee/gitfolio.svg) ![GitHub](https://img.shields.io/github/license/imfunniee/gitfolio.svg)
   
 ### personal website + blog  for every github user
 
-Gitfolio will help get started with a portfolio website where you could showcase your work + a blog that will help you spread your ideas into  real world.
+Gitfolio will help you get started with a portfolio website where you could showcase your work + a blog that will help you spread your ideas into  real world.
 
 # Getting Started
 
