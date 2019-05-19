@@ -8,43 +8,50 @@ Gitfolio will help you get started with a portfolio website where you could show
 
 # Getting Started
 
-### Let's build
+### Let's Build
 
-a. Clone this repository using ``git clone https://github.com/imfunniee/gitfolio.git`` or just simply download it.
-
-```
-$ git clone https://github.com/imfunniee/gitfolio.git
-```
-
-b. Now ``cd`` into the repository you just cloned ``cd gitfolio`` and run the below command
-
-```
-$ npm i
+```sh
+git clone https://github.com/imfunniee/gitfolio.git # Clone the repo
+cd gitfolio # Navigate into the project folder
+npm i # Install the required dependencies
 ```
 
-This will install all the dependencies you will need to build your website.
+Gitfolio is now ready to be used. The command
 
-c. After its done installing the dependencies run this command where `username` is your username on github
-
+```sh
+node build --name [username]
 ```
-$ node build --name username
+
+Will build your website using your GitHub username and put it in the `dist/` folder.
+If you want to use a different folder, you can specify it by setting the `--out` flag.
+
+```sh
+node build --name [username] --out [directory]
 ```
-This will create `index.css` and `index.html` files in your working directory.
 
-d. Congrats, you just made yourself a personal website. 
+To open your site, run
+```sh
+open dist/index.html
+```
 
-e. To run your website open `index.html` or simply type `index.html` and hit enter in your terminal.
+If you specified a different output directory, replace `dist/` with the directory you used.
+Congrats, you just made yourself a personal website!
 
 > if you get stuck somewhere or get an error, please create an issue
 
-### Let's customize
+### Let's Customize
 
-#### Enabling Dark theme
+#### Enabling Themes
 
-To enable dark theme just provide `--dark` as an argument while building
+Themes are specified using the `--theme [theme-name]` flag when running the `build` command. The available themes are
 
+* `light`
+* `dark`
+> TODO: Add more themes
+
+For example, the following command will build the website with the dark theme
 ```
-$ node build --name username --dark
+$ node build --name username --theme dark
 ```
 
 #### Customize background image
@@ -60,7 +67,7 @@ You could also add in your custom CSS inside `index.css` to give it a more perso
 
 ### Let's Publish
 
-Push the files to github. You can host your website using github pages by naming your repo ``username.github.io``. You can also your cutsom domain.
+Push the files to github. You can host your website using github pages by naming your repo ``username.github.io``. You can also your custom domain.
 
 
 ### Updating
