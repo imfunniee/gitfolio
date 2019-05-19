@@ -50,11 +50,19 @@ function onFilterChange(type){
 
 function GetSortOrder(prop, order) {  
     return function(a, b) {  
-        if (a[prop] > b[prop]) {  
-            return 1 * order;  
-        } else if (a[prop] < b[prop]) {  
-            return -1 * order;  
-        }  
+		if(prop === 'name'){
+			if (a[prop].toLowerCase() > b[prop].toLowerCase()) {  
+				return 1 * order;  
+			} else if (a[prop].toLowerCase() < b[prop].toLowerCase()) {  
+				return -1 * order;  
+			}  
+		} else {
+			if (a[prop] > b[prop]) {  
+				return 1 * order;  
+			} else if (a[prop] < b[prop]) {  
+				return -1 * order;  
+			}  
+		}
         return 0;  
     }  
 } 
