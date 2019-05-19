@@ -1,64 +1,77 @@
+/* Argument parser */
 const program = require('commander');
-const fs = require('fs');
-const {updateHTML} = require('./populate')
+/* Filepath utilities */
+const path = require('path');
+/* Promise library */
+const bluebird = require('bluebird');
+const hbs = require('handlebars');
+/*  Creates promise-returning async functions
+    from callback-passed async functions      */
+const fs = bluebird.promisifyAll(require('fs'));
+const { updateHTML } = require('./populate');
 
+
+/* Specify the options the program uses */
 program
-  .version('0.1.1')
-  .option('-n, --name [username]', 'get username')
-  .option('-d, --dark', 'enable dark mode')
-  .option('-b, --background [background]', 'set background image')
-  .parse(process.argv);
+    .version('0.1.1')
+    .option('-n, --name [username]', 'your GitHub username. This will be used to customize your site')
+    .option('-t, --theme [theme]', 'specify a theme to use')
+    .option('-b, --background [background]', 'set the background image')
+    .option('-o, --out [directory]', 'the output directory to put the built site')
+    .parse(process.argv);
 
-var dark;
-var light;
+const config = 'config.json';
+const assetDir = path.resolve('./assets/');
+const outDir = path.resolve(program.out || './dist/');
 
-function populateCSS(){
-    if (program.dark) {
-        fs.copyFile('./assets/index.css', 'index.css', (err) => {
-            if (err) throw err;
-            fs.appendFile('index.css', dark, function (err) {
-                if (err) throw err;
-            });
-            fs.readFile("config.json", function (err , data) {
-                if (err) throw err;
-                data = JSON.parse(data);
-                data[0].theme = "dark";
-                fs.writeFile('config.json', JSON.stringify(data, null, ' '), function(err){
-                  if (err) throw err;
-                });
-            });
-        });
-    }else{
-        fs.copyFile('./assets/index.css', 'index.css', (err) => {
-            if (err) throw err;
-            fs.appendFile('index.css', light, function (err) {
-                if (err) throw err;
-            });
-            fs.readFile("config.json", function (error , data) {
-                if (error) throw err;
-                data = JSON.parse(data);
-                data[0].theme = "light";
-                fs.writeFile('config.json', JSON.stringify(data, null, ' '), function(error){
-                  if (error) throw err;
-                });
-            });
-        });
+/**
+ * Creates the stylesheet used by the site from a template stylesheet.
+ * 
+ * Theme styles are added to the new stylesheet depending on command line 
+ * arguments.
+ */
+async function populateCSS() {
+    /* Get the theme the user requests. Defaults to 'light' */
+    let theme = `${program.theme || 'light'}.css`; /* Site theme, defaults to 'light' */
+    let template = path.resolve(assetDir, 'index.css');
+    let stylesheet = path.join(outDir, 'index.css');
+
+    try {
+        await fs.accessAsync(outDir, fs.constants.F_OK);
+    } catch (err) {
+        await fs.mkdirAsync(outDir);
     }
+    /* Copy over the template CSS stylesheet */
+    await fs.copyFileAsync(template, stylesheet);
+
+    /* Get an array of every available theme */
+    let themes = await fs.readdirAsync(path.join(assetDir, 'themes'));
+
+    if (!themes.includes(theme)) {
+        console.error('Error: Requested theme not found. Defaulting to "light".');
+        theme = 'light';
+    }
+    /* Read in the theme stylesheet */
+    let themeSource = await fs.readFileSync(path.join(assetDir, 'themes', theme));
+    themeSource = themeSource.toString('utf-8');
+    let themeTemplate = hbs.compile(themeSource);
+    let styles = themeTemplate({
+        'background': `${process.background || 'https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450'}`
+    })
+    /* Add the user-specified styles to the new stylesheet */
+    await fs.appendFileAsync(stylesheet, styles);
+
+    /* Update the config file with the user's theme choice */
+    let data = await fs.readFileAsync(config);
+    data = JSON.parse(data);
+    data[0].theme = theme;
+    await fs.writeFileAsync(config, JSON.stringify(data, null, ' '));
 }
 
-
-if (program.background) {
-    dark = `:root {--bg-color: rgb(10, 10, 10);--text-color: #fff;--blog-gray-color:rgb(180, 180, 180);--background-image: linear-gradient(90deg, rgba(10, 10, 10, 0.6), rgb(10, 10, 10, 1)), url('${('%s', program.background)}');--background-background: linear-gradient(0deg, rgba(10, 10, 10, 1), rgba(10, 10, 10, 0.6)),url('${('%s', program.background)}') center center fixed;--height:50vh;} #display h1 {-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color: #fff;} #blog-display h1 {-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color: #fff;}#projects section {background:rgb(20, 20, 20);}#blog_section section {background:rgb(20, 20, 20);}@media (max-width: 800px){ --background-image: linear-gradient(0deg, rgba(10, 10, 10, 1), rgb(10, 10, 10, 0)), url('${('%s', program.background)}') !important;}`;
-    light = `:root {--bg-color: #fff;--text-color: rgb(10, 10, 10);--blog-gray-color:rgb(80, 80, 80);--background-image: linear-gradient(90deg, rgba(10, 10, 10, 0.4), rgb(10, 10, 10, 0.4)), url('${('%s', program.background)}');--background-background: #fff;}`;
-    populateCSS();
-}else{
-    dark = `:root {--bg-color: rgb(10, 10, 10);--text-color: #fff;--blog-gray-color:rgb(180, 180, 180);--background-image: linear-gradient(90deg, rgba(10, 10, 10, 0.6), rgb(10, 10, 10, 1)), url('https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450');--background-background: linear-gradient(0deg, rgba(10, 10, 10, 1), rgba(10, 10, 10, 0.6)),url('https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450') center center fixed;--height:50vh;} #display h1 {-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color: #fff;} #blog-display h1 {-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color: #fff;}#projects section {background:rgb(20, 20, 20);}#blog_section section {background:rgb(20, 20, 20);}@media (max-width: 800px){ :root {--background-image: linear-gradient(0deg, rgba(10, 10, 10, 1), rgb(10, 10, 10, 0)), url('https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450') !important;}}`;
-    light = `:root {--bg-color: #fff;--text-color: rgb(10, 10, 10);--blog-gray-color:rgb(80, 80, 80);--background-image: linear-gradient(90deg, rgba(10, 10, 10, 0.4), rgb(10, 10, 10, 0.4)), url('https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450');--background-background: #fff;}`;
-    populateCSS();
-}
+populateCSS();
 
 if (program.name) {
     updateHTML(('%s', program.name));
 } else {
-    console.log("Provide a username");
+    console.error("Error: Please provide a GitHub username.");
 }
