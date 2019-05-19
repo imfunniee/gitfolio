@@ -60,7 +60,7 @@ You could also add in your custom CSS inside `index.css` to give it a more perso
 
 ### Let's Publish
 
-Push the files to github. You can host your website using github pages by naming your repo ``username.github.io``. You can also your cutsom domain.
+Push the files to github. You can host your website using github pages by naming your repo ``username.github.io``. You can also your custom domain.
 
 
 ### Updating
