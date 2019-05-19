@@ -80,6 +80,7 @@ hr {
 }
 
 #profile #navbar a {	
+  float: left;
   text-align: left;
   display: block;
   color: #fff;
@@ -472,7 +473,7 @@ hr {
 	  position: relative;
 	}
 	#profile #navbar a {
-	  text-align: left;
+	  float: none !important;
 	  display: block;
 	  color: #fff;
 	  text-align: center;
