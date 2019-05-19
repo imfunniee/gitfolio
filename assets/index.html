@@ -27,8 +27,9 @@
             <h1>Projects</h1>
 			<div>
 				<span>Filter by: 
-					<select onchange="onFilterChange('repos');" id="repos_filter">
-						<option value="date" selected>Date (default)</option>
+					<select onchange="onFilterChange('repos');" id="repos_filter" autocomplete="off">
+					    <option value="" selected>---</option>
+						<option value="date">Date</option>
 						<option value="name">Name</option>
 						<option value="stared">Stared</option>
 						<option value="forked">Forked</option>
@@ -40,8 +41,9 @@
 			<h1>Forks</h1>
 			<div>
 				<span>Filter by: 
-					<select onchange="onFilterChange('forks');" id="forks_filter">
-						<option value="date" selected>Date (default)</option>
+					<select onchange="onFilterChange('forks');" id="forks_filter" autocomplete="off">
+						<option value="" selected>---</option>
+						<option value="date">Date</option>
 						<option value="name">Name</option>
 						<option value="stared">Stared</option>
 						<option value="forked">Forked</option>

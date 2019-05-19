@@ -7,6 +7,8 @@ program
   .option('-n, --name [username]', 'get username')
   .option('-d, --dark', 'enable dark mode')
   .option('-b, --background [background]', 'set background image')
+  .option('-b, --sort [sort]', 'set default sort for repository')
+  .option('-b, --order [order]', 'set default order on sort')
   .parse(process.argv);
 
 var dark;
@@ -65,7 +67,17 @@ if (program.background) {
 populateJS();
 
 if (program.name) {
-    updateHTML(('%s', program.name));
+	let sort = program.sort ? program.sort: 'created_at';
+	let order = -1;
+	
+	if(program.order){
+		if(program.order === 'asc')
+			order = 1;
+		else if(program.order === 'desc')
+			order = -1;
+	}
+	
+    updateHTML(('%s', program.name), sort, order);
 } else {
     console.log("Provide a username");
 }

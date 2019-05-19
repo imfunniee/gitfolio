@@ -13,7 +13,6 @@ function readJsonFile(file, callback) {
 function onFilterChange(type){
 	let projects = document.getElementById(type === 'repos' ? 'projects' : 'forks');
 	let filter = document.getElementById(type + "_filter")
-	projects.innerHTML = '';
 	readJsonFile("./" + type + ".json", function(text){
 		let data = JSON.parse(text);
 		let result = [];
@@ -28,6 +27,7 @@ function onFilterChange(type){
 			result = data.sort(GetSortOrder('forks_count', -1))
 		
 		if(result.length){
+			projects.innerHTML = '';
 			for(var i = 0;i < result.length;i++){
                     document.getElementById(type === 'repos' ? 'projects' : 'forks').innerHTML += `
                     <a href="${result[i].html_url}" target="_blank">

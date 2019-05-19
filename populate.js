@@ -30,53 +30,26 @@ function convertToEmoji(text){
     }
 }
 
-module.exports.updateHTML = (username) => {
+module.exports.updateHTML = (username, sort, order) => {
 //add data to assets/index.html
 jsdom.fromFile("./assets/index.html", options).then(function (dom) {
     let window = dom.window, document = window.document;
     (async () => {
         try {
             console.log("Building HTML/CSS/JS...");
-            var repos = await got(`https://api.github.com/users/${username}/repos?sort=created`);
+            var repos = await got(`https://api.github.com/users/${username}/repos`);
             repos = JSON.parse(repos.body);
             for(var i = 0;i < repos.length;i++){
                 if(repos[i].fork == false){
 					repos[i].description = convertToEmoji(repos[i].description);
-					savedRepos.push(repos[i]);
-                    document.getElementById("projects").innerHTML += `
-                    <a href="${repos[i].html_url}" target="_blank">
-                    <section>
-                        <div class="section_title">${repos[i].name}</div>
-                        <div class="about_section">
-                        <span style="display:${repos[i].description == undefined ? 'none' : 'block'};">${convertToEmoji(repos[i].description)}</span>
-                        </div>
-                        <div class="bottom_section">
-                            <span style="display:${repos[i].language == null ? 'none' : 'inline-block'};"><i class="fas fa-code"></i>&nbsp; ${repos[i].language}</span>
-                            <span><i class="fas fa-star"></i>&nbsp; ${repos[i].stargazers_count}</span>
-                            <span><i class="fas fa-code-branch"></i>&nbsp; ${repos[i].forks_count}</span>
-                        </div>
-                    </section>
-                    </a>`;
+					savedRepos.push(repos[i]);      
                 } else {
 					repos[i].description = convertToEmoji(repos[i].description);
 					savedForks.push(repos[i]);
-					document.getElementById("forks").innerHTML += `
-                    <a href="${repos[i].html_url}" target="_blank">
-                    <section>
-                        <div class="section_title">${repos[i].name}</div>
-                        <div class="about_section">
-                        <span style="display:${repos[i].description == undefined ? 'none' : 'block'};">${convertToEmoji(repos[i].description)}</span>
-                        </div>
-                        <div class="bottom_section">
-                            <span style="display:${repos[i].language == null ? 'none' : 'inline-block'};"><i class="fas fa-code"></i>&nbsp; ${repos[i].language}</span>
-                            <span><i class="fas fa-star"></i>&nbsp; ${repos[i].stargazers_count}</span>
-                            <span><i class="fas fa-code-branch"></i>&nbsp; ${repos[i].forks_count}</span>
-                        </div>
-                    </section>
-                    </a>`;
 				}
             }
-			saveToFile();
+			saveToFile(sort, order, document);
+
 			
 			if(savedRepos.length){
 				document.getElementById("navbar").innerHTML += `
@@ -102,7 +75,7 @@ jsdom.fromFile("./assets/index.html", options).then(function (dom) {
         document.getElementById("about").innerHTML = `
         <span style="display:${user.company == null || !user.company ? 'none' : 'block'};"><i class="fas fa-users"></i> &nbsp; ${user.company}</span>
         <span style="display:${user.email == null || !user.email ? 'none' : 'block'};"><i class="fas fa-envelope"></i> &nbsp; ${user.email}</span>
-        <span style="display:${user.blog == null || !user.blog ? 'none' : 'block'};"><i class="fas fa-link"></i> &nbsp; ${user.blog}</span>
+        <span style="display:${user.blog == null || !user.blog ? 'none' : 'block'};"><i class="fas fa-link"></i> &nbsp;<a href="${user.blog}">${user.blog}</a></span>
         <span style="display:${user.location == null || !user.location ? 'none' : 'block'};"><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp; ${user.location}</span>
         <span style="display:${user.hireable == false || !user.hireable ? 'none' : 'block'};"><i class="fas fa-user-tie"></i> &nbsp;&nbsp; Available for hire</span>`;
         //add data to config.json
@@ -130,16 +103,64 @@ jsdom.fromFile("./assets/index.html", options).then(function (dom) {
 });
 }
 
-function saveToFile(){
+function saveToFile(sort, order, document){
 	fs.writeFile("repos.json", JSON.stringify(savedRepos), function(err) {
 		if (err) {
 			console.log(err);
 		}
+		
+		populateHTML('repos', sort, order, document);
 	});
 	
 	fs.writeFile("forks.json", JSON.stringify(savedForks), function(err) {
 		if (err) {
 			console.log(err);
 		}
+		
+		populateHTML('forks', sort, order, document);
 	});
 }
+
+function populateHTML(type, sort, order, document){
+	let data = require('./' + type + '.json');
+	let result = [];
+	result = data.sort(GetSortOrder(sort, order));
+	
+	if(result.length){
+		for(var i = 0;i < result.length;i++){
+            document.getElementById(type === 'repos' ? 'projects' : 'forks').innerHTML += `
+            <a href="${result[i].html_url}" target="_blank">
+                <section>
+                    <div class="section_title">${result[i].name}</div>
+                       <div class="about_section">
+					<span style="display:${result[i].description == undefined ? 'none' : 'block'};">${result[i].description}</span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:${result[i].language == null ? 'none' : 'inline-block'};"><i class="fas fa-code"></i>&nbsp; ${result[i].language}</span>
+                        <span><i class="fas fa-star"></i>&nbsp; ${result[i].stargazers_count}</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; ${result[i].forks_count}</span>
+                    </div>
+                </section>
+            </a>`;        
+		}
+	}
+}
+
+function GetSortOrder(prop, order) {  
+    return function(a, b) {  
+		if(typeof(a[prop]) === 'string'){
+			if (a[prop].toLowerCase() > b[prop].toLowerCase()) {  
+				return 1 * order;  
+			} else if (a[prop].toLowerCase() < b[prop].toLowerCase()) {  
+				return -1 * order;  
+			}  
+		} else {
+			if (a[prop] > b[prop]) {  
+				return 1 * order;  
+			} else if (a[prop] < b[prop]) {  
+				return -1 * order;  
+			}  
+		}
+        return 0;  
+    }  
+} 

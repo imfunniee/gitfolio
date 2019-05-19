@@ -324,6 +324,11 @@ hr {
     font-size:16px;
 }
 
+#about span a {
+	color: #fff;
+    text-decoration: none;
+}
+
 #work {
     margin:2vh 0px;
     padding:4vh 0px !important;
