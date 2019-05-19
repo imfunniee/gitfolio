@@ -69,7 +69,6 @@ You could also add in your custom CSS inside `index.css` to give it a more perso
 
 Push the files to github. You can host your website using github pages by naming your repo ``username.github.io``. You can also your custom domain.
 
-
 ### Updating
 
 To update your info, simply run
