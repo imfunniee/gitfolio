@@ -3,6 +3,7 @@
   "version": "0.1.2",
   "description": "portfolio website for showcasing your work",
   "main": "build.js",
+  "bin": "bin/gitfolio.js",
   "scripts": {
     "clean": "rm -f dist/index.*",
     "test": "echo \"Error: no test specified\" && exit 1"

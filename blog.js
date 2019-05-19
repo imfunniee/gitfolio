@@ -1,17 +1,8 @@
-const program = require('commander');
 const fs = require('fs');
 const jsdom = require('jsdom').JSDOM,
 options = {
     resources: "usable"
 };
-
-program
-  .version('0.1.2')
-  .option('-t, --title [title]', 'give blog a title')
-  .option('-s, --subtitle [subtitle]', 'give blog a subtitle', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
-  .option('-p, --pagetitle [pagetitle]', 'give blog page a title')
-  .option('-f, --folder [folder]', 'give folder a title (use "-" instead of spaces)')
-  .parse(process.argv);
 
 function createBlog(title, subtitle, pagetitle, folder) {
     // Checks to make sure this directory actually exists
@@ -60,18 +51,24 @@ function createBlog(title, subtitle, pagetitle, folder) {
     });
 }
 
-if (program.title) {
-    /* Check if build has been executed before blog this will prevent it from giving "link : index.css" error */
-    if (!fs.existsSync(`./dist/index.html`) || !fs.existsSync(`./dist/index.css`)){
-        return console.log("You need to run build command before using blog one");
+function blogCommand(program) {
+    if (program.title) {
+        /* Check if build has been executed before blog this will prevent it from giving "link : index.css" error */
+        if (!fs.existsSync(`./dist/index.html`) || !fs.existsSync(`./dist/index.css`)){
+            return console.log("You need to run build command before using blog one");
+        }
+        if (!program.pagetitle) {
+            program.pagetitle = program.title;
+        }
+        if (!program.folder) {
+            program.folder = program.title;
+        }
+        createBlog(program.title, program.subtitle, program.pagetitle, program.folder);
+    } else {
+        console.log("Provide a title to create a new blog");
     }
-    if (!program.pagetitle) {
-        program.pagetitle = program.title;
-    }
-    if (!program.folder) {
-        program.folder = program.title;
-    }
-    createBlog(program.title, program.subtitle, program.pagetitle, program.folder);
-} else {
-    console.log("Provide a title to create a new blog");
 }
+
+module.exports = {
+    blogCommand,
+};
