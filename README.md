@@ -114,7 +114,7 @@ More Arguments for Blog
 
 Blog are disabled by default. To enable them head over to `assets/index.html` and find `<div id="blog_section" style="display:none;">`. Remove the style attribute to show your blogs on your personal website.
 
-If you have run build command before adding a blog you need have to remove the style attribute from `index.html` file aswell.
+If you have run build command before adding a blog you need have to remove the style attribute from `index.html` file as well.
 
 ## License
 ![GitHub](https://img.shields.io/github/license/imfunniee/gitfolio.svg)
