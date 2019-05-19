@@ -69,24 +69,20 @@ async function populateConfig(sort, order, includeFork) {
     await fs.writeFileAsync(config, JSON.stringify(data, null, ' '));
 }
 
-function buildCommand(program) {
+function buildCommand(username, program) {
     populateCSS(program);
     
-    if (typeof program.name === 'string' && program.name.trim() !== '') {
-        let sort = program.sort ? program.sort : 'created';
-        let order = "asc";
-        let includeFork = false;
-        if(program.order){
-            order = ('%s', program.order);
-        }
-        if(program.fork){
-            includeFork = true;
-        }
-        populateConfig(sort, order, includeFork);
-        updateHTML(('%s', program.name), sort, order, includeFork);
-    } else {
-        console.error("Error: Please provide a GitHub username.");
+    let sort = program.sort ? program.sort : 'created';
+    let order = "asc";
+    let includeFork = false;
+    if(program.order){
+        order = ('%s', program.order);
     }
+    if(program.fork){
+        includeFork = true;
+    }
+    populateConfig(sort, order, includeFork);
+    updateHTML(('%s', username), sort, order, includeFork);
 }
 
 module.exports = {
