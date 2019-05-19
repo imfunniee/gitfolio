@@ -34,6 +34,7 @@ function onFilterChange(type){
                     <section>
                         <div class="section_title">${result[i].name}</div>
                         <div class="about_section">
+						<span style="display:${result[i].description == undefined ? 'none' : 'block'};">${result[i].description}</span>
                         </div>
                         <div class="bottom_section">
                             <span style="display:${result[i].language == null ? 'none' : 'inline-block'};"><i class="fas fa-code"></i>&nbsp; ${result[i].language}</span>

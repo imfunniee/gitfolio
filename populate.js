@@ -36,11 +36,12 @@ jsdom.fromFile("./assets/index.html", options).then(function (dom) {
     let window = dom.window, document = window.document;
     (async () => {
         try {
-            console.log("Building HTML/CSS...");
+            console.log("Building HTML/CSS/JS...");
             var repos = await got(`https://api.github.com/users/${username}/repos?sort=created`);
             repos = JSON.parse(repos.body);
             for(var i = 0;i < repos.length;i++){
                 if(repos[i].fork == false){
+					repos[i].description = convertToEmoji(repos[i].description);
 					savedRepos.push(repos[i]);
                     document.getElementById("projects").innerHTML += `
                     <a href="${repos[i].html_url}" target="_blank">
@@ -57,6 +58,7 @@ jsdom.fromFile("./assets/index.html", options).then(function (dom) {
                     </section>
                     </a>`;
                 } else {
+					repos[i].description = convertToEmoji(repos[i].description);
 					savedForks.push(repos[i]);
 					document.getElementById("forks").innerHTML += `
                     <a href="${repos[i].html_url}" target="_blank">
