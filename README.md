@@ -33,7 +33,7 @@ This will create `index.css` and `index.html` files in your working directory.
 
 d. Congrats, you just made yourself a personal website. 
 
-e. To run your website open `index.html` or simply type `index.html` and hit enter in your terminal.
+e. To run your website navigate to `index.html` in your browser. [you won't see blogs until you are on localhost]
 
 > if you get stuck somewhere or get an error, please create an issue
 
@@ -60,7 +60,7 @@ You could also add in your custom CSS inside `index.css` to give it a more perso
 
 ### Let's Publish
 
-Push the files to github. You can host your website using github pages by naming your repo ``username.github.io``. You can also your cutsom domain.
+Push the files to github. You can host your website using github pages by naming your repo ``username.github.io``. You can also use a custom domain.
 
 
 ### Updating
