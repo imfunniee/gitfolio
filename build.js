@@ -7,8 +7,8 @@ program
   .option('-n, --name [username]', 'get username')
   .option('-d, --dark', 'enable dark mode')
   .option('-b, --background [background]', 'set background image')
-  .option('-b, --sort [sort]', 'set default sort for repository')
-  .option('-b, --order [order]', 'set default order on sort')
+  .option('-s, --sort [sort]', 'set default sort for repository')
+  .option('-o, --order [order]', 'set default order on sort')
   .parse(process.argv);
 
 var dark;
