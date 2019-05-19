@@ -25,10 +25,30 @@
     </div>
     <div id="display">
         <div id="work">
-            <h1>Projects.</h1>
+            <h1>Projects</h1>
+			<div>
+				<span>Filter by: 
+					<select onchange="onFilterChange('repos');" id="repos_filter">
+						<option value="date" selected>Date (default)</option>
+						<option value="name">Name</option>
+						<option value="stared">Stared</option>
+						<option value="forked">Forked</option>
+					</select>
+				</span>
+			</div>			
             <div id="projects"></div>
-			<hr>
-			<h1>Forks.</h1>
+			<hr />
+			<h1>Forks</h1>
+			<div>
+				<span>Filter by: 
+					<select onchange="onFilterChange('forks');" id="forks_filter">
+						<option value="date" selected>Date (default)</option>
+						<option value="name">Name</option>
+						<option value="stared">Stared</option>
+						<option value="forked">Forked</option>
+					</select>
+				</span>
+			</div>		
             <div id="forks"></div>
         </div>
         <div id="blog_section" style="display:none;">
@@ -67,5 +87,6 @@
         }
     });
     </script>
+	<script src="index.js"></script>
 </body>
 </html>

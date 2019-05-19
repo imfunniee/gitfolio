@@ -6,6 +6,9 @@ options = {
     resources: "usable"
 };
 
+let savedRepos = [];
+let savedForks = [];
+
 function convertToEmoji(text){
     if (text == null) return;
     text = text.toString();
@@ -32,15 +35,13 @@ module.exports.updateHTML = (username) => {
 jsdom.fromFile("./assets/index.html", options).then(function (dom) {
     let window = dom.window, document = window.document;
     (async () => {
-		let hasRepos = false;
-		let hasForks = false;
         try {
             console.log("Building HTML/CSS...");
             var repos = await got(`https://api.github.com/users/${username}/repos?sort=created`);
             repos = JSON.parse(repos.body);
             for(var i = 0;i < repos.length;i++){
                 if(repos[i].fork == false){
-					hasRepos = true;
+					savedRepos.push(repos[i]);
                     document.getElementById("projects").innerHTML += `
                     <a href="${repos[i].html_url}" target="_blank">
                     <section>
@@ -56,7 +57,7 @@ jsdom.fromFile("./assets/index.html", options).then(function (dom) {
                     </section>
                     </a>`;
                 } else {
-					hasForks = true;
+					savedForks.push(repos[i]);
 					document.getElementById("forks").innerHTML += `
                     <a href="${repos[i].html_url}" target="_blank">
                     <section>
@@ -73,12 +74,13 @@ jsdom.fromFile("./assets/index.html", options).then(function (dom) {
                     </a>`;
 				}
             }
+			saveToFile();
 			
-			if(hasRepos){
+			if(savedRepos.length){
 				document.getElementById("navbar").innerHTML += `
 				<a href="#projects">Projects</a>`;
 			}
-			if(hasForks){
+			if(savedForks.length){
 				document.getElementById("navbar").innerHTML += `
 				<a href="#forks">Forks</a>`;
 			}
@@ -124,4 +126,18 @@ jsdom.fromFile("./assets/index.html", options).then(function (dom) {
 }).catch(function(error){
     console.log(error);
 });
+}
+
+function saveToFile(){
+	fs.writeFile("repos.json", JSON.stringify(savedRepos), function(err) {
+		if (err) {
+			console.log(err);
+		}
+	});
+	
+	fs.writeFile("forks.json", JSON.stringify(savedForks), function(err) {
+		if (err) {
+			console.log(err);
+		}
+	});
 }
