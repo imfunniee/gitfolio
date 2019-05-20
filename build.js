@@ -13,16 +13,18 @@ const { updateHTML } = require('./populate');
 
 /* Specify the options the program uses */
 program
-    .version('0.1.1')
-    .option('-n, --name [username]', 'your GitHub username. This will be used to customize your site')
-    .option('-t, --theme [theme]', 'specify a theme to use')
-    .option('-b, --background [background]', 'set the background image')
-    .option('-o, --out [directory]', 'the output directory to put the built site')
-    .parse(process.argv);
+  .version('0.1.1')
+  .option('-n, --name [username]', 'get username')
+  .option('-d, --dark', 'enable dark mode')
+  .option('-b, --background [background]', 'set background image')
+  .option('-f, --fork [order]', 'include forks')
+  .option('-s, --sort [sort]', 'set default sort for repository')
+  .option('-o, --order [order]', 'set default order on sort')
+  .parse(process.argv);
 
-const config = 'config.json';
+const config = './dist/config.json';
 const assetDir = path.resolve('./assets/');
-const outDir = path.resolve(program.out || './dist/');
+const outDir = path.resolve('./dist/');
 
 /**
  * Creates the stylesheet used by the site from a template stylesheet.
@@ -71,7 +73,16 @@ async function populateCSS() {
 populateCSS();
 
 if (program.name) {
-    updateHTML(('%s', program.name));
+    let sort = program.sort ? program.sort: 'created_at';
+	let order = -1;
+	
+	if(program.order){
+		if(program.order === 'asc')
+			order = 1;
+		else if(program.order === 'desc')
+			order = -1;
+	}
+    updateHTML(('%s', program.name), sort, order);
 } else {
     console.error("Error: Please provide a GitHub username.");
 }

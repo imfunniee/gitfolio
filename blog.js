@@ -38,11 +38,11 @@ function createBlog(title, subtitle, pagetitle, folder) {
                     "sub_title": subtitle,
                     "top_image": "https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450",
                     "visible": true }
-                fs.readFile("./assets/blog/blog.json", function (err , data) {
+                fs.readFile("./dist/blog.json", function (err , data) {
                     if (err) throw err;
                     var old_blogs = JSON.parse(data);
                     old_blogs.push(blog_data);
-                    fs.writeFile('./assets/blog/blog.json', JSON.stringify(old_blogs, null, ' '), function(err){
+                    fs.writeFile('./dist/blog.json', JSON.stringify(old_blogs, null, ' '), function(err){
                       if (err) throw err;
                       console.log('Blog Created Successfully in "blog" folder.');
                     });
@@ -60,6 +60,10 @@ if (program.title) {
     }
     if (!program.folder) {
         program.folder = program.title;
+    }
+    /* Check if build has been executed before blog this will prevent it from giving "link : index.css" error */
+    if (!fs.existsSync(`./dist/index.html`)){
+        return console.log("You need to run build command before using blog one");
     }
     createBlog(program.title, program.subtitle, program.pagetitle, program.folder);
 } else {

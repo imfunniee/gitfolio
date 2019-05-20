@@ -1,0 +1,360 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>imfunniee</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+<link rel="icon" href="https://avatars3.githubusercontent.com/u/36105478?v=4" type="image/png"></head>
+<body>
+    <div id="loading">
+        <div id="spinner"></div>
+    </div>
+    <div id="profile">
+		<nav id="navbar">
+				<a href="#projects">Projects</a>
+				<a href="#forks">Forks</a></nav>
+        <div id="profile_img" style="background: url(https://avatars3.githubusercontent.com/u/36105478?v=4) center;"></div>
+        <div id="username"><span style="display:block;">imfunny</span>@imfunniee</div>
+        <div id="userbio" style="display: block;">Frontend Developer |  UI/UX designer</div>
+        <div id="about">
+                <span style="display:none;"><i class="fas fa-users"></i> &nbsp; null</span>
+                <span style="display:none;"><i class="fas fa-envelope"></i> &nbsp; null</span>
+                <span style="display:block;"><i class="fas fa-link"></i> &nbsp; https://imfunniee.github.io/</span>
+                <span style="display:block;"><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp; Mars</span>
+                <span style="display:block;"><i class="fas fa-user-tie"></i> &nbsp;&nbsp; Available for hire</span></div>
+    </div>
+    <div id="display">
+        <div id="work">
+            <h1>Projects</h1>
+			<div>
+				<span>Filter by: 
+					<select onchange="onFilterChange('repos');" id="repos_filter" autocomplete="off">
+					    <option value="" selected="">---</option>
+						<option value="date">Date</option>
+						<option value="name">Name</option>
+						<option value="stared">Stared</option>
+						<option value="forked">Forked</option>
+					</select>
+				</span>
+			</div>			
+            <div id="projects">
+            <a href="https://github.com/imfunniee/chat-on-github" target="_blank">
+                <section>
+                    <div class="section_title">chat-on-github</div>
+                       <div class="about_section">
+					<span style="display:none;">undefined</span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:none;"><i class="fas fa-code"></i>&nbsp; null</span>
+                        <span><i class="fas fa-star"></i>&nbsp; 0</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; 2</span>
+                    </div>
+                </section>
+            </a>
+            <a href="https://github.com/imfunniee/gitfolio" target="_blank">
+                <section>
+                    <div class="section_title">gitfolio</div>
+                       <div class="about_section">
+					<span style="display:block;"><img src="https://github.githubassets.com/images/icons/emoji/octocat.png?v8" class="emoji"> personal website + blog  for every github user</span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; JavaScript</span>
+                        <span><i class="fas fa-star"></i>&nbsp; 871</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; 69</span>
+                    </div>
+                </section>
+            </a>
+            <a href="https://github.com/imfunniee/gitark" target="_blank">
+                <section>
+                    <div class="section_title">gitark</div>
+                       <div class="about_section">
+					<span style="display:block;"><img src="https://github.githubassets.com/images/icons/emoji/octocat.png?v8" class="emoji"> Dark theme for Github</span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; CSS</span>
+                        <span><i class="fas fa-star"></i>&nbsp; 111</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; 11</span>
+                    </div>
+                </section>
+            </a>
+            <a href="https://github.com/imfunniee/polymerBot" target="_blank">
+                <section>
+                    <div class="section_title">polymerBot</div>
+                       <div class="about_section">
+					<span style="display:block;">🤖 A Discord bot for Moderation and stuff </span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; JavaScript</span>
+                        <span><i class="fas fa-star"></i>&nbsp; 0</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; 1</span>
+                    </div>
+                </section>
+            </a>
+            <a href="https://github.com/imfunniee/secret-img" target="_blank">
+                <section>
+                    <div class="section_title">secret-img</div>
+                       <div class="about_section">
+					<span style="display:block;">encrypt/decrypt images 🤫 </span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; JavaScript</span>
+                        <span><i class="fas fa-star"></i>&nbsp; 2</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                    </div>
+                </section>
+            </a>
+            <a href="https://github.com/imfunniee/yt-upload" target="_blank">
+                <section>
+                    <div class="section_title">yt-upload</div>
+                       <div class="about_section">
+					<span style="display:block;">basically youtube in your terminal</span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; JavaScript</span>
+                        <span><i class="fas fa-star"></i>&nbsp; 1</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                    </div>
+                </section>
+            </a>
+            <a href="https://github.com/imfunniee/youtube-discord-rpc" target="_blank">
+                <section>
+                    <div class="section_title">youtube-discord-rpc</div>
+                       <div class="about_section">
+					<span style="display:block;">🎵 Discord Rich Presence for Youtube </span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; JavaScript</span>
+                        <span><i class="fas fa-star"></i>&nbsp; 2</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                    </div>
+                </section>
+            </a>
+            <a href="https://github.com/imfunniee/pymine" target="_blank">
+                <section>
+                    <div class="section_title">pymine</div>
+                       <div class="about_section">
+					<span style="display:block;">python learns to play minecraft (TOTALLY not copying https://github.com/Sentdex/pygta5 😂)</span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Python</span>
+                        <span><i class="fas fa-star"></i>&nbsp; 2</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                    </div>
+                </section>
+            </a>
+            <a href="https://github.com/imfunniee/NoOS" target="_blank">
+                <section>
+                    <div class="section_title">NoOS</div>
+                       <div class="about_section">
+					<span style="display:block;">🚀 A OS launcher that runs on your current OS</span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; JavaScript</span>
+                        <span><i class="fas fa-star"></i>&nbsp; 4</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; 1</span>
+                    </div>
+                </section>
+            </a>
+            <a href="https://github.com/imfunniee/zucc" target="_blank">
+                <section>
+                    <div class="section_title">zucc</div>
+                       <div class="about_section">
+					<span style="display:block;">browser voice-controlled personal assistant</span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; JavaScript</span>
+                        <span><i class="fas fa-star"></i>&nbsp; 1</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; 1</span>
+                    </div>
+                </section>
+            </a>
+            <a href="https://github.com/imfunniee/todo" target="_blank">
+                <section>
+                    <div class="section_title">todo</div>
+                       <div class="about_section">
+					<span style="display:block;">a todo app ;)</span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; CSS</span>
+                        <span><i class="fas fa-star"></i>&nbsp; 0</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; 1</span>
+                    </div>
+                </section>
+            </a>
+            <a href="https://github.com/imfunniee/meteo" target="_blank">
+                <section>
+                    <div class="section_title">meteo</div>
+                       <div class="about_section">
+					<span style="display:block;">⛈ a simple weather app</span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; HTML</span>
+                        <span><i class="fas fa-star"></i>&nbsp; 0</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                    </div>
+                </section>
+            </a>
+            <a href="https://github.com/imfunniee/Pluto" target="_blank">
+                <section>
+                    <div class="section_title">Pluto</div>
+                       <div class="about_section">
+					<span style="display:block;">a peer to peer video and text chat</span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; HTML</span>
+                        <span><i class="fas fa-star"></i>&nbsp; 0</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                    </div>
+                </section>
+            </a>
+            <a href="https://github.com/imfunniee/imfunniee.github.io" target="_blank">
+                <section>
+                    <div class="section_title">imfunniee.github.io</div>
+                       <div class="about_section">
+					<span style="display:block;">👨‍💻 personal portfolio website and projects</span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; HTML</span>
+                        <span><i class="fas fa-star"></i>&nbsp; 4</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; 1</span>
+                    </div>
+                </section>
+            </a></div>
+			<hr>
+			<h1>Forks</h1>
+			<div>
+				<span>Filter by: 
+					<select onchange="onFilterChange('forks');" id="forks_filter" autocomplete="off">
+						<option value="" selected="">---</option>
+						<option value="date">Date</option>
+						<option value="name">Name</option>
+						<option value="stared">Stared</option>
+						<option value="forked">Forked</option>
+					</select>
+				</span>
+			</div>		
+            <div id="forks">
+            <a href="https://github.com/imfunniee/opensource.guide" target="_blank">
+                <section>
+                    <div class="section_title">opensource.guide</div>
+                       <div class="about_section">
+					<span style="display:block;">Community guides for open source creators</span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; JavaScript</span>
+                        <span><i class="fas fa-star"></i>&nbsp; 0</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                    </div>
+                </section>
+            </a>
+            <a href="https://github.com/imfunniee/node-github-emoji" target="_blank">
+                <section>
+                    <div class="section_title">node-github-emoji</div>
+                       <div class="about_section">
+					<span style="display:block;">Node.js library for GitHub Emoji <img src="https://github.githubassets.com/images/icons/emoji/octocat.png?v8" class="emoji"> typed with TypeScript</span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; TypeScript</span>
+                        <span><i class="fas fa-star"></i>&nbsp; 0</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                    </div>
+                </section>
+            </a>
+            <a href="https://github.com/imfunniee/awesome-css-frameworks" target="_blank">
+                <section>
+                    <div class="section_title">awesome-css-frameworks</div>
+                       <div class="about_section">
+					<span style="display:block;">List of awesome CSS frameworks</span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; CSS</span>
+                        <span><i class="fas fa-star"></i>&nbsp; 0</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                    </div>
+                </section>
+            </a>
+            <a href="https://github.com/imfunniee/discord-vscode" target="_blank">
+                <section>
+                    <div class="section_title">discord-vscode</div>
+                       <div class="about_section">
+					<span style="display:block;">🖋️ Update your discord status with the newly added rich presence</span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; TypeScript</span>
+                        <span><i class="fas fa-star"></i>&nbsp; 0</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                    </div>
+                </section>
+            </a>
+            <a href="https://github.com/imfunniee/adobe-rpc" target="_blank">
+                <section>
+                    <div class="section_title">adobe-rpc</div>
+                       <div class="about_section">
+					<span style="display:block;">A universal Discord Rich Presence for almost all of Adobe's apps.</span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Python</span>
+                        <span><i class="fas fa-star"></i>&nbsp; 0</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                    </div>
+                </section>
+            </a>
+            <a href="https://github.com/imfunniee/8D-Audio" target="_blank">
+                <section>
+                    <div class="section_title">8D-Audio</div>
+                       <div class="about_section">
+					<span style="display:block;">Some dsp to make songs "8D"</span>
+                    </div>
+                    <div class="bottom_section">
+                        <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Python</span>
+                        <span><i class="fas fa-star"></i>&nbsp; 0</span>
+                        <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                    </div>
+                </section>
+            </a></div>
+        </div>
+        <div id="blog_section">
+            <h1>Blog.</h1>
+            <div id="blogs"></div>
+        </div>
+        <div id="footer">
+            <a href="https://github.com/imfunniee" target="_blank">made on earth by a human</a>
+        </div>
+    </div>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="index.js"></script>
+    <script type="text/javascript">
+    setTimeout(function(){
+        document.getElementById("loading").classList.add("animated");
+        document.getElementById("loading").classList.add("fadeOut");
+        setTimeout(function(){
+        document.getElementById("loading").classList.remove("animated");
+        document.getElementById("loading").classList.remove("fadeOut");
+        document.getElementById("loading").style.display = "none";
+        },800);
+    },1500);
+    $.getJSON("blog.json", function(blog){
+        if(blog.length == 0){
+            return document.getElementById("blog_section").style.display = "none";
+        }
+        for(var i = 0; i < blog.length; i++){
+            $("#blogs").append(`
+            <a href="./blog/${blog[i].url_title}/" target="_blank">
+                <section>
+                    <img src="${blog[i].top_image}">
+                    <div class="blog_container">
+                        <div class="section_title">${blog[i].title}</div>
+                        <div class="about_section">
+                            ${blog[i].sub_title}
+                        </div>
+                    </div>
+                </section>
+            </a>
+            `);
+        }
+    });
+    </script>
+
+</body></html>

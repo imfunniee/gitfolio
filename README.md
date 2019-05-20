@@ -12,32 +12,27 @@ Check out this [live demo](https://imfunniee.github.io/gitfolio/) to see gitfoli
 
 ### Let's Build
 
+a. Clone this repo or simply download it.
 ```sh
-git clone https://github.com/imfunniee/gitfolio.git # Clone the repo
+git clone https://github.com/imfunniee/gitfolio.git
+```
+
+b. `cd` into the repo you just cloned or downloaded.
+```sh
 cd gitfolio # Navigate into the project folder
 npm i # Install the required dependencies
 ```
 
-Gitfolio is now ready to be used. The command
+c. Gitfolio is now ready to be used. The command
 
 ```sh
 node build --name [username]
 ```
-
 Will build your website using your GitHub username and put it in the `dist/` folder.
-If you want to use a different folder, you can specify it by setting the `--out` flag.
 
-```sh
-node build --name [username] --out [directory]
-```
+d. To run your website navigate to `./dist/index.html` in your browser. [you won't see blogs until you are on localhost]
 
-To open your site, run
-```sh
-open dist/index.html
-```
-
-If you specified a different output directory, replace `dist/` with the directory you used.
-Congrats, you just made yourself a personal website!
+🎉 Congrats, you just made yourself a personal website!
 
 > if you get stuck somewhere or get an error, please create an issue
 
@@ -69,7 +64,12 @@ You could also add in your custom CSS inside `index.css` to give it a more perso
 
 ### Let's Publish
 
-Push the files to github. You can host your website using github pages by naming your repo ``username.github.io``. You can also your custom domain.
+### Let's Publish
+
+Head over to GitHub and create a new repository named `username.github.io`, where username is your username. Push the files inside`/dist` folder to repo you just created.
+
+Go To `username.github.io` your site should be up!!
+
 
 ### Updating
 
@@ -118,11 +118,6 @@ More Arguments for Blog
 
 > (use "-" instead of spaces)
 
-### Enable Blogs
-
-Blog are disabled by default. To enable them head over to `assets/index.html` and find `<div id="blog_section" style="display:none;">`. Remove the style attribute to show your blogs on your personal website.
-
-If you have run build command before adding a blog you need have to remove the style attribute from `index.html` file aswell.
 
 ## License
 ![GitHub](https://img.shields.io/github/license/imfunniee/gitfolio.svg)
