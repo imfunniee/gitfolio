@@ -58,7 +58,7 @@ async function populateCSS() {
     themeSource = themeSource.toString('utf-8');
     let themeTemplate = hbs.compile(themeSource);
     let styles = themeTemplate({
-      'background': `${program.background || 'https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450'}`
+        'background': `${program.background || 'https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450'}`
     })
     /* Add the user-specified styles to the new stylesheet */
     await fs.appendFileAsync(stylesheet, styles);
