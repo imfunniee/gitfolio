@@ -12,23 +12,27 @@ Check out this [live demo](https://imfunniee.github.io/gitfolio/) to see gitfoli
 
 ### Let's Build
 
+a. Clone this repo or simply download it.
 ```sh
-git clone https://github.com/imfunniee/gitfolio.git # Clone the repo
+git clone https://github.com/imfunniee/gitfolio.git
+```
+
+b. `cd` into the repo you just cloned or downloaded.
+```sh
 cd gitfolio # Navigate into the project folder
 npm i # Install the required dependencies
 ```
 
-Gitfolio is now ready to be used. The command
+c. Gitfolio is now ready to be used. The command
 
 ```sh
 node build --name [username]
 ```
-
 Will build your website using your GitHub username and put it in the `dist/` folder.
 
-To run your website navigate to `./dist/index.html` in your browser. [you won't see blogs until you are on localhost]
+d. To run your website navigate to `./dist/index.html` in your browser. [you won't see blogs until you are on localhost]
 
-Congrats, you just made yourself a personal website!
+🎉 Congrats, you just made yourself a personal website!
 
 > if you get stuck somewhere or get an error, please create an issue
 
