@@ -14,12 +14,12 @@ program
   .parse(process.argv);
 
 function createBlog(title, subtitle, pagetitle, folder) {
-    if (!fs.existsSync(`./blog/${folder}`)){
-        fs.mkdirSync(`./blog/${folder}`);
+    if (!fs.existsSync(`./dist/blog/${folder}`)){
+        fs.mkdirSync(`./dist/blog/${folder}`, { recursive: true });
     }
-    fs.copyFile('./blog/blogTemplate.html', `./blog/${folder}/index.html`, (err) => {
+    fs.copyFile('./assets/blog/blogTemplate.html', `./dist/blog/${folder}/index.html`, (err) => {
         if (err) throw err;
-        jsdom.fromFile(`./blog/${folder}/index.html`, options).then(function (dom) {
+        jsdom.fromFile(`./dist/blog/${folder}/index.html`, options).then(function (dom) {
             let window = dom.window, document = window.document;
             var style = document.createElement("link");
             style.setAttribute("rel","stylesheet")
@@ -30,7 +30,7 @@ function createBlog(title, subtitle, pagetitle, folder) {
             document.getElementById("blog_title").textContent = title;
             document.getElementById("blog_sub_title").textContent = subtitle;
 
-            fs.writeFile(`./blog/${folder}/index.html`, '<!DOCTYPE html>'+window.document.documentElement.outerHTML, function (error){
+            fs.writeFile(`./dist/blog/${folder}/index.html`, '<!DOCTYPE html>'+window.document.documentElement.outerHTML, function (error){
                 if (error) throw error;
                 var blog_data = {
                     "url_title": pagetitle,
@@ -38,11 +38,11 @@ function createBlog(title, subtitle, pagetitle, folder) {
                     "sub_title": subtitle,
                     "top_image": "https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450",
                     "visible": true }
-                fs.readFile("./blog/blog.json", function (err , data) {
+                fs.readFile("./assets/blog/blog.json", function (err , data) {
                     if (err) throw err;
                     var old_blogs = JSON.parse(data);
                     old_blogs.push(blog_data);
-                    fs.writeFile('./blog/blog.json', JSON.stringify(old_blogs, null, ' '), function(err){
+                    fs.writeFile('./assets/blog/blog.json', JSON.stringify(old_blogs, null, ' '), function(err){
                       if (err) throw err;
                       console.log('Blog Created Successfully in "blog" folder.');
                     });
