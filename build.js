@@ -13,7 +13,7 @@ const { updateHTML } = require('./populate');
 
 /* Specify the options the program uses */
 program
-    .version('0.1.1')
+    .version('0.1.2')
     .option('-n, --name [username]', 'your GitHub username. This will be used to customize your site')
     .option('-t, --theme [theme]', 'specify a theme to use')
     .option('-b, --background [background]', 'set the background image')
