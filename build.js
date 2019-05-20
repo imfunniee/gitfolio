@@ -58,7 +58,7 @@ async function populateCSS() {
     themeSource = themeSource.toString('utf-8');
     let themeTemplate = hbs.compile(themeSource);
     let styles = themeTemplate({
-        'background': `${process.background || 'https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450'}`
+        'background': `${program.background || 'https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450'}`
     })
     /* Add the user-specified styles to the new stylesheet */
     await fs.appendFileAsync(stylesheet, styles);
@@ -67,6 +67,15 @@ async function populateCSS() {
     let data = await fs.readFileAsync(config);
     data = JSON.parse(data);
     data[0].theme = theme;
+    await fs.writeFileAsync(config, JSON.stringify(data, null, ' '));
+}
+
+async function populateConfig(sort, order, includeFork) {
+    let data = await fs.readFileAsync(config);
+    data = JSON.parse(data);
+    data[0].sort = sort;
+    data[0].order = order;
+    data[0].includeFork = includeFork;
     await fs.writeFileAsync(config, JSON.stringify(data, null, ' '));
 }
 
@@ -82,6 +91,7 @@ if (program.name) {
     if(program.fork){
         includeFork = true;
     }
+    populateConfig(sort, order, includeFork);
     updateHTML(('%s', program.name), sort, order, includeFork);
 } else {
     console.error("Error: Please provide a GitHub username.");
