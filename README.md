@@ -135,7 +135,7 @@ Default JSON Format
 More Arguments for Blog
 
 ```
---subtitle [subtitle] : gives blog a subtitle (Deafult : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
+--subtitle [subtitle] : gives blog a subtitle (Default : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
 --pagetitle [pagetitle] : gives blog page a title
 --folder [folder] : give folder a title
 ```
