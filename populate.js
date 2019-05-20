@@ -113,14 +113,14 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                     data[0].username = user.login;
                     data[0].name = user.name;
                     data[0].userimg = user.avatar_url;
-                    fs.writeFileSync('./dist/config.json', JSON.stringify(data, null, " "), function (err) {
+                    fs.writeFile('./dist/config.json', JSON.stringify(data, null, " "), function (err) {
                         if (err) throw err;
+                        console.log("Config file updated.");
                     });
                 });
                 fs.writeFile('dist/index.html', '<!DOCTYPE html>' + window.document.documentElement.outerHTML, function (error) {
                     if (error) throw error;
                     console.log("Build Complete");
-                    process.exit(0)
                 });
             } catch (error) {
                 console.log(error);
