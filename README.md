@@ -108,11 +108,12 @@ To Update background or theme you need to run `build` command again.
 
 ### Add a Blog
 
-To add your first blog run this command, make sure the title don't have spaces instead use "-".
+To add your first blog run this command.
 
 ```
 $ node blog --title my-first-blog
 ```
+> (use "-" instead of spaces)
 
 This will create a `my-first-blog` folder inside `blog`. Inside `my-first-blog` you will find an `index.html` file which contains all the necessary elements for writing a blog. Customize the content of the file to write your first blog.
 
