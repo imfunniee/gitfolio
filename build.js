@@ -70,6 +70,13 @@ async function populateCSS() {
     await fs.writeFileAsync(config, JSON.stringify(data, null, ' '));
 }
 
+/**
+ * Saves user-set configuration data into the config file.
+ * 
+ * @param {string} sort              The method to sort repos by (stars, date created, etc.)
+ * @param {"asc" | "desc"} order     The order to sort by (e.g. asc, desc)
+ * @param {boolean} includeFork      Should forked repos be included?
+ */
 async function populateConfig(sort, order, includeFork) {
     let data = await fs.readFileAsync(config);
     data = JSON.parse(data);
@@ -79,9 +86,11 @@ async function populateConfig(sort, order, includeFork) {
     await fs.writeFileAsync(config, JSON.stringify(data, null, ' '));
 }
 
-populateCSS();
 
-if (program.name) {
+populateCSS()
+.then(() => {
+    if (!program.name)
+        throw new Error("Please provide a GitHub username with the --name flag.");
     let sort = program.sort ? program.sort : 'created';
     let order = "asc";
     let includeFork = false;
@@ -91,8 +100,17 @@ if (program.name) {
     if(program.fork){
         includeFork = true;
     }
+
+    return { order, sort, includeFork };
+})
+.then(settings => {
+    let { sort, order, includeFork } = settings;
     populateConfig(sort, order, includeFork);
+    return settings;
+})
+.then(settings => {
     updateHTML(('%s', program.name), sort, order, includeFork);
-} else {
-    console.error("Error: Please provide a GitHub username.");
-}
+})
+.catch(err => {
+    console.error(`Error: ${err}`);
+})
