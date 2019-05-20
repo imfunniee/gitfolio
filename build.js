@@ -73,7 +73,7 @@ async function populateCSS() {
 populateCSS();
 
 if (program.name) {
-    let sort = program.sort ? program.sort : 'created_at';
+    let sort = program.sort ? program.sort : 'created';
     let order = -1;
     let includeFork = false;
 	

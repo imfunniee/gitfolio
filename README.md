@@ -4,9 +4,10 @@
   
 ### personal website + blog  for every github user
 
-Gitfolio will help you get started with a portfolio website where you could showcase your work + a blog that will help you spread your ideas into  real world.
+Gitfolio will help you get started with a portfolio website where you could showcase your work + a blog that will help you spread your ideas into real world.
 
 Check out this [live demo](https://imfunniee.github.io/gitfolio/) to see gitfolio in action.
+
 
 # Getting Started
 
@@ -38,7 +39,31 @@ d. To run your website navigate to `./dist/index.html` in your browser. [you won
 
 ### Let's Customize
 
-#### Enabling Themes
+#### Forks
+
+To include forks on your personal website just provide `-f` or `--fork` argument while building
+
+```
+$ node build --name username -f
+```
+
+#### Sorting Repos
+
+To sort repos provide `--sort [sortBy]` argument while building. Where `[sort]` can be `created`, `updated`, `pushed`,`full_name`. Default: `created`
+
+```
+$ node build --name username --sort created
+```
+
+#### Ordering Repos
+
+To order the sorted repos provide `--order [orderBy]` argument while building. Where `[orderBy]` can be `asc` or `desc`. Default: `asc`
+
+```
+$ node build --name username --sort created  --order desc
+```
+
+#### Customize Themes
 
 Themes are specified using the `--theme [theme-name]` flag when running the `build` command. The available themes are
 
