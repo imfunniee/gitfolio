@@ -55,15 +55,15 @@ function createBlog(title, subtitle, pagetitle, folder) {
 }
 
 if (program.title) {
+    /* Check if build has been executed before blog this will prevent it from giving "link : index.css" error */
+    if (!fs.existsSync(`./dist/index.html`) || !fs.existsSync(`./dist/index.css`)){
+        return console.log("You need to run build command before using blog one");
+    }
     if (!program.pagetitle) {
         program.pagetitle = program.title;
     }
     if (!program.folder) {
         program.folder = program.title;
-    }
-    /* Check if build has been executed before blog this will prevent it from giving "link : index.css" error */
-    if (!fs.existsSync(`./dist/index.html`)){
-        return console.log("You need to run build command before using blog one");
     }
     createBlog(program.title, program.subtitle, program.pagetitle, program.folder);
 } else {

@@ -17,7 +17,7 @@
   background-clip: text;
   -webkit-text-fill-color: #fff;
 }
-#projects section {
+.projects section {
   background: rgb(20, 20, 20);
 }
 #blog_section section {

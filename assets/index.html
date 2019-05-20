@@ -7,6 +7,7 @@
     <title></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -14,7 +15,6 @@
         <div id="spinner"></div>
     </div>
     <div id="profile">
-		<nav id="navbar"></nav>
         <div id="profile_img"></div>
         <div id="username">
             <div id="fullname"></div>
@@ -24,7 +24,12 @@
     </div>
     <div id="display">
         <div id="work">
-            <h1>Work</h1>
+            <h1>Work.</h1>
+            <div class="projects" id="work_section"></div>
+        </div>
+        <div id="forks" style="display:none;">
+            <h1>Forks.</h1>
+            <div class="projects" id="forks_section"></div>
         </div>
         <div id="blog_section">
             <h1>Blog.</h1>
@@ -34,7 +39,6 @@
             <a href="https://github.com/imfunniee" target="_blank">made on earth by a human</a>
         </div>
     </div>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript">
     setTimeout(function(){
         document.getElementById("loading").classList.add("animated");

@@ -64,8 +64,6 @@ You could also add in your custom CSS inside `index.css` to give it a more perso
 
 ### Let's Publish
 
-### Let's Publish
-
 Head over to GitHub and create a new repository named `username.github.io`, where username is your username. Push the files inside`/dist` folder to repo you just created.
 
 Go To `username.github.io` your site should be up!!
