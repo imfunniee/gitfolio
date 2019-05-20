@@ -26,11 +26,6 @@ node build --name [username]
 
 Will build your website using your GitHub username and put it in the `dist/` folder.
 
-
-```sh
-node build --name [username]
-```
-
 To run your website navigate to `./dist/index.html` in your browser. [you won't see blogs until you are on localhost]
 
 Congrats, you just made yourself a personal website!
