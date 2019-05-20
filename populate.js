@@ -34,8 +34,23 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
         (async () => {
             try {
                 console.log("Building HTML/CSS...");
-                var repos = await got(`https://api.github.com/users/${username}/repos?sort=${sort}&order=${order}&per_page=1200`);
-                repos = JSON.parse(repos.body);
+                var repos;
+                if(sort == "star"){
+                    repos = await got(`https://api.github.com/users/${username}/repos?per_page=1200`);
+                    repos = JSON.parse(repos.body);
+                    if(order == "desc"){
+                        repos = repos.sort(function(a, b) {
+                            return  b.stargazers_count - a.stargazers_count;
+                        });
+                    }else{
+                        repos = repos.sort(function(a, b) {
+                            return a.stargazers_count - b.stargazers_count;
+                        });
+                    }
+                }else{
+                    repos = await got(`https://api.github.com/users/${username}/repos?sort=${sort}&order=${order}&per_page=1200`);
+                    repos = JSON.parse(repos.body);
+                }
                 for (var i = 0; i < repos.length; i++) {
                     if(repos[i].fork == false){
                         document.getElementById("work_section").innerHTML += `

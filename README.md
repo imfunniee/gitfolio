@@ -49,10 +49,10 @@ $ node build --name username -f
 
 #### Sorting Repos
 
-To sort repos provide `--sort [sortBy]` argument while building. Where `[sort]` can be `created`, `updated`, `pushed`,`full_name`. Default: `created`
+To sort repos provide `--sort [sortBy]` argument while building. Where `[sort]` can be `star`, `created`, `updated`, `pushed`,`full_name`. Default: `created`
 
 ```
-$ node build --name username --sort created
+$ node build --name username --sort star
 ```
 
 #### Ordering Repos
@@ -60,7 +60,7 @@ $ node build --name username --sort created
 To order the sorted repos provide `--order [orderBy]` argument while building. Where `[orderBy]` can be `asc` or `desc`. Default: `asc`
 
 ```
-$ node build --name username --sort created  --order desc
+$ node build --name username --sort star --order desc
 ```
 
 #### Customize Themes

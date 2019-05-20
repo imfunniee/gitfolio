@@ -74,14 +74,10 @@ populateCSS();
 
 if (program.name) {
     let sort = program.sort ? program.sort : 'created';
-    let order = -1;
+    let order = "asc";
     let includeFork = false;
-	
 	if(program.order){
-		if(program.order === 'asc')
-			order = 1;
-		else if(program.order === 'desc')
-			order = -1;
+		order = ('%s', program.order);
     }
     if(program.fork){
         includeFork = true;
