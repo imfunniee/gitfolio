@@ -38,6 +38,8 @@ async function populateCSS() {
     let template = path.resolve(assetDir, 'index.css');
     let stylesheet = path.join(outDir, 'index.css');
 
+    let serviceWorker = path.resolve(assetDir, 'service-worker.js');
+
     try {
         await fs.accessAsync(outDir, fs.constants.F_OK);
     } catch (err) {
@@ -45,6 +47,9 @@ async function populateCSS() {
     }
     /* Copy over the template CSS stylesheet */
     await fs.copyFileAsync(template, stylesheet);
+
+    /* Add Service Worker */
+    await fs.copyFileSync(serviceWorker, `${outDir}/service-worker.js`);
 
     /* Get an array of every available theme */
     let themes = await fs.readdirAsync(path.join(assetDir, 'themes'));
