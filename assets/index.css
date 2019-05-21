@@ -287,6 +287,7 @@ body{
     font-size:24px;
     font-weight:bold;
     margin:1vh 0px;
+    word-wrap: break-word;
 }
 
 .about_section {
@@ -294,11 +295,13 @@ body{
     font-family: 'Questrial', sans-serif;
     margin:2vh 0px;
     font-weight:bold;
+    word-wrap: break-word;
 }
 
 .bottom_section {
     margin:1vh 0px;
     font-size:14px;
+    word-wrap: break-word;
 }
 
 .bottom_section span {
