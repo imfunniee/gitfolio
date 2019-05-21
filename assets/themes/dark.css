@@ -4,7 +4,7 @@
   --blog-gray-color: rgb(180, 180, 180);
   --background-image: linear-gradient(90deg, rgba(10, 10, 10, 0.6), rgb(10, 10, 10, 1)), url("{{background}}");
   --background-background: linear-gradient(0deg, rgba(10, 10, 10, 1), rgba(10, 10, 10, 0.6)),
-    url("{{background-image}}") center center fixed;
+    url("{{background}}") center center fixed;
   --height: 50vh;
 }
 #display h1 {
@@ -25,7 +25,7 @@
 }
 @media (max-width: 800px) {
   :root {
-    --background-image: linear-gradient(0deg, rgba(10, 10, 10, 1), rgb(10, 10, 10, 0)),
-    url("{{background-image}}") !important;
+    --background-image: linear-gradient(0deg, rgba(10, 10, 10, 1), rgba(10, 10, 10, 0)),
+    url("{{background}}") !important;
   }
 }

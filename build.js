@@ -86,10 +86,9 @@ async function populateConfig(sort, order, includeFork) {
     await fs.writeFileAsync(config, JSON.stringify(data, null, ' '));
 }
 
-
 populateCSS()
 .then(() => {
-    if (!program.name)
+    if (!program.name || typeof program.name !== 'string' || program.name.trim() === '')
         throw new Error("Please provide a GitHub username with the --name flag.");
     let sort = program.sort ? program.sort : 'created';
     let order = "asc";
