@@ -34,10 +34,15 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
         (async () => {
             try {
                 console.log("Building HTML/CSS...");
-                var repos;
+                var repos = [];
+                var tempRepos;
+                var page = 1;
                 if(sort == "star"){
-                    repos = await got(`https://api.github.com/users/${username}/repos?per_page=1200`);
-                    repos = JSON.parse(repos.body);
+                    do{
+                        tempRepos = await got(`https://api.github.com/users/${username}/repos?per_page=100&page=${page++}`);
+                        tempRepos = JSON.parse(tempRepos.body);
+                        repos = repos.concat(tempRepos);
+                    } while(tempRepos.length == 100);
                     if(order == "desc"){
                         repos = repos.sort(function(a, b) {
                             return  b.stargazers_count - a.stargazers_count;
@@ -48,8 +53,11 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                         });
                     }
                 }else{
-                    repos = await got(`https://api.github.com/users/${username}/repos?sort=${sort}&order=${order}&per_page=1200`);
-                    repos = JSON.parse(repos.body);
+                    do{
+                        tempRepos = await got(`https://api.github.com/users/${username}/repos?sort=${sort}&order=${order}&per_page=100&page=${page++}`);
+                        tempRepos = JSON.parse(tempRepos.body);
+                        repos = repos.concat(tempRepos);
+                    } while(tempRepos.length == 100);
                 }
                 for (var i = 0; i < repos.length; i++) {
                     if(repos[i].fork == false){
