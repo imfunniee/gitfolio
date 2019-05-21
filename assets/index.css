@@ -384,10 +384,10 @@ body{
     #work {
         margin:0px;
     }
-    #projects {
+    .projects {
         columns:1;
     }
-    #projects section {
+    .projects section {
         width:88%;
     }
     #blogs {

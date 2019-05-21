@@ -81,7 +81,7 @@ async function populateConfig(sort, order, includeFork) {
 
 populateCSS();
 
-if (program.name) {
+if (typeof program.name === 'string' && program.name.trim() !== '') {
     let sort = program.sort ? program.sort : 'created';
     let order = "asc";
     let includeFork = false;
