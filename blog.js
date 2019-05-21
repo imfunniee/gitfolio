@@ -14,6 +14,12 @@ program
   .parse(process.argv);
 
 function createBlog(title, subtitle, pagetitle, folder) {
+    // Checks to make sure this directory actually exists
+    // and creates it if it doesn't
+    if (!fs.existsSync(`./dist/blog/`)){
+        fs.mkdirSync(`./dist/blog/`, { recursive: true }, err => {});
+    }    
+    
     if (!fs.existsSync(`./dist/blog/${folder}`)){
         fs.mkdirSync(`./dist/blog/${folder}`, { recursive: true });
     }
