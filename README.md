@@ -119,7 +119,7 @@ This will create a `my-first-blog` folder inside `blog`. Inside `my-first-blog` 
 
 This also adds content to `blog.json` file. This file helps in showcasing your blogs on your personal website as [cards](https://imfunniee.github.io/gitfolio/#blog_section). You could customize the JSON object that corresponds your current blog.
 
-Blog Demo? [here](https://imfunniee.github.io/gitfolio/blog/my-first-blog/)
+Blog Demo? [here](https://imfunniee.github.io/gitfolio/blog/my-first-post/)
 
 Default JSON Format
 ```
