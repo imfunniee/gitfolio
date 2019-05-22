@@ -7,7 +7,8 @@ const {blogCommand} = require('../blog');
 const {version} = require('../package.json');
 
 program
-    .command('build <username>', 'Build site with your GitHub username. This will be used to customize your site')
+    .command('build <username>')
+    .description('Build site with your GitHub username. This will be used to customize your site')
     .option('-t, --theme [theme]', 'specify a theme to use')
     .option('-b, --background [background]', 'set the background image')
     .option('-f, --fork', 'includes forks with repos')
@@ -20,7 +21,8 @@ program
     .action(updateCommand);
 
 program
-    .command('blog <title>', 'Create blog with title specified')
+    .command('blog <title>')
+    .description('Create blog with specified title')
     .option('-s, --subtitle [subtitle]', 'give blog a subtitle', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
     .option('-p, --pagetitle [pagetitle]', 'give blog page a title')
     .option('-f, --folder [folder]', 'give folder a title (use "-" instead of spaces)')
