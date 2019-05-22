@@ -8,10 +8,9 @@ const hbs = require('handlebars');
 const fs = bluebird.promisifyAll(require('fs'));
 const { updateHTML } = require('./populate');
 
-
-const config = './dist/config.json';
 const assetDir = path.resolve('./assets/');
-const outDir = path.resolve('./dist/');
+const outDir = path.resolve(process.env.OUT_DIR || './dist/');
+const config = path.join(outDir, 'config.json');
 
 /**
  * Creates the stylesheet used by the site from a template stylesheet.

@@ -1,8 +1,10 @@
 const fs = require('fs');
 const {updateHTML} = require('./populate');
 
+const outDir = path.resolve(process.env.OUT_DIR || './dist/');
+
 function updateCommand() {
-    fs.readFile("./dist/config.json", function (err , data) {
+    fs.readFile(`${outDir}/config.json`, function (err , data) {
         if (err) throw err;
         data = JSON.parse(data);
         var username = data[0].username;

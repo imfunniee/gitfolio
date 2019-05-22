@@ -6,6 +6,8 @@ const jsdom = require('jsdom').JSDOM,
         resources: "usable"
     };
 
+const outDir = path.resolve(process.env.OUT_DIR || './dist/');
+
 function convertToEmoji(text) {
     if (text == null) return;
     text = text.toString();
@@ -115,13 +117,13 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                 <span style="display:${user.location == null || !user.location ? 'none' : 'block'};"><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp; ${user.location}</span>
                 <span style="display:${user.hireable == false || !user.hireable ? 'none' : 'block'};"><i class="fas fa-user-tie"></i> &nbsp;&nbsp; Available for hire</span>`;
                 //add data to config.json
-                fs.readFile("./dist/config.json", function (err, data) {
+                fs.readFile(`${outDir}/config.json`, function (err, data) {
                     if (err) throw err;
                     data = JSON.parse(data);
                     data[0].username = user.login;
                     data[0].name = user.name;
                     data[0].userimg = user.avatar_url;
-                    fs.writeFile('./dist/config.json', JSON.stringify(data, null, ' '), function (err) {
+                    fs.writeFile(`${outDir}/config.json`, JSON.stringify(data, null, ' '), function (err) {
                         if (err) throw err;
                         console.log("Config file updated.");
                     });
