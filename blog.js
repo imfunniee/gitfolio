@@ -15,7 +15,7 @@ function createBlog(title, subtitle, pagetitle, folder) {
     if (!fs.existsSync(`${outDir}/blog/${folder}`)){
         fs.mkdirSync(`${outDir}/blog/${folder}`, { recursive: true });
     }
-    fs.copyFile('./assets/blog/blogTemplate.html', `${outDir}/blog/${folder}/index.html`, (err) => {
+    fs.copyFile(`${__dirname}/assets/blog/blogTemplate.html`, `${outDir}/blog/${folder}/index.html`, (err) => {
         if (err) throw err;
         jsdom.fromFile(`${outDir}/blog/${folder}/index.html`, options).then(function (dom) {
             let window = dom.window, document = window.document;

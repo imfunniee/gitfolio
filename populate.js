@@ -30,7 +30,7 @@ function convertToEmoji(text) {
 
 module.exports.updateHTML = (username, sort, order, includeFork) => {
     //add data to assets/index.html
-    jsdom.fromFile("./assets/index.html", options).then(function (dom) {
+    jsdom.fromFile(`${__dirname}/assets/index.html`, options).then(function (dom) {
         let window = dom.window, document = window.document;
         (async () => {
             try {

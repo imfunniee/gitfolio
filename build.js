@@ -9,7 +9,7 @@ const fs = bluebird.promisifyAll(require('fs'));
 const { updateHTML } = require('./populate');
 const { getConfig, outDir } = require('./utils');
 
-const assetDir = path.resolve('./assets/');
+const assetDir = path.resolve(`${__dirname}/assets/`);
 const config = path.join(outDir, 'config.json');
 
 /**
