@@ -5,6 +5,7 @@
   "main": "build.js",
   "bin": "bin/gitfolio.js",
   "scripts": {
+    "cli": "OUT_DIR='./dist' node bin/gitfolio.js",
     "clean": "rm -f dist/index.*",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

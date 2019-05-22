@@ -1,6 +1,9 @@
 #! /usr/bin/env node
 /* Argument parser */
 const program = require('commander');
+
+process.env.OUT_DIR = process.env.OUT_DIR || process.cwd();
+
 const {buildCommand} = require('../build');
 const {updateCommand} = require('../update');
 const {blogCommand} = require('../blog');

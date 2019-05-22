@@ -128,7 +128,7 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                         console.log("Config file updated.");
                     });
                 });
-                fs.writeFile('dist/index.html', '<!DOCTYPE html>' + window.document.documentElement.outerHTML, function (error) {
+                fs.writeFile(`${outDir}/index.html`, '<!DOCTYPE html>' + window.document.documentElement.outerHTML, function (error) {
                     if (error) throw error;
                     console.log("Build Complete");
                 });
