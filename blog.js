@@ -3,8 +3,7 @@ const jsdom = require('jsdom').JSDOM,
 options = {
     resources: "usable"
 };
-
-const outDir = path.resolve(process.env.OUT_DIR || './dist/');
+const {getBlog, outDir} = require('./utils');
 
 function createBlog(title, subtitle, pagetitle, folder) {
     // Checks to make sure this directory actually exists
@@ -29,7 +28,7 @@ function createBlog(title, subtitle, pagetitle, folder) {
             document.getElementById("blog_title").textContent = title;
             document.getElementById("blog_sub_title").textContent = subtitle;
 
-            fs.writeFile(`${outDir}/blog/${folder}/index.html`, '<!DOCTYPE html>'+window.document.documentElement.outerHTML, function (error){
+            fs.writeFile(`${outDir}/blog/${folder}/index.html`, '<!DOCTYPE html>'+window.document.documentElement.outerHTML, async function (error){
                 if (error) throw error;
                 var blog_data = {
                     "url_title": pagetitle,
@@ -37,14 +36,11 @@ function createBlog(title, subtitle, pagetitle, folder) {
                     "sub_title": subtitle,
                     "top_image": "https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450",
                     "visible": true }
-                fs.readFile(`${outDir}/blog.json`, function (err , data) {
+                const old_blogs = await getBlog();
+                old_blogs.push(blog_data);
+                fs.writeFile(`${outDir}/blog.json`, JSON.stringify(old_blogs, null, ' '), function(err){
                     if (err) throw err;
-                    var old_blogs = JSON.parse(data);
-                    old_blogs.push(blog_data);
-                    fs.writeFile(`${outDir}/blog.json`, JSON.stringify(old_blogs, null, ' '), function(err){
-                      if (err) throw err;
-                      console.log('Blog Created Successfully in "blog" folder.');
-                    });
+                    console.log('Blog Created Successfully in "blog" folder.');
                 });
             });
         }).catch(function(error){

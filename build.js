@@ -7,9 +7,9 @@ const hbs = require('handlebars');
     from callback-passed async functions      */
 const fs = bluebird.promisifyAll(require('fs'));
 const { updateHTML } = require('./populate');
+const { getConfig, outDir } = require('./utils');
 
 const assetDir = path.resolve('./assets/');
-const outDir = path.resolve(process.env.OUT_DIR || './dist/');
 const config = path.join(outDir, 'config.json');
 
 /**
@@ -53,15 +53,13 @@ async function populateCSS({
     await fs.appendFileAsync(stylesheet, styles);
 
     /* Update the config file with the user's theme choice */
-    let data = await fs.readFileAsync(config);
-    data = JSON.parse(data);
+    const data = await getConfig();
     data[0].theme = theme;
     await fs.writeFileAsync(config, JSON.stringify(data, null, ' '));
 }
 
 async function populateConfig(sort, order, includeFork) {
-    let data = await fs.readFileAsync(config);
-    data = JSON.parse(data);
+    const data = await getConfig();
     data[0].sort = sort;
     data[0].order = order;
     data[0].includeFork = includeFork;
