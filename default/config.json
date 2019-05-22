@@ -3,9 +3,10 @@
   "username": null,
   "name": null,
   "userimg": null,
-  "sort": null,
-  "order": null,
-  "includeFork": null,
+  "sort": "star",
+  "order": "desc",
+  "includeFork": true,
+  "includeArchive": false,
   "theme": "light.css"
  }
 ]

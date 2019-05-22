@@ -29,7 +29,7 @@ function convertToEmoji(text) {
     }
 }
 
-module.exports.updateHTML = (username, sort, order, includeFork) => {
+module.exports.updateHTML = (username, sort, order, includeFork, includeArchive) => {
     //add data to assets/index.html
     jsdom.fromFile(`${__dirname}/assets/index.html`, options).then(function (dom) {
         let window = dom.window, document = window.document;
@@ -60,6 +60,9 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                         tempRepos = JSON.parse(tempRepos.body);
                         repos = repos.concat(tempRepos);
                     } while(tempRepos.length == 100);
+                }
+                if(!includeArchive) {
+                    repos = repos.filter(repo => !repo.archived)
                 }
                 for (var i = 0; i < repos.length; i++) {
                     if(repos[i].fork == false){

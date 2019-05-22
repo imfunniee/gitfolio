@@ -14,8 +14,8 @@ const config = path.join(outDir, 'config.json');
 
 /**
  * Creates the stylesheet used by the site from a template stylesheet.
- * 
- * Theme styles are added to the new stylesheet depending on command line 
+ *
+ * Theme styles are added to the new stylesheet depending on command line
  * arguments.
  */
 async function populateCSS({
@@ -63,11 +63,12 @@ async function populateCSS({
     await fs.writeFileAsync(config, JSON.stringify(data, null, ' '));
 }
 
-async function populateConfig(sort, order, includeFork) {
+async function populateConfig(sort, order, includeFork, includeArchive) {
     const data = await getConfig();
     data[0].sort = sort;
     data[0].order = order;
     data[0].includeFork = includeFork;
+    data[0].includeArchive = includeArchive;
     await fs.writeFileAsync(config, JSON.stringify(data, null, ' '));
 }
 
@@ -76,8 +77,9 @@ async function buildCommand(username, program) {
     let sort = program.sort ? program.sort : 'created';
     let order = program.order ? program.order : "asc";
     let includeFork = program.fork ? true : false;
-    await populateConfig(sort, order, includeFork);
-    updateHTML(('%s', username), sort, order, includeFork);
+    let includeArchive = program.archive ? true : false;
+    await populateConfig(sort, order, includeFork, includeArchive);
+    updateHTML(('%s', username), sort, order, includeFork, includeArchive);
 }
 
 module.exports = {

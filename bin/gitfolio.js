@@ -18,6 +18,7 @@ program
     .option('-f, --fork', 'includes forks with repos')
     .option('-s, --sort [sort]', 'set default sort for repository', 'created')
     .option('-o, --order [order]', 'set default order on sort', 'asc')
+    .option('-a, --archive', 'add archive repository to the render')
     .action(buildCommand)
 
 program
