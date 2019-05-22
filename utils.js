@@ -6,8 +6,8 @@ const outDir = path.resolve(process.env.OUT_DIR || './dist/');
 const configPath = path.join(outDir, 'config.json');
 const blogPath = path.join(outDir, 'blog.json');
 
-const defaultConfigPath = path.resolve('./default/config.json');
-const defaultBlogPath = path.resolve('./default/blog.json');
+const defaultConfigPath = path.resolve(`${__dirname}/default/config.json`);
+const defaultBlogPath = path.resolve(`${__dirname}/default/blog.json`);
 
 /**
  * Tries to read file from out dir,
