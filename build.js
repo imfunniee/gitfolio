@@ -66,8 +66,8 @@ async function populateConfig(sort, order, includeFork) {
     await fs.writeFileAsync(config, JSON.stringify(data, null, ' '));
 }
 
-function buildCommand(username, program) {
-    populateCSS(program);
+async function buildCommand(username, program) {
+    await populateCSS(program);
     
     let sort = program.sort ? program.sort : 'created';
     let order = "asc";
@@ -78,7 +78,7 @@ function buildCommand(username, program) {
     if(program.fork){
         includeFork = true;
     }
-    populateConfig(sort, order, includeFork);
+    await populateConfig(sort, order, includeFork);
     updateHTML(('%s', username), sort, order, includeFork);
 }
 
