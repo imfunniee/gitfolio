@@ -9,8 +9,28 @@
     "clean": "rm -rf ./dist/*",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "imfunny",
-  "license": "ISC",
+  "author": {
+    "name": "imfunny and community",
+    "email": "imfunny@wybemf.com",
+    "url": "https://imfunniee.github.io"
+  },
+  "bugs": "https://github.com/imfunniee/gitfolio/issues",
+  "homepage": "https://github.com/imfunniee/gitfolio",
+  "keywords": [
+    "personal-website",
+    "github",
+    "portfolio",
+    "portfolio website",
+    "blog website",
+    "blog",
+    "gitfolio",
+    "git"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imfunniee/gitfolio"
+  },
+  "license": "GPL-3.0",
   "dependencies": {
     "bluebird": "^3.5.4",
     "commander": "^2.20.0",
