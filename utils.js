@@ -2,7 +2,7 @@ const path = require('path');
 const bluebird = require('bluebird');
 const fs = bluebird.promisifyAll(require('fs'));
 
-const outDir = path.resolve(process.env.OUT_DIR || './dist/');
+const outDir = path.resolve('./dist/' || process.env.OUT_DIR);
 const configPath = path.join(outDir, 'config.json');
 const blogPath = path.join(outDir, 'blog.json');
 
