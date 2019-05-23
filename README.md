@@ -29,7 +29,7 @@ gitfolio build <username>
 To run your website use `run` command (please refrain from using this for now)
 
 ```sh
-gitfolio build <username>
+gitfolio run
 ```
 
 🎉 Congrats, you just made yourself a personal website!
