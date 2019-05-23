@@ -24,7 +24,7 @@ npm i gitfolio -g
 ```sh
 gitfolio build <username>
 ```
-This will build your website using your GitHub username and put it in the `/dist` folder.
+<username> is your username on github. This will build your website using your GitHub username and put it in the `/dist` folder.
 
 To run your website use `run` command (please refrain from using this for now)
 
@@ -41,24 +41,24 @@ gitfolio build <username>
 
 To include forks on your personal website just provide `-f` or `--fork` argument while building
 
-```
-$ gitfolio build username -f
+```sh
+$ gitfolio build <username> -f
 ```
 
 #### Sorting Repos
 
 To sort repos provide `--sort [sortBy]` argument while building. Where `[sortBy]` can be `star`, `created`, `updated`, `pushed`,`full_name`. Default: `created`
 
-```
-$ gitfolio build username --sort star
+```sh
+$ gitfolio build <username> --sort star
 ```
 
 #### Ordering Repos
 
 To order the sorted repos provide `--order [orderBy]` argument while building. Where `[orderBy]` can be `asc` or `desc`. Default: `asc`
 
-```
-$ gitfolio build username --sort star --order desc
+```sh
+$ gitfolio build <username> --sort star --order desc
 ```
 
 #### Customize Themes
@@ -70,16 +70,16 @@ Themes are specified using the `--theme [theme-name]` flag when running the `bui
 > TODO: Add more themes
 
 For example, the following command will build the website with the dark theme
-```
-$ gitfolio build username --theme dark
+```sh
+$ gitfolio build <username> --theme dark
 ```
 
 #### Customize background image
 
 To customize the background image just provide `--background [url]` argument while building
 
-```
-$ gitfolio build username --background https://images.unsplash.com/photo-1557277770-baf0ca74f908?w=1634
+```sh
+$ gitfolio build <username> --background https://images.unsplash.com/photo-1557277770-baf0ca74f908?w=1634
 ```
 
 You could also add in your custom CSS inside `index.css` to give it a more personal feel.
@@ -96,7 +96,7 @@ Go To `username.github.io` your site should be up!!
 
 To update your info, simply run
 
-```
+```sh
 $ gitfolio update
 ```
 This will update your info and your repository info.
@@ -108,7 +108,7 @@ To Update background or theme you need to run `build` command again.
 
 To add your first blog run this command.
 
-```
+```sh
 $ gitfolio blog my-first-blog
 ```
 > (use "-" instead of spaces)
