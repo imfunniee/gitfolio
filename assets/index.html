@@ -50,6 +50,7 @@
         },800);
     },1500);
     $.getJSON("blog.json", function(blog){
+        blog = blog || [];
         if(blog.length == 0){
             return document.getElementById("blog_section").style.display = "none";
         }
@@ -68,6 +69,8 @@
             </a>
             `);
         }
+    }).fail(function(){
+        return document.getElementById("blog_section").style.display = "none";
     });
     </script>
 </body>

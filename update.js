@@ -1,9 +1,9 @@
 const fs = require('fs');
+const {getConfig, outDir} = require('./utils');
 const {updateHTML} = require('./populate');
 
-fs.readFile("./dist/config.json", function (err , data) {
-    if (err) throw err;
-    data = JSON.parse(data);
+async function updateCommand() {
+    const data = await getConfig();
     var username = data[0].username;
     var sort = data[0].sort;
     var order = data[0].order;
@@ -13,4 +13,8 @@ fs.readFile("./dist/config.json", function (err , data) {
         return;
     }
     updateHTML(username, sort, order, includeFork);
-});
+}
+
+module.exports = {
+    updateCommand,
+};
