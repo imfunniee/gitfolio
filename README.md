@@ -16,7 +16,7 @@ Check out this [live demo](https://imfunniee.github.io/gitfolio/) to see gitfoli
 Install gitfolio
 
 ```sh
-npm i -g gitfolio
+npm i gitfolio -g
 ```
 
 ### Let's Build
@@ -26,7 +26,7 @@ gitfolio build <username>
 ```
 This will build your website using your GitHub username and put it in the `/dist` folder.
 
-To run your website use `run` command
+To run your website use `run` command (please refrain from using this for now)
 
 ```sh
 gitfolio build <username>
