@@ -35,5 +35,5 @@ async function getBlog() {
 module.exports = {
     outDir,
     getConfig,
-    getBlog,
+    getBlog
 };

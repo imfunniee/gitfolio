@@ -11,31 +11,29 @@ Check out this [live demo](https://imfunniee.github.io/gitfolio/) to see gitfoli
 
 # Getting Started
 
+### Let's Install
+
+Install gitfolio
+
+```sh
+npm i -g gitfolio
+```
+
 ### Let's Build
 
-a. Clone this repo or simply download it.
 ```sh
-git clone https://github.com/imfunniee/gitfolio.git
+gitfolio build <username>
 ```
+This will build your website using your GitHub username and put it in the `/dist` folder.
 
-b. `cd` into the repo you just cloned or downloaded.
-```sh
-cd gitfolio # Navigate into the project folder
-npm i # Install the required dependencies
-```
-
-c. Gitfolio is now ready to be used. The command
+To run your website use `run` command
 
 ```sh
-node build --name [username]
+gitfolio build <username>
 ```
-Will build your website using your GitHub username and put it in the `dist/` folder.
-
-d. To run your website navigate to `./dist/index.html` in your browser. [you won't see blogs until you are on localhost]
 
 🎉 Congrats, you just made yourself a personal website!
 
-> if you get stuck somewhere or get an error, please create an issue
 
 ### Let's Customize
 
@@ -44,7 +42,7 @@ d. To run your website navigate to `./dist/index.html` in your browser. [you won
 To include forks on your personal website just provide `-f` or `--fork` argument while building
 
 ```
-$ node build --name username -f
+$ gitfolio build username -f
 ```
 
 #### Sorting Repos
@@ -52,7 +50,7 @@ $ node build --name username -f
 To sort repos provide `--sort [sortBy]` argument while building. Where `[sortBy]` can be `star`, `created`, `updated`, `pushed`,`full_name`. Default: `created`
 
 ```
-$ node build --name username --sort star
+$ gitfolio build username --sort star
 ```
 
 #### Ordering Repos
@@ -60,7 +58,7 @@ $ node build --name username --sort star
 To order the sorted repos provide `--order [orderBy]` argument while building. Where `[orderBy]` can be `asc` or `desc`. Default: `asc`
 
 ```
-$ node build --name username --sort star --order desc
+$ gitfolio build username --sort star --order desc
 ```
 
 #### Customize Themes
@@ -73,7 +71,7 @@ Themes are specified using the `--theme [theme-name]` flag when running the `bui
 
 For example, the following command will build the website with the dark theme
 ```
-$ node build --name username --theme dark
+$ gitfolio build username --theme dark
 ```
 
 #### Customize background image
@@ -81,7 +79,7 @@ $ node build --name username --theme dark
 To customize the background image just provide `--background [url]` argument while building
 
 ```
-$ node build --name username --background https://images.unsplash.com/photo-1557277770-baf0ca74f908?w=1634
+$ gitfolio build username --background https://images.unsplash.com/photo-1557277770-baf0ca74f908?w=1634
 ```
 
 You could also add in your custom CSS inside `index.css` to give it a more personal feel.
@@ -99,7 +97,7 @@ Go To `username.github.io` your site should be up!!
 To update your info, simply run
 
 ```
-$ node update
+$ gitfolio update
 ```
 This will update your info and your repository info.
 
@@ -111,7 +109,7 @@ To Update background or theme you need to run `build` command again.
 To add your first blog run this command.
 
 ```
-$ node blog --title my-first-blog
+$ gitfolio blog my-first-blog
 ```
 > (use "-" instead of spaces)
 
@@ -142,11 +140,12 @@ More Arguments for Blog
 
 > (use "-" instead of spaces)
 
+
 ## Support
 
-Support me by buying me a coffee ☕
+Support me to make more projects like this by Buying me a Coffee ☕
 
-<a href="https://www.buymeacoffee.com/imfunniee" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+<a href="https://www.buymeacoffee.com/imfunniee" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;"></a>
 
 ## License
 ![GitHub](https://img.shields.io/github/license/imfunniee/gitfolio.svg)

@@ -126,7 +126,7 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                 });
                 fs.writeFile(`${outDir}/index.html`, '<!DOCTYPE html>' + window.document.documentElement.outerHTML, function (error) {
                     if (error) throw error;
-                    console.log("Build Complete");
+                    console.log(`Build Complete, Files can be Found @ ${outDir}`);
                 });
             } catch (error) {
                 console.log(error);

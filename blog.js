@@ -64,5 +64,5 @@ function blogCommand(title, program) {
 }
 
 module.exports = {
-    blogCommand,
+    blogCommand
 };

@@ -83,5 +83,5 @@ async function buildCommand(username, program) {
 }
 
 module.exports = {
-    buildCommand,
+    buildCommand
 };

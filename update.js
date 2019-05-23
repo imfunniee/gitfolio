@@ -1,5 +1,4 @@
-const fs = require('fs');
-const {getConfig, outDir} = require('./utils');
+const {getConfig} = require('./utils');
 const {updateHTML} = require('./populate');
 
 async function updateCommand() {
@@ -16,5 +15,5 @@ async function updateCommand() {
 }
 
 module.exports = {
-    updateCommand,
+    updateCommand
 };

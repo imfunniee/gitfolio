@@ -7,6 +7,7 @@ process.env.OUT_DIR = process.env.OUT_DIR || process.cwd();
 const {buildCommand} = require('../build');
 const {updateCommand} = require('../update');
 const {blogCommand} = require('../blog');
+const {runCommand} = require('../run');
 const {version} = require('../package.json');
 
 program
@@ -21,6 +22,7 @@ program
 
 program
     .command('update')
+    .description('Update user and repository data')
     .action(updateCommand);
 
 program
@@ -30,6 +32,11 @@ program
     .option('-p, --pagetitle [pagetitle]', 'give blog page a title')
     .option('-f, --folder [folder]', 'give folder a title (use "-" instead of spaces)')
     .action(blogCommand);
+
+program
+    .command('run')
+    .description('Run build files')
+    .action(runCommand);
 
 program.on('command:*', () => {
     console.log('Unknown Command: ' + program.args.join(' '))
