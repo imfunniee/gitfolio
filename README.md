@@ -24,7 +24,7 @@ npm i gitfolio -g
 ```sh
 gitfolio build <username>
 ```
-<username> is your username on github. This will build your website using your GitHub username and put it in the `/dist` folder.
+`<username>` is your username on github. This will build your website using your GitHub username and put it in the `/dist` folder.
 
 To run your website use `run` command (please refrain from using this for now)
 
