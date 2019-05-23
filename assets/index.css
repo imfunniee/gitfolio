@@ -240,6 +240,16 @@ body{
     font-family: 'Questrial', sans-serif;
 }
 
+#about a {
+    color:#fff !important;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+#about a:hover {
+    text-decoration:underline;
+}
+
 #about span {
     margin:1vh 0px;
     display:block;
@@ -287,6 +297,7 @@ body{
     font-size:24px;
     font-weight:bold;
     margin:1vh 0px;
+    padding:0px 1px;
     word-wrap: break-word;
 }
 

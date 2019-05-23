@@ -5,6 +5,7 @@ const jsdom = require('jsdom').JSDOM,
     options = {
         resources: "usable"
     };
+const { getConfig, outDir } = require('./utils');
 
 function convertToEmoji(text) {
     if (text == null) return;
@@ -29,7 +30,7 @@ function convertToEmoji(text) {
 
 module.exports.updateHTML = (username, sort, order, includeFork) => {
     //add data to assets/index.html
-    jsdom.fromFile("./assets/index.html", options).then(function (dom) {
+    jsdom.fromFile(`${__dirname}/assets/index.html`, options).then(function (dom) {
         let window = dom.window, document = window.document;
         (async () => {
             try {
@@ -111,24 +112,21 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                 document.getElementById("about").innerHTML = `
                 <span style="display:${user.company == null || !user.company ? 'none' : 'block'};"><i class="fas fa-users"></i> &nbsp; ${user.company}</span>
                 <span style="display:${user.email == null || !user.email ? 'none' : 'block'};"><i class="fas fa-envelope"></i> &nbsp; ${user.email}</span>
-                <span style="display:${user.blog == null || !user.blog ? 'none' : 'block'};"><i class="fas fa-link"></i> &nbsp; ${user.blog}</span>
+                <span style="display:${user.blog == null || !user.blog ? 'none' : 'block'};"><i class="fas fa-link"></i> &nbsp; <a href="${user.blog}">${user.blog}</a></span>
                 <span style="display:${user.location == null || !user.location ? 'none' : 'block'};"><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp; ${user.location}</span>
                 <span style="display:${user.hireable == false || !user.hireable ? 'none' : 'block'};"><i class="fas fa-user-tie"></i> &nbsp;&nbsp; Available for hire</span>`;
                 //add data to config.json
-                fs.readFile("./dist/config.json", function (err, data) {
+                const data = await getConfig();
+                data[0].username = user.login;
+                data[0].name = user.name;
+                data[0].userimg = user.avatar_url;
+                fs.writeFile(`${outDir}/config.json`, JSON.stringify(data, null, ' '), function (err) {
                     if (err) throw err;
-                    data = JSON.parse(data);
-                    data[0].username = user.login;
-                    data[0].name = user.name;
-                    data[0].userimg = user.avatar_url;
-                    fs.writeFile('./dist/config.json', JSON.stringify(data, null, ' '), function (err) {
-                        if (err) throw err;
-                        console.log("Config file updated.");
-                    });
+                    console.log("Config file updated.");
                 });
-                fs.writeFile('dist/index.html', '<!DOCTYPE html>' + window.document.documentElement.outerHTML, function (error) {
+                fs.writeFile(`${outDir}/index.html`, '<!DOCTYPE html>' + window.document.documentElement.outerHTML, function (error) {
                     if (error) throw error;
-                    console.log("Build Complete");
+                    console.log(`Build Complete, Files can be Found @ ${outDir}`);
                 });
             } catch (error) {
                 console.log(error);

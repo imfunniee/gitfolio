@@ -13,6 +13,7 @@
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
     <div id="loading">
         <div id="spinner"></div>
@@ -53,6 +54,7 @@
             }, 800);
         }, 1500);
         $.getJSON("blog.json", function (blog) {
+            blog = blog || [];
             if (blog.length == 0) {
                 return document.getElementById("blog_section").style.display = "none";
             }
@@ -71,8 +73,12 @@
             </a>
             `);
             }
+        }).fail(function () {
+            return document.getElementById("blog_section").style.display = "none";
         });
+    </script>
 
+    <script type="text/javascript">
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('service-worker.js');

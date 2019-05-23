@@ -1,20 +1,46 @@
 {
   "name": "gitfolio",
-  "version": "0.1.2",
-  "description": "portfolio website for showcasing your work",
+  "version": "0.1.3",
+  "description": "a portfolio website for everyone to showcase your work",
   "main": "build.js",
+  "bin": "bin/gitfolio.js",
   "scripts": {
-    "clean": "rm -f dist/index.*",
+    "cli": "OUT_DIR='./dist' node bin/gitfolio.js",
+    "clean": "rm -rf ./dist/*",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "imfunny",
-  "license": "ISC",
+  "author": {
+    "name": "imfunny and community",
+    "email": "imfunny@wybemf.com",
+    "url": "https://imfunniee.github.io"
+  },
+  "bugs": "https://github.com/imfunniee/gitfolio/issues",
+  "homepage": "https://github.com/imfunniee/gitfolio",
+  "keywords": [
+    "personal-website",
+    "github",
+    "portfolio",
+    "portfolio website",
+    "blog website",
+    "blog",
+    "gitfolio",
+    "git"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imfunniee/gitfolio"
+  },
+  "license": "GPL-3.0",
   "dependencies": {
     "bluebird": "^3.5.4",
     "commander": "^2.20.0",
+    "express": "^4.17.0",
     "github-emoji": "^1.1.0",
     "got": "^9.6.0",
     "handlebars": "^4.1.2",
-    "jsdom": "^15.1.0"
+    "jsdom": "^15.1.0",
+    "ncp": "^2.0.0",
+    "open": "^6.3.0",
+    "x-default-browser": "^0.4.0"
   }
 }
