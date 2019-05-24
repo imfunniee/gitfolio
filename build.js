@@ -20,6 +20,8 @@ program
     .option('-f, --fork', 'includes forks with repos')
     .option('-s, --sort [sort]', 'set default sort for repository')
     .option('-o, --order [order]', 'set default order on sort')
+    .option('-x, --twitter [twitter_handle]', 'specify your Twitter username.')
+    .option('-l, --linkedin [linkedin_handle]', 'specify your LinkedIn username.')
     .parse(process.argv);
 
 const config = './dist/config.json';
@@ -58,7 +60,7 @@ async function populateCSS() {
     themeSource = themeSource.toString('utf-8');
     let themeTemplate = hbs.compile(themeSource);
     let styles = themeTemplate({
-        'background': `${program.background || 'https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450'}`
+        'background': `${program.background || 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg'}`
     })
     /* Add the user-specified styles to the new stylesheet */
     await fs.appendFileAsync(stylesheet, styles);
@@ -70,12 +72,15 @@ async function populateCSS() {
     await fs.writeFileAsync(config, JSON.stringify(data, null, ' '));
 }
 
-async function populateConfig(sort, order, includeFork) {
+async function populateConfig(sort, order, includeFork, twitter, linkedin) {
     let data = await fs.readFileAsync(config);
     data = JSON.parse(data);
     data[0].sort = sort;
     data[0].order = order;
     data[0].includeFork = includeFork;
+    data[0].twitter = twitter; // added twitter
+    data[0].linkedin = linkedin; // added linkedin
+
     await fs.writeFileAsync(config, JSON.stringify(data, null, ' '));
 }
 
@@ -85,14 +90,34 @@ if (typeof program.name === 'string' && program.name.trim() !== '') {
     let sort = program.sort ? program.sort : 'created';
     let order = "asc";
     let includeFork = false;
+    let twitter = null; // added twitter and linkedin
+    let linkedin = null; // added twitter and linkedin
+
 	if(program.order){
 		order = ('%s', program.order);
     }
     if(program.fork){
         includeFork = true;
     }
-    populateConfig(sort, order, includeFork);
-    updateHTML(('%s', program.name), sort, order, includeFork);
+    // added twitter and linkedin
+    if(program.twitter){
+        twitter = ('%s', program.twitter);
+    }
+    if(program.linkedin){
+        linkedin = ('%s', program.linkedin);
+    }
+
+    // added twitter and linkedin
+    populateConfig(sort, order, includeFork, twitter, linkedin);
+    updateHTML(('%s', program.name), sort, order, includeFork, twitter, linkedin);
 } else {
     console.error("Error: Please provide a GitHub username.");
 }
+
+/**
+ * New contribution from Emmanuel (github.com/emmajiugo)
+ * - Adding Twitter handle
+ * - Adding Linkedin handle
+ * - Editing the blog section *
+ * - Find a way to include private repos *
+ */

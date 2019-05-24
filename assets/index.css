@@ -313,6 +313,11 @@ body{
     font-size:15px;
 }
 
+.socials {
+    color: #fff;
+    text-decoration: none;
+}
+
 #blog_section {
     margin:2vh 0px;
     padding:2vh 0px !important;

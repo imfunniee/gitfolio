@@ -1,11 +1,13 @@
 [
  {
-  "username": null,
-  "name": null,
-  "userimg": null,
-  "sort": null,
-  "order": null,
-  "includeFork": null,
-  "theme": "light.css"
+  "username": "emmajiugo",
+  "name": "Chigbo Ezejiugo",
+  "userimg": "https://avatars2.githubusercontent.com/u/30842784?v=4",
+  "sort": "created",
+  "order": "asc",
+  "includeFork": true,
+  "twitter": "@chigboemmajiugo",
+  "linkedin": "emmanuel-ezejiugo-b59a35b9",
+  "theme": "dark.css"
  }
 ]
