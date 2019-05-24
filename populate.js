@@ -105,7 +105,7 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                 icon.setAttribute("type", "image/png");
                 document.getElementsByTagName("head")[0].appendChild(icon);
                 document.getElementById("profile_img").style.background = `url('${user.avatar_url}') center center`
-                document.getElementById("username").innerHTML = `<span style="display:${user.name == null || !user.name ? 'none' : 'block'};">${user.name}</span>@${user.login}`;
+                document.getElementById("username").innerHTML = `<span style="display:${user.name == null || !user.name ? 'none' : 'block'};">${user.name}</span><a href="${user.html_url}">@${user.login}</a>`;
                 //document.getElementById("github_link").href = `https://github.com/${user.login}`;
                 document.getElementById("userbio").innerHTML = convertToEmoji(user.bio);
                 document.getElementById("userbio").style.display = user.bio == null || !user.bio ? 'none' : 'block';
