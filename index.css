@@ -211,8 +211,13 @@ body{
 #profile_img {
     width:180px;
     height:180px;
+    min-width:180px;
+    min-height:180px;
+    max-width:180px;
+    max-height:180px;
     border-radius:5px;
     background-size:cover !important;
+    background-repeat:no-repeat !important;
 }
 
 #profile div {
@@ -324,11 +329,6 @@ body{
     font-size:15px;
 }
 
-.socials {
-    color: #fff;
-    text-decoration: none;
-}
-
 #blog_section {
     margin:2vh 0px;
     padding:2vh 0px !important;
@@ -398,6 +398,10 @@ body{
     #profile_img {
         width:120px;
         height:120px;
+        min-width:120px;
+        min-height:120px;
+        max-width:120px;
+        max-height:120px;
         margin:0px auto !important;
     }
     #work {
