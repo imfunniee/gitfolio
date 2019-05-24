@@ -73,16 +73,9 @@ async function populateConfig(sort, order, includeFork) {
 
 async function buildCommand(username, program) {
     await populateCSS(program);
-    
     let sort = program.sort ? program.sort : 'created';
-    let order = "asc";
-    let includeFork = false;
-    if(program.order){
-        order = ('%s', program.order);
-    }
-    if(program.fork){
-        includeFork = true;
-    }
+    let order = program.order ? program.order : "asc";
+    let includeFork = program.fork ? true : false;
     await populateConfig(sort, order, includeFork);
     updateHTML(('%s', username), sort, order, includeFork);
 }
