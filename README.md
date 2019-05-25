@@ -83,7 +83,7 @@ $ gitfolio build username --twitter twitter_handle
 
 $ gitfolio build username --linkedin linkedin-username-b59a36b3
 
-$ gitfolio build username --mediun medium_user
+$ gitfolio build username --medium medium_user
 ```
 
 #### Customize background image
