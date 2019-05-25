@@ -1,6 +1,6 @@
 <img src="https://i.imgur.com/eA6clZr.png">
 
-# Gitfolio  [![Tweet](https://img.shields.io/twitter/url/https/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=personal%20website%20and%20a%20blog%20for%20every%20github%20user%20&url=https://github.com/imfunniee/gitfolio) ![GitHub release](https://img.shields.io/github/release/imfunniee/gitfolio.svg?style=popout-square) ![npm](https://img.shields.io/npm/dm/gitfolio.svg?style=popout-square) ![GitHub top language](https://img.shields.io/github/languages/top/imfunniee/gitfolio.svg?style=popout-square) ![GitHub last commit](https://img.shields.io/github/last-commit/imfunniee/gitfolio.svg?style=popout-square) ![GitHub](https://img.shields.io/github/license/imfunniee/gitfolio.svg?style=popout-square)
+# Gitfolio  [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=personal%20website%20and%20a%20blog%20for%20every%20github%20user%20&url=https://github.com/imfunniee/gitfolio) ![GitHub release](https://img.shields.io/github/release/imfunniee/gitfolio.svg) ![GitHub top language](https://img.shields.io/github/languages/top/imfunniee/gitfolio.svg) ![GitHub last commit](https://img.shields.io/github/last-commit/imfunniee/gitfolio.svg) ![GitHub](https://img.shields.io/github/license/imfunniee/gitfolio.svg)
   
 ### personal website + blog  for every github user
 
@@ -16,7 +16,7 @@ Check out this [live demo](https://imfunniee.github.io/gitfolio/) to see gitfoli
 Install gitfolio
 
 ```sh
-npm i gitfolio -g
+npm i -g gitfolio
 ```
 
 ### Let's Build
@@ -24,12 +24,12 @@ npm i gitfolio -g
 ```sh
 gitfolio build <username>
 ```
-`<username>` is your username on github. This will build your website using your GitHub username and put it in the `/dist` folder.
+This will build your website using your GitHub username and put it in the `/dist` folder.
 
-To run your website use `run` command (please refrain from using this for now)
+To run your website use `run` command
 
 ```sh
-gitfolio run
+gitfolio build <username>
 ```
 
 🎉 Congrats, you just made yourself a personal website!
@@ -41,24 +41,24 @@ gitfolio run
 
 To include forks on your personal website just provide `-f` or `--fork` argument while building
 
-```sh
-$ gitfolio build <username> -f
+```
+$ gitfolio build username -f
 ```
 
 #### Sorting Repos
 
 To sort repos provide `--sort [sortBy]` argument while building. Where `[sortBy]` can be `star`, `created`, `updated`, `pushed`,`full_name`. Default: `created`
 
-```sh
-$ gitfolio build <username> --sort star
+```
+$ gitfolio build username --sort star
 ```
 
 #### Ordering Repos
 
 To order the sorted repos provide `--order [orderBy]` argument while building. Where `[orderBy]` can be `asc` or `desc`. Default: `asc`
 
-```sh
-$ gitfolio build <username> --sort star --order desc
+```
+$ gitfolio build username --sort star --order desc
 ```
 
 #### Customize Themes
@@ -70,16 +70,28 @@ Themes are specified using the `--theme [theme-name]` flag when running the `bui
 > TODO: Add more themes
 
 For example, the following command will build the website with the dark theme
-```sh
-$ gitfolio build <username> --theme dark
+```
+$ gitfolio build username --theme dark
+```
+
+#### Adding Social Handles
+
+You can add Social handles for Twitter `--twitter [handle]`, LinkedIn `--linkedin [username]`, Medium `--medium [username]`
+
+```
+$ gitfolio build username --twitter twitter_handle
+
+$ gitfolio build username --linkedin linkedin-username-b59a36b3
+
+$ gitfolio build username --mediun medium_user
 ```
 
 #### Customize background image
 
 To customize the background image just provide `--background [url]` argument while building
 
-```sh
-$ gitfolio build <username> --background https://images.unsplash.com/photo-1557277770-baf0ca74f908?w=1634
+```
+$ gitfolio build username --background https://images.unsplash.com/photo-1557277770-baf0ca74f908?w=1634
 ```
 
 You could also add in your custom CSS inside `index.css` to give it a more personal feel.
@@ -96,7 +108,7 @@ Go To `username.github.io` your site should be up!!
 
 To update your info, simply run
 
-```sh
+```
 $ gitfolio update
 ```
 This will update your info and your repository info.
@@ -108,7 +120,7 @@ To Update background or theme you need to run `build` command again.
 
 To add your first blog run this command.
 
-```sh
+```
 $ gitfolio blog my-first-blog
 ```
 > (use "-" instead of spaces)
@@ -143,9 +155,9 @@ More Arguments for Blog
 
 ## Support
 
-Loved My Work? Keep me awake at night by buying me a Coffee ☕
+Support me to make more projects like this by Buying me a Coffee ☕
 
 <a href="https://www.buymeacoffee.com/imfunniee" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;"></a>
 
 ## License
-![GitHub](https://img.shields.io/github/license/imfunniee/gitfolio.svg?style=popout-square)
+![GitHub](https://img.shields.io/github/license/imfunniee/gitfolio.svg)
