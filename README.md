@@ -63,11 +63,10 @@ $ gitfolio build <username> --sort star --order desc
 
 #### Hiding Gitfolio Repo
 
-To hide the website repo from displaying on the site itself provide `--hide [boolean]` argument while building. Where `[boolean]` can either be `true`, to hide the repo
-or `false` (default) to show the repo.
+To hide the website repo from displaying on the site itself provide `-h` or `--hide` argument while building.
 
 ```sh
-$ gitfolio build <username> --sort create --order desc --hide true
+$ gitfolio build <username> --sort create --order desc --h
 ```
 
 #### Customize Themes
