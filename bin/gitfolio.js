@@ -18,6 +18,7 @@ program
     .option('-f, --fork', 'includes forks with repos')
     .option('-s, --sort [sort]', 'set default sort for repository', 'created')
     .option('-o, --order [order]', 'set default order on sort', 'asc')
+    .option('-h, --hide [hide]', 'hide the gitfolio repository on your site', 'false')
     .action(buildCommand)
 
 program

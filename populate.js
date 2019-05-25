@@ -28,7 +28,7 @@ function convertToEmoji(text) {
     }
 }
 
-module.exports.updateHTML = (username, sort, order, includeFork) => {
+module.exports.updateHTML = (username, sort, order, includeFork, hideSiteRepo) => {
     //add data to assets/index.html
     jsdom.fromFile(`${__dirname}/assets/index.html`, options).then(function (dom) {
         let window = dom.window, document = window.document;
@@ -62,9 +62,14 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                 }
                 for (var i = 0; i < repos.length; i++) {
                     if(repos[i].fork == false){
-                        document.getElementById("work_section").innerHTML += `
-                        <a href="${repos[i].html_url}" target="_blank">
-                        <section>
+                        if(hideSiteRepo && repos[i].name ==`${username}.github.io`){
+                            var dom = `<section style="display: none">`;
+                        }else{
+                           var dom = `<section>`;
+                        }
+                        document.getElementById("work_section").innerHTML += 
+                        `<a href="${repos[i].html_url}" target="_blank">
+                        ${dom}
                             <div class="section_title">${repos[i].name}</div>
                             <div class="about_section">
                             <span style="display:${repos[i].description == undefined ? 'none' : 'block'};">${convertToEmoji(repos[i].description)}</span>
@@ -75,7 +80,8 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                                 <span><i class="fas fa-code-branch"></i>&nbsp; ${repos[i].forks_count}</span>
                             </div>
                         </section>
-                        </a>`;
+                        </a>`
+                        
                     }else{
                         if(includeFork == true){
                             document.getElementById("forks").style.display = "block";

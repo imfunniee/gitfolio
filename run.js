@@ -1,5 +1,6 @@
 const express = require('express');
 const open = require('open');
+const path = require('path');
 const defaultBrowser = require('x-default-browser');
 const outDir = path.resolve('./dist/' || process.env.OUT_DIR);
 const app = express();

@@ -77,14 +77,18 @@ async function buildCommand(username, program) {
     let sort = program.sort ? program.sort : 'created';
     let order = "asc";
     let includeFork = false;
+    let hideSiteRepo = false;
     if(program.order){
         order = ('%s', program.order);
     }
     if(program.fork){
         includeFork = true;
     }
+    if(program.hide){
+        hideSiteRepo = JSON.parse(program.hide)
+    }
     await populateConfig(sort, order, includeFork);
-    updateHTML(('%s', username), sort, order, includeFork);
+    updateHTML(('%s', username), sort, order, includeFork, hideSiteRepo);
 }
 
 module.exports = {
