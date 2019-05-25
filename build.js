@@ -85,7 +85,7 @@ async function buildCommand(username, program) {
         includeFork = true;
     }
     if(program.hide){
-        hideSiteRepo = JSON.parse(program.hide)
+        hideSiteRepo = true;
     }
     await populateConfig(sort, order, includeFork);
     updateHTML(('%s', username), sort, order, includeFork, hideSiteRepo);
