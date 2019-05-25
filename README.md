@@ -141,11 +141,5 @@ More Arguments for Blog
 > (use "-" instead of spaces)
 
 
-## Support
-
-Loved My Work? Keep me awake at night by buying me a Coffee ☕
-
-<a href="https://www.buymeacoffee.com/imfunniee" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;"></a>
-
 ## License
 ![GitHub](https://img.shields.io/github/license/imfunniee/gitfolio.svg?style=popout-square)
