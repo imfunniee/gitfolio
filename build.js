@@ -63,11 +63,12 @@ async function populateCSS({
     await fs.writeFileAsync(config, JSON.stringify(data, null, ' '));
 }
 
-async function populateConfig(sort, order, includeFork) {
+async function populateConfig(sort, order, includeFork, count) {
     const data = await getConfig();
     data[0].sort = sort;
     data[0].order = order;
     data[0].includeFork = includeFork;
+    data[0].count = count
     await fs.writeFileAsync(config, JSON.stringify(data, null, ' '));
 }
 
@@ -83,8 +84,9 @@ async function buildCommand(username, program) {
     if(program.fork){
         includeFork = true;
     }
-    await populateConfig(sort, order, includeFork);
-    updateHTML(('%s', username), sort, order, includeFork);
+    const count = parseInt(program.count || 100, 10)
+    await populateConfig(sort, order, includeFork, count);
+    updateHTML(('%s', username), sort, order, includeFork, count);
 }
 
 module.exports = {

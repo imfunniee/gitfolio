@@ -28,7 +28,7 @@ function convertToEmoji(text) {
     }
 }
 
-module.exports.updateHTML = (username, sort, order, includeFork) => {
+module.exports.updateHTML = (username, sort, order, includeFork, count) => {
     //add data to assets/index.html
     jsdom.fromFile(`${__dirname}/assets/index.html`, options).then(function (dom) {
         let window = dom.window, document = window.document;
@@ -60,7 +60,7 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                         repos = repos.concat(tempRepos);
                     } while(tempRepos.length == 100);
                 }
-                for (var i = 0; i < repos.length; i++) {
+                for (var i = 0; i < Math.min(repos.length, count); i++) {
                     if(repos[i].fork == false){
                         document.getElementById("work_section").innerHTML += `
                         <a href="${repos[i].html_url}" target="_blank">
