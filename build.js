@@ -63,13 +63,14 @@ async function populateCSS({
     await fs.writeFileAsync(config, JSON.stringify(data, null, ' '));
 }
 
-async function populateConfig(sort, order, includeFork) {
+async function populateConfig(sort, order, includeFork, twitter, linkedin, medium) {
     const data = await getConfig();
     data[0].sort = sort;
     data[0].order = order;
     data[0].includeFork = includeFork;
     data[0].twitter = twitter; // added twitter
     data[0].linkedin = linkedin; // added linkedin
+    data[0].medium = medium; // added medium
 
     await fs.writeFileAsync(config, JSON.stringify(data, null, ' '));
 }
@@ -80,14 +81,29 @@ async function buildCommand(username, program) {
     let sort = program.sort ? program.sort : 'created';
     let order = "asc";
     let includeFork = false;
+    let twitter = null;
+    let linkedin = null;
+    let medium = null
+
     if(program.order){
         order = ('%s', program.order);
     }
     if(program.fork){
         includeFork = true;
     }
-    await populateConfig(sort, order, includeFork);
-    updateHTML(('%s', username), sort, order, includeFork);
+    // added twitter, linkedin, medium
+    if(program.twitter){
+        twitter = ('%s', program.twitter);
+    }
+    if(program.linkedin){
+        linkedin = ('%s', program.linkedin);
+    }
+    if(program.medium){
+        medium = ('%s', program.medium);
+    }
+
+    await populateConfig(sort, order, includeFork, twitter, linkedin, medium);
+    updateHTML(('%s', username), sort, order, includeFork, twitter, linkedin, medium);
 }
 
 module.exports = {

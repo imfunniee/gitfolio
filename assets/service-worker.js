@@ -2,7 +2,7 @@
 
   if (workbox) {
     workbox.setConfig({
-      debug: false
+      debug: true
     });
 
     var defaultStrategy = workbox.strategies.networkFirst({
