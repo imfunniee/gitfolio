@@ -61,6 +61,15 @@ To order the sorted repos provide `--order [orderBy]` argument while building. W
 $ gitfolio build <username> --sort star --order desc
 ```
 
+#### Hiding Gitfolio Repo
+
+To hide the website repo from displaying on the site itself provide `--hide [boolean]` argument while building. Where `[boolean]` can either be `true`, to hide the repo
+or `false` (default) to show the repo.
+
+```sh
+$ gitfolio build <username> --sort create --order desc --hide true
+```
+
 #### Customize Themes
 
 Themes are specified using the `--theme [theme-name]` flag when running the `build` command. The available themes are
