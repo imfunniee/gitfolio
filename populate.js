@@ -121,11 +121,11 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                 data[0].username = user.login;
                 data[0].name = user.name;
                 data[0].userimg = user.avatar_url;
-                fs.writeFile(`${outDir}/config.json`, JSON.stringify(data, null, ' '), function (err) {
+                await fs.writeFile(`${outDir}/config.json`, JSON.stringify(data, null, ' '), function (err) {
                     if (err) throw err;
                     console.log("Config file updated.");
                 });
-                fs.writeFile(`${outDir}/index.html`, '<!DOCTYPE html>' + window.document.documentElement.outerHTML, function (error) {
+                await fs.writeFile(`${outDir}/index.html`, '<!DOCTYPE html>' + window.document.documentElement.outerHTML, function (error) {
                     if (error) throw error;
                     console.log(`Build Complete, Files can be Found @ ${outDir}`);
                 });
