@@ -240,13 +240,15 @@ body{
     font-family: 'Questrial', sans-serif;
 }
 
-#about a {
+#about a,
+#username a {
     color:#fff !important;
     text-decoration:none;
     font-weight:bold;
 }
 
-#about a:hover {
+#about a:hover,
+#username a:hover {
     text-decoration:underline;
 }
 
