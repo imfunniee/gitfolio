@@ -1,6 +1,6 @@
 {
   "name": "gitfolio",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "a portfolio website for everyone to showcase your work",
   "main": "build.js",
   "bin": "bin/gitfolio.js",
