@@ -10,8 +10,9 @@ const { getConfig, outDir } = require('./utils');
 function convertToEmoji(text) {
     if (text == null) return;
     text = text.toString();
-    if (text.match(/(?<=:\s*).*?(?=\s*:)/gs) != null) {
-        var str = text.match(/(?<=:\s*).*?(?=\s*:)/gs);
+    var pattern = /(?<=:\s*).*?(?=\s*:)/gs
+    if (text.match(pattern) != null) {
+        var str = text.match(pattern);
         str = str.filter(function (arr) {
             return /\S/.test(arr);
         });
