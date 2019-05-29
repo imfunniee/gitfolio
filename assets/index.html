@@ -11,6 +11,7 @@
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/magic-grid/dist/magic-grid.min.js"></script>
     <link rel="stylesheet" href="index.css">
 </head>
 
@@ -84,6 +85,33 @@
                 navigator.serviceWorker.register('service-worker.js');
             });
         }
+    </script>
+
+    <script>
+        const magicProjectsGrid = new MagicGrid({
+          container: '#work_section',
+          animate: false,
+          gutter: 30, // default gutter size
+          static: true,
+          useMin: false,
+          maxColumns: 2,
+          useTransform: true
+        });
+
+        const magicForksGrid = new MagicGrid({
+          container: '#forks_section',
+          animate: false,
+          gutter: 30, // default gutter size
+          static: true,
+          useMin: false,
+          maxColumns: 2,
+          useTransform: true
+        })
+
+        $('document').ready(() => {
+          magicProjectsGrid.listen();
+          magicForksGrid.listen();
+        });
     </script>
 </body>
 
