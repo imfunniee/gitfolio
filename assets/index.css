@@ -276,7 +276,8 @@ body{
 }
 
 .projects a {
-  width: calc(50% - 30px);  /* 30px is the gutter size in magic grid */
+  /* 30px is the gutter size in magic grid */
+  width: calc(49% - 30px);  /* 49% avoids a weird single column on some wide screens */
   display: flex;
   text-decoration: none;
 }
