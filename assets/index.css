@@ -272,11 +272,11 @@ body{
 }
 
 .projects {
+  margin-left: -15px; /* align section w/ heading above */
 }
 
 .projects a {
-  width: calc(50% - 35px); 
-  /* 30px is the gutter size in magic grid */
+  width: calc(50% - 30px);  /* 30px is the gutter size in magic grid */
   display: flex;
   text-decoration: none;
 }
@@ -405,6 +405,7 @@ body{
         margin:0px;
     }
     .projects {
+      margin-left: 0; /* remove neg margin to align w/ header */
     }
     .projects a {
       width: 100%;
