@@ -32,6 +32,8 @@ To run your website use `run` command
 gitfolio run
 ```
 
+Open your browser at http://localhost:3000
+
 🎉 Congrats, you just made yourself a personal website!
 
 
