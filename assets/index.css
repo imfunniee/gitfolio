@@ -245,13 +245,15 @@ body{
     font-family: 'Questrial', sans-serif;
 }
 
-#about a {
+#about a,
+#username a {
     color:#fff !important;
     text-decoration:none;
     font-weight:bold;
 }
 
-#about a:hover {
+#about a:hover,
+#username a:hover {
     text-decoration:underline;
 }
 
@@ -275,11 +277,18 @@ body{
 }
 
 .projects {
-    columns:2;
+  margin-left: -15px; /* align section w/ heading above */
+}
+
+.projects a {
+  /* 30px is the gutter size in magic grid */
+  width: calc(49% - 30px);  /* 49% avoids a weird single column on some wide screens */
+  display: flex;
+  text-decoration: none;
 }
 
 .projects section {
-    width:85%;
+    width: 100%;
     padding:2.5vh 5%;
     display:inline-block;
     border-radius:5px;
@@ -287,7 +296,6 @@ body{
     border:1px solid rgb(0, 0, 0, 0.08);
     box-shadow:0px 0px 0px rgb(0, 0, 0, 0);
     transition:0.4s ease-in-out;
-    margin:2vh 0px;
     transform:scale(1);
 }
 
@@ -335,7 +343,6 @@ body{
 }
 
 #blogs {
-    columns:2;
 }
 
 #blogs section {
@@ -408,13 +415,15 @@ body{
         margin:0px;
     }
     .projects {
-        columns:1;
+      margin-left: 0; /* remove neg margin to align w/ header */
+    }
+    .projects a {
+      width: 100%;
     }
     .projects section {
         width:88%;
     }
     #blogs {
-        columns:1;
     }
     #blogs section {
         width:98%;
