@@ -18,6 +18,7 @@ program
     .option('-f, --fork', 'includes forks with repos')
     .option('-s, --sort [sort]', 'set default sort for repository', 'created')
     .option('-o, --order [order]', 'set default order on sort', 'asc')
+    .option('-l, --gitlab', 'search for the user on GitLab instead of GitHub')
     .action(buildCommand)
 
 program

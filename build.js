@@ -76,8 +76,9 @@ async function buildCommand(username, program) {
     let sort = program.sort ? program.sort : 'created';
     let order = program.order ? program.order : "asc";
     let includeFork = program.fork ? true : false;
+    let gitlab = program.gitlab ? true : false;
     await populateConfig(sort, order, includeFork);
-    updateHTML(('%s', username), sort, order, includeFork);
+    updateHTML(('%s', username), sort, order, includeFork, gitlab);
 }
 
 module.exports = {

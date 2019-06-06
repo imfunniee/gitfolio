@@ -29,7 +29,7 @@ function convertToEmoji(text) {
     }
 }
 
-module.exports.updateHTML = (username, sort, order, includeFork) => {
+module.exports.updateHTML = (username, sort, order, includeFork, useGitlab) => {
     //add data to assets/index.html
     jsdom.fromFile(`${__dirname}/assets/index.html`, options).then(function (dom) {
         let window = dom.window, document = window.document;
@@ -39,10 +39,29 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                 var repos = [];
                 var tempRepos;
                 var page = 1;
+                if (useGitlab) {
+                    switch(sort) {
+                        case 'created':
+                            sort = 'created_at';
+                            break;
+                        case 'updated':
+                            sort = 'updated_at';
+                            break;
+                        case 'pushed':
+                            sort = 'last_activity_at';
+                            break;
+                        case 'full_name':
+                            sort = 'name';
+                            break;
+                    }
+                }
                 if(sort == "star"){
                     do{
-                        tempRepos = await got(`https://api.github.com/users/${username}/repos?per_page=100&page=${page++}`);
-                        tempRepos = JSON.parse(tempRepos.body);
+                        if (!useGitlab) {
+                            tempRepos = await got(`https://api.github.com/users/${username}/repos?per_page=100&page=${page++}`);
+                        } else {
+                            tempRepos = await got(`https://gitlab.com/api/v4/users/${username}/projects?per_page=100&page=${page++}`);
+                        }
                         repos = repos.concat(tempRepos);
                     } while(tempRepos.length == 100);
                     if(order == "desc"){
@@ -56,10 +75,28 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                     }
                 }else{
                     do{
-                        tempRepos = await got(`https://api.github.com/users/${username}/repos?sort=${sort}&order=${order}&per_page=100&page=${page++}`);
+                        if (!useGitlab) {
+                            tempRepos = await got(`https://api.github.com/users/${username}/repos?sort=${sort}&order=${order}&per_page=100&page=${page++}`);
+                        } else {
+                            // in the GitLab API, sort means ordering (ascending/descending) and order_by means sort criteria - https://docs.gitlab.com/ee/api/projects.html#list-all-projects
+                            tempRepos = await got(`https://gitlab.com/api/v4/users/${username}/projects?order_by=${sort}&sort=${order}&per_page=100&page=${page++}`);
+                        }
                         tempRepos = JSON.parse(tempRepos.body);
                         repos = repos.concat(tempRepos);
                     } while(tempRepos.length == 100);
+                }
+                if (useGitlab) {
+                    if (includeFork == true) {
+                        console.warn('Warning: The public GitLab API currently does not provide forking relations, forked repos will be displayed as your own.');
+                    }
+                    // convert gitlab property names to github property names
+                    for (var i = 0; i < repos.length; i++) {
+                        repos[i].stargazers_count = repos[i].star_count;
+                        repos[i].html_url = repos[i].web_url;
+                        repos[i].fork = (repos[i].forked_from_project ? true : false); // only fork-projects have this object; forked_from_project is only available for the logged in user
+                        // forks_count, name and description already exist
+                        // missing language specification, must be be requested from other endpoint - https://docs.gitlab.com/ee/api/projects.html#languages
+                    }
                 }
                 for (var i = 0; i < repos.length; i++) {
                     if(repos[i].fork == false){
@@ -97,8 +134,24 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                         }
                     }
                 }
-                var user = await got(`https://api.github.com/users/${username}`);
-                user = JSON.parse(user.body);
+                if (!useGitlab) {
+                    var user = await got(`https://api.github.com/users/${username}`);
+                    user = JSON.parse(user.body);
+                } else {
+                    var searchResults = await got(`https://gitlab.com/api/v4/users?username=${username}`);
+                    searchResults = JSON.parse(searchResults.body);
+                    var userId = searchResults[0].id;
+                    var user = await got(`https://gitlab.com/api/v4/users/${userId}`);
+                    user = JSON.parse(user.body);
+                    // convert gitlab property names to github property names
+                    user.login = user.username;
+                    user.html_url = user.web_url;
+                    user.company = user.organization;
+                    user.email = user.public_email;
+                    user.blog = user.website_url;
+                    user.hireable = false; // GitLab does not support hireable status
+                    // avatar_url, name, bio and location already exist
+                }
                 document.title = user.login;
                 var icon = document.createElement("link");
                 icon.setAttribute("rel", "icon");
