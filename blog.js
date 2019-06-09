@@ -31,7 +31,7 @@ function createBlog(title, subtitle, pagetitle, folder) {
             fs.writeFile(`${outDir}/blog/${folder}/index.html`, '<!DOCTYPE html>'+window.document.documentElement.outerHTML, async function (error){
                 if (error) throw error;
                 var blog_data = {
-                    "url_title": pagetitle,
+                    "url_title": folder,
                     "title": title,
                     "sub_title": subtitle,
                     "top_image": "https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450",
