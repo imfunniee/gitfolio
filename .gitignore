@@ -60,8 +60,6 @@ typings/
 # next.js build output
 .next
 
-# Built website files
-dist/
 
 # Editor files and folders
 .vscode/
