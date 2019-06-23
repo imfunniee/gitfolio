@@ -1,21 +1,29 @@
 const got = require('got');
 
 /**
+ * The defaults here are the same as the API
  * @see https://developer.github.com/v3/repos/#list-user-repositories
  * @param {string} username
  * @param {Object} opts
- * @param {'all' | 'owner' | 'member'} [opts.type]
+ * @param {('all' | 'owner' | 'member')[]} [opts.types]
  * @param {'created' | 'updated' | 'pushed' | 'full_name' | 'star'} [opts.sort]
  * @param {'desc' | 'asc'} [opts.order]
  */
 async function getRepos(username, opts = {}) {
     let tempRepos;
     let page = 1;
-    let repos;
+    let repos = [];
 
     const sort = opts.sort;
     const order = opts.order || (sort === "full_name" ? "asc" :"desc");
-    const type = opts.type || "owner"
+    const types = opts.types || [];
+    let type = "owner"
+
+    if (types.includes('all') || (types.includes('owner') && types.includes('member'))) {
+        type = 'all';
+    } else if (types.includes('member')) {
+        type = 'member';
+    }
 
     do{
         let requestUrl = `https://api.github.com/users/${username}/repos?per_page=100&page=${page++}&type=${type}`;

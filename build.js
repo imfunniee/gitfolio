@@ -71,10 +71,17 @@ async function populateConfig(opts) {
 
 async function buildCommand(username, program) {
     await populateCSS(program);
+    let types;
+    if (!program.include || !program.include.length) {
+        types = ['owner'];
+    }else {
+        types = program.include;
+    }
     const opts = {
         sort: program.sort,
         order: program.order,
         includeFork: program.fork ? true : false,
+        types,
     };
 
     await populateConfig(opts);
