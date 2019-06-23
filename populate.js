@@ -39,8 +39,17 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                 const repos = await getRepos({sort, order, username})
 
                 for (var i = 0; i < repos.length; i++) {
+                    let element;
                     if(repos[i].fork == false){
-                        document.getElementById("work_section").innerHTML += `
+                        element = document.getElementById("work_section")
+                        
+                    }else if(includeFork == true){
+                        document.getElementById("forks").style.display = "block";
+                        element = document.getElementById("forks_section");
+                    }else {
+                        continue;
+                    }
+                    element.innerHTML += `
                         <a href="${repos[i].html_url}" target="_blank">
                         <section>
                             <div class="section_title">${repos[i].name}</div>
@@ -54,25 +63,6 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                             </div>
                         </section>
                         </a>`;
-                    }else{
-                        if(includeFork == true){
-                            document.getElementById("forks").style.display = "block";
-                            document.getElementById("forks_section").innerHTML += `
-                            <a href="${repos[i].html_url}" target="_blank">
-                            <section>
-                                <div class="section_title">${repos[i].name}</div>
-                                <div class="about_section">
-                                <span style="display:${repos[i].description == undefined ? 'none' : 'block'};">${convertToEmoji(repos[i].description)}</span>
-                                </div>
-                                <div class="bottom_section">
-                                    <span style="display:${repos[i].language == null ? 'none' : 'inline-block'};"><i class="fas fa-code"></i>&nbsp; ${repos[i].language}</span>
-                                    <span><i class="fas fa-star"></i>&nbsp; ${repos[i].stargazers_count}</span>
-                                    <span><i class="fas fa-code-branch"></i>&nbsp; ${repos[i].forks_count}</span>
-                                </div>
-                            </section>
-                            </a>`;
-                        }
-                    }
                 }
                 const user = await getUser(username);
                 document.title = user.login;
@@ -80,6 +70,7 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                 icon.setAttribute("rel", "icon");
                 icon.setAttribute("href", user.avatar_url);
                 icon.setAttribute("type", "image/png");
+                
                 document.getElementsByTagName("head")[0].appendChild(icon);
                 document.getElementById("profile_img").style.background = `url('${user.avatar_url}') center center`
                 document.getElementById("username").innerHTML = `<span style="display:${user.name == null || !user.name ? 'none' : 'block'};">${user.name}</span><a href="${user.html_url}">@${user.login}</a>`;
@@ -97,6 +88,7 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                 data[0].username = user.login;
                 data[0].name = user.name;
                 data[0].userimg = user.avatar_url;
+                
                 await fs.writeFile(`${outDir}/config.json`, JSON.stringify(data, null, ' '), function (err) {
                     if (err) throw err;
                     console.log("Config file updated.");
