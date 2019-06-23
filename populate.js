@@ -36,7 +36,7 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
         (async () => {
             try {
                 console.log("Building HTML/CSS...");
-                const repos = await getRepos({sort, order, username})
+                const repos = await getRepos(username, {sort, order})
 
                 for (var i = 0; i < repos.length; i++) {
                     let element;

@@ -1,18 +1,26 @@
 const got = require('got');
 
-async function getRepos(opts = {}) {
+/**
+ * @see https://developer.github.com/v3/repos/#list-user-repositories
+ * @param {string} username
+ * @param {Object} opts
+ * @param {'all' | 'owner' | 'member'} [opts.type]
+ * @param {'created' | 'updated' | 'pushed' | 'full_name' | 'star'} [opts.sort]
+ * @param {'desc' | 'asc'} [opts.order]
+ */
+async function getRepos(username, opts = {}) {
     let tempRepos;
     let page = 1;
     let repos;
 
     const sort = opts.sort;
-    const order = opts.order || "desc";
-    const username = opts.username;
+    const order = opts.order || (sort === "full_name" ? "asc" :"desc");
+    const type = opts.type || "owner"
 
     do{
-        let requestUrl = `https://api.github.com/users/${username}/repos?per_page=100&page=${page++}`;
+        let requestUrl = `https://api.github.com/users/${username}/repos?per_page=100&page=${page++}&type=${type}`;
         if (sort && sort !== "star") {
-            requestUrl += `&sort=${sort}&order=${order}`
+            requestUrl += `&sort=${sort}&direction=${order}`
         }
         tempRepos = await got(requestUrl);
         tempRepos = JSON.parse(tempRepos.body);
@@ -32,6 +40,10 @@ async function getRepos(opts = {}) {
     return repos;
 }
 
+/**
+ * @see https://developer.github.com/v3/users/#get-a-single-user
+ * @param {string} username 
+ */
 async function getUser(username) {
     const res = await got(`https://api.github.com/users/${username}`);
     return JSON.parse(res.body);
