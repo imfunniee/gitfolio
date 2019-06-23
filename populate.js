@@ -29,14 +29,15 @@ function convertToEmoji(text) {
     }
 }
 
-module.exports.updateHTML = (username, sort, order, includeFork) => {
+module.exports.updateHTML = (username, opts) => {
+    const {includeFork} = opts;
     //add data to assets/index.html
     jsdom.fromFile(`${__dirname}/assets/index.html`, options).then(function (dom) {
         let window = dom.window, document = window.document;
         (async () => {
             try {
                 console.log("Building HTML/CSS...");
-                const repos = await getRepos(username, {sort, order})
+                const repos = await getRepos(username, opts)
 
                 for (var i = 0; i < repos.length; i++) {
                     let element;

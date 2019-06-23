@@ -63,21 +63,22 @@ async function populateCSS({
     await fs.writeFileAsync(config, JSON.stringify(data, null, ' '));
 }
 
-async function populateConfig(sort, order, includeFork) {
+async function populateConfig(opts) {
     const data = await getConfig();
-    data[0].sort = sort;
-    data[0].order = order;
-    data[0].includeFork = includeFork;
+    Object.assign(data[0], opts);
     await fs.writeFileAsync(config, JSON.stringify(data, null, ' '));
 }
 
 async function buildCommand(username, program) {
     await populateCSS(program);
-    let sort = program.sort ? program.sort : 'created';
-    let order = program.order ? program.order : "asc";
-    let includeFork = program.fork ? true : false;
-    await populateConfig(sort, order, includeFork);
-    updateHTML(('%s', username), sort, order, includeFork);
+    const opts = {
+        sort: program.sort ? program.sort : 'created',
+        order: program.order ? program.order : "asc",
+        includeFork: program.fork ? true : false,
+    };
+
+    await populateConfig(opts);
+    updateHTML(('%s', username), opts);
 }
 
 module.exports = {
