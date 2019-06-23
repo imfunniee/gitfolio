@@ -1,11 +1,11 @@
 const fs = require('fs');
-const got = require('got');
 const emoji = require('github-emoji');
 const jsdom = require('jsdom').JSDOM,
     options = {
         resources: "usable"
     };
 const { getConfig, outDir } = require('./utils');
+const { getRepos, getUser } = require('./api');
 
 function convertToEmoji(text) {
     if (text == null) return;
@@ -36,31 +36,8 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
         (async () => {
             try {
                 console.log("Building HTML/CSS...");
-                var repos = [];
-                var tempRepos;
-                var page = 1;
-                if(sort == "star"){
-                    do{
-                        tempRepos = await got(`https://api.github.com/users/${username}/repos?per_page=100&page=${page++}`);
-                        tempRepos = JSON.parse(tempRepos.body);
-                        repos = repos.concat(tempRepos);
-                    } while(tempRepos.length == 100);
-                    if(order == "desc"){
-                        repos = repos.sort(function(a, b) {
-                            return  b.stargazers_count - a.stargazers_count;
-                        });
-                    }else{
-                        repos = repos.sort(function(a, b) {
-                            return a.stargazers_count - b.stargazers_count;
-                        });
-                    }
-                }else{
-                    do{
-                        tempRepos = await got(`https://api.github.com/users/${username}/repos?sort=${sort}&order=${order}&per_page=100&page=${page++}`);
-                        tempRepos = JSON.parse(tempRepos.body);
-                        repos = repos.concat(tempRepos);
-                    } while(tempRepos.length == 100);
-                }
+                const repos = await getRepos({sort, order, username})
+
                 for (var i = 0; i < repos.length; i++) {
                     if(repos[i].fork == false){
                         document.getElementById("work_section").innerHTML += `
@@ -97,8 +74,7 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                         }
                     }
                 }
-                var user = await got(`https://api.github.com/users/${username}`);
-                user = JSON.parse(user.body);
+                const user = await getUser(username);
                 document.title = user.login;
                 var icon = document.createElement("link");
                 icon.setAttribute("rel", "icon");
