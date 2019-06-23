@@ -72,8 +72,8 @@ async function populateConfig(opts) {
 async function buildCommand(username, program) {
     await populateCSS(program);
     const opts = {
-        sort: program.sort ? program.sort : 'created',
-        order: program.order ? program.order : "asc",
+        sort: program.sort,
+        order: program.order,
         includeFork: program.fork ? true : false,
     };
 
