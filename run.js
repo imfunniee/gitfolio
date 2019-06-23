@@ -2,7 +2,7 @@ const express = require('express');
 const open = require('open');
 const defaultBrowser = require('x-default-browser');
 const path = require('path');
-const outDir = path.resolve('./dist/' || process.env.OUT_DIR);
+const { outDir } = require('./utils');
 const app = express();
 app.use(express.static(`${outDir}`));
 
