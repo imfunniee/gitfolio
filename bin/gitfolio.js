@@ -19,6 +19,8 @@ program
     .option('-s, --sort [sort]', 'set default sort for repository', 'created')
     .option('-o, --order [order]', 'set default order on sort', 'asc')
     .option('-i, --ogimage [image]', 'set the open graph image', null)
+    .option('-x, --twitter [twitter_handle]', 'specify your Twitter username.')
+    .option('-l, --linkedin [linkedin_handle]', 'specify your LinkedIn username.')
     .action(buildCommand)
 
 program

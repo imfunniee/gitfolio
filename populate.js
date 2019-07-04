@@ -29,7 +29,7 @@ function convertToEmoji(text) {
     }
 }
 
-module.exports.updateHTML = (username, sort, order, includeFork, image) => {
+module.exports.updateHTML = (username, sort, order, includeFork, twitter, linkedin, image) => {
     //add data to assets/index.html
     jsdom.fromFile(`${__dirname}/assets/index.html`, options).then(function (dom) {
         let window = dom.window, document = window.document;
@@ -133,6 +133,10 @@ module.exports.updateHTML = (username, sort, order, includeFork, image) => {
                 <span style="display:${user.email == null || !user.email ? 'none' : 'block'};"><i class="fas fa-envelope"></i> &nbsp; ${user.email}</span>
                 <span style="display:${user.blog == null || !user.blog ? 'none' : 'block'};"><i class="fas fa-link"></i> &nbsp; <a href="${user.blog}">${user.blog}</a></span>
                 <span style="display:${user.location == null || !user.location ? 'none' : 'block'};"><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp; ${user.location}</span>
+
+                <span style="display:${twitter == null ? 'none' : 'block'};"><i class="fab fa-twitter-square"></i> &nbsp;&nbsp; <a href="https://www.twitter.com/${twitter}" target="_blank" class="socials"> Twitter</a></span>
+                <span style="display:${linkedin == null ? 'none' : 'block'};"><i class="fab fa-linkedin"></i> &nbsp;&nbsp; <a href="https://www.linkedin.com/in/${linkedin}/" target="_blank" class="socials"> LinkedIn</a></span>
+
                 <span style="display:${user.hireable == false || !user.hireable ? 'none' : 'block'};"><i class="fas fa-user-tie"></i> &nbsp;&nbsp; Available for hire</span>`;
                 //add data to config.json
                 const data = await getConfig();
