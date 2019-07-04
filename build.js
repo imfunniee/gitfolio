@@ -7,7 +7,7 @@ const hbs = require("handlebars");
     from callback-passed async functions      */
 const fs = bluebird.promisifyAll(require("fs"));
 const { updateHTML } = require("./populate");
-const { getConfig, outDir } = require("./utils");
+const { getConfig, getSocials, outDir } = require("./utils");
 
 const assetDir = path.resolve(`${__dirname}/assets/`);
 const config = path.join(outDir, "config.json");
@@ -67,30 +67,25 @@ async function populateConfig(
   sort,
   order,
   includeFork,
-  twitter,
-  linkedin,
-  medium
 ) {
   const data = await getConfig();
   data[0].sort = sort;
   data[0].order = order;
   data[0].includeFork = includeFork;
-  data[0].twitter = twitter;
-  data[0].linkedin = linkedin;
-  data[0].medium = medium;
   await fs.writeFileAsync(config, JSON.stringify(data, null, " "));
 }
 
 async function buildCommand(username, program) {
   await populateCSS(program);
+  const socials = await getSocials();
   let sort = program.sort ? program.sort : "created";
   let order = program.order ? program.order : "asc";
   let includeFork = program.fork ? true : false;
-  let twitter = program.twitter ? ("%s", program.twitter) : null;
-  let linkedin = program.linkedin ? ("%s", program.linkedin) : null;
-  let medium = program.medium ? ("%s", program.medium) : null;
+  let twitter = socials.twitter ? ("%s", socials.twitter) : null;
+  let linkedin = socials.linkedin ? ("%s", socials.linkedin) : null;
+  let medium = socials.medium ? ("%s", socials.medium) : null;
   let image = program.ogimage;
-  await populateConfig(sort, order, includeFork, twitter, linkedin, medium);
+  await populateConfig(sort, order, includeFork);
   updateHTML(
     ("%s", username),
     sort,
