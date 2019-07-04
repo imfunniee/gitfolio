@@ -7,6 +7,7 @@
   "scripts": {
     "cli": "OUT_DIR='./dist' node bin/gitfolio.js",
     "clean": "rm -rf ./dist/*",
+    "prettier": "node node_modules/prettier/bin-prettier.js --write '**/*.{js,ts,css,html}'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {

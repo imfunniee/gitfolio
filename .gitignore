@@ -66,3 +66,4 @@ dist/
 # Editor files and folders
 .vscode/
 .idea/
+.DS_Store

@@ -29,7 +29,7 @@ function convertToEmoji(text) {
     }
 }
 
-module.exports.updateHTML = (username, sort, order, includeFork) => {
+module.exports.updateHTML = (username, sort, order, includeFork, image) => {
     //add data to assets/index.html
     jsdom.fromFile(`${__dirname}/assets/index.html`, options).then(function (dom) {
         let window = dom.window, document = window.document;
@@ -97,14 +97,32 @@ module.exports.updateHTML = (username, sort, order, includeFork) => {
                         }
                     }
                 }
+                
                 var user = await got(`https://api.github.com/users/${username}`);
                 user = JSON.parse(user.body);
                 document.title = user.login;
+                const head = document.getElementsByTagName("head")[0];
                 var icon = document.createElement("link");
                 icon.setAttribute("rel", "icon");
                 icon.setAttribute("href", user.avatar_url);
                 icon.setAttribute("type", "image/png");
-                document.getElementsByTagName("head")[0].appendChild(icon);
+                head.appendChild(icon);
+                
+                /**
+                 * @section Open Graph
+                 * @author OsirisFrik <osirisfrik.github.io>
+                 * @see https://ogp.me/
+                 */
+                var ogtitle = document.createElement("meta");
+                ogtitle.setAttribute("property", "og:title");
+                ogtitle.setAttribute("content", user.login);
+                head.appendChild(ogtitle);
+                var ogimage = document.createElement("meta");
+                ogimage.setAttribute("property", "og:image");
+                ogimage.setAttribute("content", image || user.avatar_url);
+                head.appendChild(ogimage);
+                // End OpenGraph
+
                 document.getElementById("profile_img").style.background = `url('${user.avatar_url}') center center`
                 document.getElementById("username").innerHTML = `<span style="display:${user.name == null || !user.name ? 'none' : 'block'};">${user.name}</span><a href="${user.html_url}">@${user.login}</a>`;
                 //document.getElementById("github_link").href = `https://github.com/${user.login}`;

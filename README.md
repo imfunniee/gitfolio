@@ -86,6 +86,14 @@ $ gitfolio build <username> --background https://images.unsplash.com/photo-15572
 
 You could also add in your custom CSS inside `index.css` to give it a more personal feel.
 
+#### Customize Open Graph image
+To customize the Open Graph image use `--ogimage [url]` argument while building
+
+```sh
+$ gitfolio build <username> --ogimage https://images.unsplash.com/photo-1557277770-baf0ca74f908?w=1634
+```
+
+Default has `<username>` github picture.
 
 ### Let's Publish
 

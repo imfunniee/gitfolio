@@ -20,7 +20,7 @@ const config = path.join(outDir, 'config.json');
  */
 async function populateCSS({
     theme = 'light',
-    background = 'https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=500&h=1000&q=80&fit=crop',
+    background = 'https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=500&h=1000&q=80&fit=crop'
 } = {}) {
     /* Get the theme the user requests. Defaults to 'light' */
     theme = `${theme}.css`;
@@ -76,8 +76,9 @@ async function buildCommand(username, program) {
     let sort = program.sort ? program.sort : 'created';
     let order = program.order ? program.order : "asc";
     let includeFork = program.fork ? true : false;
+    let image = program.ogimage;
     await populateConfig(sort, order, includeFork);
-    updateHTML(('%s', username), sort, order, includeFork);
+    updateHTML(('%s', username), sort, order, includeFork, image);
 }
 
 module.exports = {
