@@ -21,6 +21,7 @@ program
     .option('-i, --ogimage [image]', 'set the open graph image', null)
     .option('-x, --twitter [twitter_handle]', 'specify your Twitter username.')
     .option('-l, --linkedin [linkedin_handle]', 'specify your LinkedIn username.')
+    .option('-m, --medium [username]', 'specify Medium username')
     .action(buildCommand)
 
 program
