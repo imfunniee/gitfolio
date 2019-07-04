@@ -8,7 +8,12 @@ const hbs = require("handlebars");
 const fs = bluebird.promisifyAll(require("fs"));
 const { COPYFILE_EXCL } = fs.constants;
 const { updateHTML } = require("./populate");
-const { getConfig, getSocials, outDir, defaultSocialsPath } = require("./utils");
+const {
+  getConfig,
+  getSocials,
+  outDir,
+  defaultSocialsPath
+} = require("./utils");
 
 const assetDir = path.resolve(`${__dirname}/assets/`);
 const config = path.join(outDir, "config.json");
@@ -65,11 +70,7 @@ async function populateCSS({
   await fs.writeFileAsync(config, JSON.stringify(data, null, " "));
 }
 
-async function populateConfig(
-  sort,
-  order,
-  includeFork,
-) {
+async function populateConfig(sort, order, includeFork) {
   const data = await getConfig();
   data[0].sort = sort;
   data[0].order = order;
@@ -79,7 +80,7 @@ async function populateConfig(
 
 async function populateSocials() {
   // nothing much to do here as this should be edited by the user
-  fs.copyFile(defaultSocialsPath, social, COPYFILE_EXCL, (err) => {
+  fs.copyFile(defaultSocialsPath, social, COPYFILE_EXCL, err => {
     // file already exists, nothing to do
   });
 }
