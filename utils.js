@@ -41,5 +41,7 @@ async function getSocials() {
 module.exports = {
   outDir,
   getConfig,
-  getBlog
+  getBlog,
+  getSocials,
+  defaultSocialsPath
 };

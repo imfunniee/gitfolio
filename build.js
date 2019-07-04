@@ -6,11 +6,13 @@ const hbs = require("handlebars");
 /*  Creates promise-returning async functions
     from callback-passed async functions      */
 const fs = bluebird.promisifyAll(require("fs"));
+const { COPYFILE_EXCL } = fs.constants;
 const { updateHTML } = require("./populate");
-const { getConfig, getSocials, outDir } = require("./utils");
+const { getConfig, getSocials, outDir, defaultSocialsPath } = require("./utils");
 
 const assetDir = path.resolve(`${__dirname}/assets/`);
 const config = path.join(outDir, "config.json");
+const social = path.join(outDir, "social.json");
 
 /**
  * Creates the stylesheet used by the site from a template stylesheet.
@@ -75,8 +77,16 @@ async function populateConfig(
   await fs.writeFileAsync(config, JSON.stringify(data, null, " "));
 }
 
+async function populateSocials() {
+  // nothing much to do here as this should be edited by the user
+  fs.copyFile(defaultSocialsPath, social, COPYFILE_EXCL, (err) => {
+    // file already exists, nothing to do
+  });
+}
+
 async function buildCommand(username, program) {
   await populateCSS(program);
+  await populateSocials();
   const socials = await getSocials();
   let sort = program.sort ? program.sort : "created";
   let order = program.order ? program.order : "asc";
