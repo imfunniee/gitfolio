@@ -1,16 +1,12 @@
-const { getConfig, getSocials } = require("./utils");
+const { getConfig } = require("./utils");
 const { updateHTML } = require("./populate");
 
 async function updateCommand() {
   const data = await getConfig();
-  const socials = await getSocials();
   var username = data[0].username;
   var sort = data[0].sort;
   var order = data[0].order;
   var includeFork = data[0].includeFork;
-  var twitter = socials.twitter;
-  var linkedin = socials.linkedin;
-  var medium = socials.medium;
   if (
     username == null ||
     sort == null ||
@@ -22,7 +18,7 @@ async function updateCommand() {
     );
     return;
   }
-  updateHTML(username, sort, order, includeFork, twitter, linkedin, medium);
+  updateHTML(username, sort, order, includeFork);
 }
 
 module.exports = {

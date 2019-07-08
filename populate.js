@@ -5,7 +5,7 @@ const jsdom = require("jsdom").JSDOM,
   options = {
     resources: "usable"
   };
-const { getConfig, outDir } = require("./utils");
+const { getConfig, getSocials, outDir } = require("./utils");
 
 function convertToEmoji(text) {
   if (text == null) return;
@@ -35,16 +35,13 @@ function convertToEmoji(text) {
   }
 }
 
-module.exports.updateHTML = (
-  username,
-  sort,
-  order,
-  includeFork,
-  twitter,
-  linkedin,
-  medium,
-  image
-) => {
+module.exports.updateHTML = (username, sort, order, includeFork, image) => {
+  var twitter, linkedin, medium;
+  getSocials().then(function(socials) {
+    twitter = socials.twitter;
+    linkedin = socials.linkedin;
+    medium = socials.medium;
+  });
   //add data to assets/index.html
   jsdom
     .fromFile(`${__dirname}/assets/index.html`, options)

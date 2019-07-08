@@ -8,12 +8,7 @@ const hbs = require("handlebars");
 const fs = bluebird.promisifyAll(require("fs"));
 const { COPYFILE_EXCL } = fs.constants;
 const { updateHTML } = require("./populate");
-const {
-  getConfig,
-  getSocials,
-  outDir,
-  defaultSocialsPath
-} = require("./utils");
+const { getConfig, outDir, defaultSocialsPath } = require("./utils");
 
 const assetDir = path.resolve(`${__dirname}/assets/`);
 const config = path.join(outDir, "config.json");
@@ -88,25 +83,12 @@ async function populateSocials() {
 async function buildCommand(username, program) {
   await populateCSS(program);
   await populateSocials();
-  const socials = await getSocials();
   let sort = program.sort ? program.sort : "created";
   let order = program.order ? program.order : "asc";
   let includeFork = program.fork ? true : false;
-  let twitter = socials.twitter ? ("%s", socials.twitter) : null;
-  let linkedin = socials.linkedin ? ("%s", socials.linkedin) : null;
-  let medium = socials.medium ? ("%s", socials.medium) : null;
   let image = program.ogimage;
   await populateConfig(sort, order, includeFork);
-  updateHTML(
-    ("%s", username),
-    sort,
-    order,
-    includeFork,
-    twitter,
-    linkedin,
-    medium,
-    image
-  );
+  updateHTML(("%s", username), sort, order, includeFork, image);
 }
 
 module.exports = {
