@@ -5,7 +5,7 @@ const jsdom = require("jsdom").JSDOM,
   options = {
     resources: "usable"
   };
-const { getConfig, getSocials, outDir } = require("./utils");
+const { getConfig, getSocials, getIgnored, outDir } = require("./utils");
 
 function convertToEmoji(text) {
   if (text == null) return;
@@ -41,6 +41,10 @@ module.exports.updateHTML = (username, sort, order, includeFork, image) => {
     twitter = socials.twitter;
     linkedin = socials.linkedin;
     medium = socials.medium;
+  });
+  var ignored;
+  getIgnored().then(function(repos) {
+    ignored = repos;
   });
   //add data to assets/index.html
   jsdom
@@ -81,6 +85,7 @@ module.exports.updateHTML = (username, sort, order, includeFork, image) => {
             } while (tempRepos.length == 100);
           }
           for (var i = 0; i < repos.length; i++) {
+            if (ignored.indexOf(repos[i].name) != -1) continue;
             if (repos[i].fork == false) {
               document.getElementById("work_section").innerHTML += `
                         <a href="${repos[i].html_url}" target="_blank">

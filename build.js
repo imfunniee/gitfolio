@@ -8,11 +8,17 @@ const hbs = require("handlebars");
 const fs = bluebird.promisifyAll(require("fs"));
 const { COPYFILE_EXCL } = fs.constants;
 const { updateHTML } = require("./populate");
-const { getConfig, outDir, defaultSocialsPath } = require("./utils");
+const {
+  getConfig,
+  outDir,
+  defaultSocialsPath,
+  defaultIgnoredPath
+} = require("./utils");
 
 const assetDir = path.resolve(`${__dirname}/assets/`);
 const config = path.join(outDir, "config.json");
 const social = path.join(outDir, "social.json");
+const ignored = path.join(outDir, "ignore.json");
 
 /**
  * Creates the stylesheet used by the site from a template stylesheet.
@@ -80,9 +86,17 @@ async function populateSocials() {
   });
 }
 
+async function populateIgnored() {
+  // move a default file to the dist
+  fs.copyFile(defaultIgnoredPath, ignored, COPYFILE_EXCL, err => {
+    // ignore existing err
+  });
+}
+
 async function buildCommand(username, program) {
   await populateCSS(program);
   await populateSocials();
+  await populateIgnored();
   let sort = program.sort ? program.sort : "created";
   let order = program.order ? program.order : "asc";
   let includeFork = program.fork ? true : false;

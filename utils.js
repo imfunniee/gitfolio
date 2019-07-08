@@ -6,10 +6,12 @@ const outDir = path.resolve("./dist/" || process.env.OUT_DIR);
 const configPath = path.join(outDir, "config.json");
 const blogPath = path.join(outDir, "blog.json");
 const socialsPath = path.join(outDir, "social.json");
+const ignoredPath = path.join(outDir, "ignore.json");
 
 const defaultConfigPath = path.resolve(`${__dirname}/default/config.json`);
 const defaultBlogPath = path.resolve(`${__dirname}/default/blog.json`);
 const defaultSocialsPath = path.resolve(`${__dirname}/default/social.json`);
+const defaultIgnoredPath = path.resolve(`${__dirname}/default/ignore.json`);
 
 /**
  * Tries to read file from out dir,
@@ -38,10 +40,16 @@ async function getSocials() {
   return getFileWithDefaults(socialsPath, defaultSocialsPath);
 }
 
+async function getIgnored() {
+  return getFileWithDefaults(ignoredPath, defaultIgnoredPath);
+}
+
 module.exports = {
   outDir,
   getConfig,
   getBlog,
   getSocials,
-  defaultSocialsPath
+  getIgnored,
+  defaultSocialsPath,
+  defaultIgnoredPath
 };
