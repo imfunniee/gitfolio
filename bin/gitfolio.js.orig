@@ -11,6 +11,19 @@ const { runCommand } = require("../run");
 const { version } = require("../package.json");
 
 program
+<<<<<<< HEAD
+    .command('build <username>')
+    .description('Build site with your GitHub username. This will be used to customize your site')
+    .option('-t, --theme [theme]', 'specify a theme to use', 'light')
+    .option('-b, --background [background]', 'set the background image')
+    .option('-f, --fork', 'includes forks with repos')
+    .option('-s, --sort [sort]', 'set default sort for repository', 'created')
+    .option('-o, --order [order]', 'set default order on sort', 'asc')
+    .option('-w, --twitter [handle]', 'set Twitter handle')
+    .option('-l, --linkedin [username]', 'specify LinkedIn username')
+    .option('-m, --medium [username]', 'specify Medium username')
+    .action(buildCommand)
+=======
   .command("build <username>")
   .description(
     "Build site with your GitHub username. This will be used to customize your site"
@@ -22,6 +35,7 @@ program
   .option("-o, --order [order]", "set default order on sort", "asc")
   .option("-i, --ogimage [image]", "set the open graph image", null)
   .action(buildCommand);
+>>>>>>> better_stub/better
 
 program
   .command("update")

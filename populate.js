@@ -206,12 +206,6 @@ module.exports.updateHTML = (username, sort, order, includeFork, image) => {
             user.blog
           }</a></span>
                 <span style="display:${
-                  user.location == null || !user.location ? "none" : "block"
-                };"><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp; ${
-            user.location
-          }</span>
-
-                <span style="display:${
                   twitter == null ? "none" : "block"
                 };"><i class="fab fa-twitter-square"></i> &nbsp;&nbsp; <a href="https://www.twitter.com/${twitter}" target="_blank" class="socials"> Twitter</a></span>
                 <span style="display:${
@@ -220,6 +214,12 @@ module.exports.updateHTML = (username, sort, order, includeFork, image) => {
                 <span style="display:${
                   medium == null ? "none" : "block"
                 };"><i class="fab fa-medium"></i> &nbsp;&nbsp; <a href="https://www.medium.com/@${medium}/" target="_blank" class="socials"> Medium</a></span>
+
+                <span style="display:${
+                  user.location == null || !user.location ? "none" : "block"
+                };"><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp; ${
+            user.location
+          }</span>
 
                 <span style="display:${
                   user.hireable == false || !user.hireable ? "none" : "block"

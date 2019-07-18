@@ -24,8 +24,15 @@ async function getFileWithDefaults(file, defaultFile) {
     const defaultData = await fs.readFileAsync(defaultFile);
     return JSON.parse(defaultData);
   }
-  const data = await fs.readFileAsync(file);
-  return JSON.parse(data);
+  try{
+    const data = await fs.readFileAsync(file);
+    if( typeof data != 'undefined')
+      return JSON.parse(data);
+  }
+  catch(err) {
+  }
+  
+  
 }
 
 async function getConfig() {
