@@ -86,6 +86,33 @@ $ gitfolio build <username> --background https://images.unsplash.com/photo-15572
 
 You could also add in your custom CSS inside `index.css` to give it a more personal feel.
 
+#### Ignore Repositories
+
+If you want to hide certain repositories then edit the `ignore.json` file in the folder.
+To ignore `repository-1`,`repository-2`...
+
+The `ignore.json` file should look like
+```
+[
+	repository-1,
+	repository-2,
+	...
+]
+```
+Re-Build the portfolio
+```sh
+$ gitfolio build <username>
+```
+
+#### Add Social Links 
+
+If you want to add social links like Twitter, LinkedIn and Medium.
+
+Edit the `social.json` and re-build
+```sh
+$ gitfolio build <username>
+```
+
 #### Customize Open Graph image
 To customize the Open Graph image use `--ogimage [url]` argument while building
 
