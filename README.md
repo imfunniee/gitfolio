@@ -90,7 +90,7 @@ You could also add in your custom CSS inside `index.css` to give it a more perso
 
 Twitter, LinkedIn and Medium Links to your profile while building
 ```sh
-gitfolio build rohanmohapatra --twitter <twitter_user_name> --linkedin <linkedin_user_name> --medium <medium_user_name>
+gitfolio build <username> --twitter <twitter_username> --linkedin <linkedin_username> --medium <medium_username>
 ```
 ### Let's Publish
 
