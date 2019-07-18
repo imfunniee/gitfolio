@@ -99,18 +99,18 @@ The `ignore.json` file should look like
 	...
 ]
 ```
-Re-Build the portfolio
+Update to refelct changes
 ```sh
-$ gitfolio build <username>
+$ gitfolio update
 ```
 
 #### Add Social Links 
 
 If you want to add social links like Twitter, LinkedIn and Medium.
 
-Edit the `social.json` and re-build
+Edit the `social.json` and just update
 ```sh
-$ gitfolio build <username>
+$ gitfolio update
 ```
 
 #### Customize Open Graph image
