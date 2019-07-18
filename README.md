@@ -86,7 +86,12 @@ $ gitfolio build <username> --background https://images.unsplash.com/photo-15572
 
 You could also add in your custom CSS inside `index.css` to give it a more personal feel.
 
+### Add Twitter, LinkedIn and Medium Links on your profile
 
+Twitter, LinkedIn and Medium Links to your profile while building
+```sh
+gitfolio build rohanmohapatra --twitter <twitter_user_name> --linkedin <linkedin_user_name> --medium <medium_user_name>
+```
 ### Let's Publish
 
 Head over to GitHub and create a new repository named `username.github.io`, where username is your username. Push the files inside`/dist` folder to repo you just created.
