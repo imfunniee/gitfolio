@@ -18,6 +18,9 @@ program
     .option('-f, --fork', 'includes forks with repos')
     .option('-s, --sort [sort]', 'set default sort for repository', 'created')
     .option('-o, --order [order]', 'set default order on sort', 'asc')
+    .option('-w, --twitter [handle]', 'set Twitter handle')
+    .option('-l, --linkedin [username]', 'specify LinkedIn username')
+    .option('-m, --medium [username]', 'specify Medium username')
     .action(buildCommand)
 
 program
