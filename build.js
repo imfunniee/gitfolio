@@ -82,9 +82,9 @@ async function buildCommand(username, program) {
         order: program.order,
         includeFork: program.fork ? true : false,
         types,
-        twitter: data.twitter,
-        linkedin: data.linkedin,
-        medium: data.medium,
+        twitter: program.twitter,
+        linkedin: program.linkedin,
+        medium: program.medium,
     };
 
     await populateConfig(opts);
