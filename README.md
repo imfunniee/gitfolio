@@ -153,10 +153,10 @@ Blog's default JSON Format
 }
 ```
 
-### Follow me on twitter for more updates
+# Follow me on twitter for more updates
 
 🙌 [@imfunnieee](https://twitter.com/imfunnieee)
 
-### License
+# License
 
 ![GitHub](https://img.shields.io/github/license/imfunniee/gitfolio.svg?style=popout-square)
