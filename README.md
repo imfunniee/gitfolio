@@ -76,7 +76,8 @@ Themes are specified using the `--theme [theme-name]` flag when running the `bui
 
 - `light`
 - `dark`
-  > TODO: Add more themes
+
+> TODO: Add more themes
 
 For example, the following command will build the website with the dark theme
 
@@ -94,12 +95,12 @@ $ gitfolio build <username> --background https://images.unsplash.com/photo-15572
 
 You could also add in your custom CSS inside `index.css` to give it a more personal feel.
 
-### Add Twitter, LinkedIn and Medium links on your profile
+#### Add Social Media links on your profile
 
-Twitter, LinkedIn and Medium Links to your profile while building
+Twitter, LinkedIn, Medium & Dribbble links to your profile while building
 
 ```sh
-gitfolio build <username> --twitter <twitter_username> --linkedin <linkedin_username> --medium <medium_username>
+gitfolio build <username> --twitter <twitter_username> --linkedin <linkedin_username> --medium <medium_username> --dribbble <dribbble_username>
 ```
 
 ### Let's Publish
@@ -156,6 +157,6 @@ Blog's default JSON Format
 
 🙌 [@imfunnieee](https://twitter.com/imfunnieee)
 
-## License
+### License
 
 ![GitHub](https://img.shields.io/github/license/imfunniee/gitfolio.svg?style=popout-square)
