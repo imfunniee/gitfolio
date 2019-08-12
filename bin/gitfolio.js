@@ -10,12 +10,18 @@ const {blogCommand} = require('../blog');
 const {runCommand} = require('../run');
 const {version} = require('../package.json');
 
+function collect (val, memo) {
+    memo.push(val);
+    return memo;
+}
+
 program
     .command('build <username>')
     .description('Build site with your GitHub username. This will be used to customize your site')
     .option('-t, --theme [theme]', 'specify a theme to use', 'light')
     .option('-b, --background [background]', 'set the background image')
     .option('-f, --fork', 'includes forks with repos')
+    .option('-i, --include [types]', 'specifiy type of repos to include(can be multiple) : \'all\', \'owner\', \'member\'', collect, [])
     .option('-s, --sort [sort]', 'set default sort for repository', 'created')
     .option('-o, --order [order]', 'set default order on sort', 'asc')
     .option('-w, --twitter [handle]', 'set Twitter handle')
