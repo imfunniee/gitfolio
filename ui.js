@@ -6,7 +6,7 @@ const { populateCSS, populateConfig } = require("./build");
 const { updateCommand } = require("./update");
 const app = express();
 app.set("view engine", "ejs");
-app.use(express.static("views"));
+app.use(express.static(__dirname + "/views"));
 app.set("views", __dirname + "/views");
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
@@ -185,7 +185,7 @@ function uiCommand() {
         'You need to run build command before accessing blogs<br><a href="/">Go Back</a>'
       );
     }
-    fs.readFile("./dist/config.json", function(err, data) {
+    fs.readFile(`${outDir}/config.json`, function(err, data) {
       res.render("blog.ejs", { profile: JSON.parse(data) });
     });
   });
