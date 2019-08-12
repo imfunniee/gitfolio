@@ -153,9 +153,7 @@ Blog's default JSON Format
 }
 ```
 
-# Follow me on twitter for more updates
-
-🙌 [@imfunnieee](https://twitter.com/imfunnieee)
+# Follow me on twitter for more updates [@imfunnieee](https://twitter.com/imfunnieee)
 
 # License
 
