@@ -33,14 +33,14 @@
   "license": "GPL-3.0",
   "dependencies": {
     "bluebird": "^3.5.4",
+    "body-parser": "^1.19.0",
     "commander": "^2.20.0",
+    "ejs": "^2.6.2",
     "express": "^4.17.0",
     "github-emoji": "^1.1.0",
     "got": "^9.6.0",
     "handlebars": "^4.1.2",
     "jsdom": "^15.1.0",
-    "ncp": "^2.0.0",
-    "open": "^6.3.0",
-    "x-default-browser": "^0.4.0"
+    "ncp": "^2.0.0"
   }
 }

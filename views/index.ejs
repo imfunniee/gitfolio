@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Gitfolio UI</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/zeva-ui/zeva/dist/css/zeva.min.css"
+    />
+  </head>
+  <body class="body-light">
+    <header>
+      <b>gitfolio</b>
+      <a href="/blog" style="float: right">New Blog </a>
+      <a href="/update" style="float: right">Update</a>
+      <a href="/" style="float: right">Home</a>
+    </header>
+    <form method="post" action="build">
+      <h3>Build or Edit Portfolio</h3>
+      <input
+        type="text"
+        class="input h-weight-bold"
+        placeholder="username"
+        id="username"
+        name="username"
+        required
+      /><br />
+      <input
+        type="text"
+        class="input h-weight-bold"
+        placeholder="background"
+        name="background"
+        id="background"
+      />
+      <h3>Sort By :</h3>
+      <label class="label"
+        >Star
+        <input type="radio" name="sort" value="star" />
+        <span class="radio"></span>
+      </label>
+
+      <label class="label"
+        >Created
+        <input type="radio" name="sort" value="created" checked />
+        <span class="radio"></span>
+      </label>
+
+      <label class="label"
+        >Updated
+        <input type="radio" name="sort" value="updated" />
+        <span class="radio"></span>
+      </label>
+
+      <label class="label"
+        >Pushed
+        <input type="radio" name="sort" value="pushed" />
+        <span class="radio"></span>
+      </label>
+
+      <label class="label"
+        >Full Name
+        <input type="radio" name="sort" value="full_name" />
+        <span class="radio"></span>
+      </label>
+
+      <h3>Order By :</h3>
+      <label class="label"
+        >Asc
+        <input type="radio" name="order" value="asc" checked />
+        <span class="radio"></span>
+      </label>
+      <label class="label"
+        >Desc
+        <input type="radio" name="order" value="desc" />
+        <span class="radio"></span>
+      </label>
+      <br /><br />
+      <label class="label"
+        >Use Dark Theme
+        <input type="checkbox" id="theme" name="theme" />
+        <span class="checkbox"></span>
+      </label>
+      <label class="label"
+        >Include Forks
+        <input type="checkbox" id="fork" name="fork" value="true" />
+        <span class="checkbox"></span>
+      </label>
+      <label class="label"
+        >Include Socials
+        <input type="checkbox" id="socials" name="socials" />
+        <span class="checkbox"></span>
+      </label>
+      <div style="display: none" id="input_for_socials">
+        <input
+          type="text"
+          class="input h-weight-bold"
+          placeholder="twitter username"
+          id="twitter"
+          name="twitter"
+        /><br />
+        <input
+          type="text"
+          class="input h-weight-bold"
+          placeholder="medium username"
+          id="medium"
+          name="medium"
+        /><br />
+        <input
+          type="text"
+          class="input h-weight-bold"
+          placeholder="dribbble username"
+          id="dribbble"
+          name="dribbble"
+        /><br />
+        <input
+          type="text"
+          class="input h-weight-bold"
+          placeholder="linkedin username"
+          id="linkedin"
+          name="linkedin"
+        />
+      </div>
+      <br /><br />
+      <button type="submit" class="button" id="build">Build</button>
+    </form>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/gh/zeva-ui/zeva/dist/js/index.min.js"
+    ></script>
+    <script src="./index.js" type="text/javascript"></script>
+  </body>
+</html>

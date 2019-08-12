@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Gitfolio UI</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/zeva-ui/zeva/dist/css/zeva.min.css"
+    />
+  </head>
+  <body class="body-light">
+    <header>
+      <b>gitfolio</b>
+      <a href="/blog" style="float: right">New Blog </a>
+      <a href="/update" style="float: right">Update</a>
+      <a href="/" style="float: right">Home</a>
+    </header>
+    <div id="top_image">
+      <i class="fas fa-camera" onclick="applyTopImage()"></i>
+    </div>
+    <input
+      type="file"
+      id="top_image_file"
+      style="display: none"
+      accept="image/*"
+      style="display: none"
+    />
+    <table id="profile_blog">
+      <tbody>
+        <tr>
+          <td style="width:8vw;">
+            <div
+              id="profile_img_blog"
+              style="background:url('<%= profile[0].userimg%>') center center;"
+            ></div>
+          </td>
+          <td style="width:52vw;">
+            <div id="username_blog">
+              <% if(profile[0].name)%>
+              <span><%= profile[0].name%></span>
+              <% %>
+              <br />@<%= profile[0].username%><b id="blog_time"></b>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="blog-display">
+      <form
+        style="padding: 0px; width:100%;"
+        method="POST"
+        action="/createBlog"
+        id="form"
+      >
+        <textarea
+          id="blog_title"
+          placeholder="blog title here"
+          spellcheck="false"
+          rows="1"
+          onkeyup="addRow(event)"
+          name="title"
+          required
+        ></textarea>
+        <br />
+        <textarea
+          id="blog_sub_title"
+          placeholder="blog sub title here"
+          spellcheck="false"
+          rows="1"
+          name="subtitle"
+          onkeyup="addRow(event)"
+          required
+        ></textarea>
+        <div id="originalContent" style="display: none"></div>
+        <input type="hidden" name="top_image" id="top" />
+        <input type="hidden" name="content" id="content" />
+        <input type="hidden" name="images" id="images" />
+        <div id="blog"></div>
+        <div class="div_for_buttons">
+          <input
+            type="file"
+            name="file"
+            id="file"
+            style="display: none"
+            accept="image/*"
+          />
+          <button
+            class="button h-weight-bold h-border-pill -size-small"
+            type="button"
+            onclick="clickFile()"
+          >
+            <i class="fas fa-plus"></i>&nbsp; Image
+          </button>
+          <button
+            class="button h-weight-bold h-border-pill -size-small"
+            type="button"
+            onclick="addPara()"
+          >
+            <i class="fas fa-plus"></i>&nbsp; Paragraph
+          </button>
+          <h5>Tip : You can use html inside paragraphs</h5>
+        </div>
+        <button type="button" class="button" onclick="submitthisform()">
+          Create Blog
+        </button>
+      </form>
+    </div>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/gh/zeva-ui/zeva/dist/js/index.min.js"
+    ></script>
+    <script>
+      var imgElement = document.querySelector("#file");
+      var topImageElement = document.querySelector("#top_image_file");
+      var img_number = 0;
+      var blog_para_number = 0;
+      var images = [];
+
+      function applyTopImage() {
+        topImageElement.value = "";
+        document.querySelector("#top").value = "";
+        document.querySelector("#top_image").style.background =
+          "linear-gradient(0deg, rgb(250, 250, 250), rgb(220, 220, 220))";
+        topImageElement.click();
+      }
+
+      topImageElement.addEventListener("change", e => {
+        var reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload = data => {
+          var image = data.target.result;
+          document.querySelector(
+            "#top_image"
+          ).style.background = `linear-gradient(0deg, rgba(250, 250, 250, 1), rgba(220, 220, 220, 0)), url('${image}') center center`;
+          document.querySelector("#top").value = image;
+        };
+      });
+
+      function addRow(e) {
+        e.preventDefault();
+        if (e.target.clientHeight < e.target.scrollHeight) {
+          e.target.rows += 1;
+        } else {
+          if (e.target.value == "") {
+            e.target.rows = 1;
+          }
+        }
+      }
+
+      function remove(e, element, blobData) {
+        var elem = document.getElementById(element);
+        var elem2 = document.getElementById(`${element}_original`);
+        elem.parentNode.removeChild(e.target);
+        elem.parentNode.removeChild(elem);
+        elem2.parentNode.removeChild(elem2);
+        imgElement.value = "";
+        if (element.split("_")[0] == "img") {
+          images.splice(images.indexOf(blobData), 1);
+          img_number--;
+        }
+      }
+
+      function addDataToOriginalPara(id) {
+        document.querySelector(
+          `#para_${id}_original`
+        ).innerHTML = document.querySelector(`#para_${id}`).value;
+      }
+
+      function clickFile() {
+        imgElement.click();
+      }
+
+      imgElement.addEventListener("change", e => {
+        var img = document.createElement("img");
+        var imageblob = URL.createObjectURL(e.target.files[0]);
+        img.setAttribute(
+          "src",
+          `img_${img_number}.${e.target.files[0].type.split("/")[1]}`
+        );
+        img.setAttribute("alt", `blog image ${img_number}`);
+        img.setAttribute("id", `img_${img_number}_original`);
+
+        var img2 = document.createElement("img");
+        img2.setAttribute("src", imageblob);
+        img2.setAttribute("alt", `blog image ${img_number}`);
+        img2.setAttribute("id", `img_${img_number}`);
+
+        var remove = document.createElement("div");
+        remove.setAttribute("class", "remove");
+        remove.setAttribute(
+          "onclick",
+          `remove(event,'img_${img_number}', '${imageblob}')`
+        );
+        remove.innerHTML = '<i class="fas fa-times"></i> Remove';
+
+        document.querySelector("#originalContent").appendChild(img);
+        document.querySelector("#blog").appendChild(img2);
+        document.querySelector("#blog").appendChild(remove);
+
+        var reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload = data => {
+          images.push(data.target.result);
+          console.log(images);
+        };
+
+        imgElement.value = "";
+        img_number++;
+      });
+
+      function addPara() {
+        var para = document.createElement("textarea");
+        para.setAttribute("class", "para");
+        para.setAttribute("id", `para_${blog_para_number}`);
+        para.setAttribute("spellcheck", false);
+        para.setAttribute("rows", 1);
+        para.setAttribute(
+          "onkeyup",
+          `addRow(event), addDataToOriginalPara('${blog_para_number}')`
+        );
+        para.setAttribute("required", true);
+        para.setAttribute("placeholder", "What's on your Mind?");
+        var remove = document.createElement("div");
+        remove.setAttribute("class", "remove");
+        remove.setAttribute(
+          "onclick",
+          `remove(event,'para_${blog_para_number}', null)`
+        );
+        remove.innerHTML = '<i class="fas fa-times"></i> Remove';
+        var originalPara = document.createElement("p");
+        originalPara.setAttribute("id", `para_${blog_para_number}_original`);
+        document.querySelector("#blog").appendChild(para);
+        document.querySelector("#blog").appendChild(remove);
+        document.querySelector("#originalContent").appendChild(originalPara);
+        blog_para_number++;
+      }
+
+      function submitthisform() {
+        document.querySelector("#content").value = document.querySelector(
+          "#originalContent"
+        ).innerHTML;
+        document.querySelector("#images").value = JSON.stringify(images);
+        document.querySelector("#form").submit();
+      }
+    </script>
+  </body>
+</html>
