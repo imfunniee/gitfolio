@@ -1,6 +1,5 @@
 const fs = require("fs");
 const express = require("express");
-let bodyParser = require("body-parser");
 const { updateHTML } = require("./populate");
 const { populateCSS, populateConfig } = require("./build");
 const { updateCommand } = require("./update");
@@ -8,8 +7,17 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/views"));
 app.set("views", __dirname + "/views");
-app.use(express.json({ limit: "50mb" }));
-app.use(express.urlencoded({ limit: "50mb", extended: true }));
+app.use(
+  express.json({
+    limit: "50mb"
+  })
+);
+app.use(
+  express.urlencoded({
+    limit: "50mb",
+    extended: true
+  })
+);
 
 const port = 3000;
 
@@ -24,11 +32,19 @@ function createBlog(title, subtitle, folder, topImage, images, content) {
   // Checks to make sure this directory actually exists
   // and creates it if it doesn't
   if (!fs.existsSync(`${outDir}/blog/`)) {
-    fs.mkdirSync(`${outDir}/blog/`, { recursive: true }, err => {});
+    fs.mkdirSync(
+      `${outDir}/blog/`,
+      {
+        recursive: true
+      },
+      err => {}
+    );
   }
 
   if (!fs.existsSync(`${outDir}/blog/${folder}`)) {
-    fs.mkdirSync(`${outDir}/blog/${folder}`, { recursive: true });
+    fs.mkdirSync(`${outDir}/blog/${folder}`, {
+      recursive: true
+    });
   }
 
   fs.copyFile(
@@ -70,7 +86,9 @@ function createBlog(title, subtitle, folder, topImage, images, content) {
                 item.split("/")[1].split(";")[0]
               }`,
               base64Image,
-              { encoding: "base64" },
+              {
+                encoding: "base64"
+              },
               function(err) {
                 if (err) throw err;
               }
@@ -89,7 +107,9 @@ function createBlog(title, subtitle, folder, topImage, images, content) {
                   topImage.split("/")[1].split(";")[0]
                 }`,
                 base64ImageTop,
-                { encoding: "base64" },
+                {
+                  encoding: "base64"
+                },
                 function(err) {
                   if (err) throw err;
                 }
@@ -147,6 +167,7 @@ function uiCommand() {
     let sort = req.body.sort ? req.body.sort : "created";
     let order = req.body.order ? req.body.order : "asc";
     let includeFork = req.body.fork == "true" ? true : false;
+    let types = ["owner"];
     let twitter = req.body.twitter ? req.body.twitter : null;
     let linkedin = req.body.linkedin ? req.body.linkedin : null;
     let medium = req.body.medium ? req.body.medium : null;
@@ -155,27 +176,23 @@ function uiCommand() {
       ? req.body.background
       : "https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1500&q=80";
     let theme = req.body.theme == "on" ? "dark" : "light";
+    const opts = {
+      sort: sort,
+      order: order,
+      includeFork: includeFork,
+      types,
+      twitter: twitter,
+      linkedin: linkedin,
+      medium: medium,
+      dribbble: dribbble
+    };
 
-    updateHTML(
-      username,
-      sort,
-      order,
-      includeFork,
-      twitter,
-      linkedin,
-      medium,
-      dribbble
-    );
-    populateCSS({ background: background, theme: theme });
-    populateConfig(
-      sort,
-      order,
-      includeFork,
-      twitter,
-      linkedin,
-      medium,
-      dribbble
-    );
+    updateHTML(username, opts);
+    populateCSS({
+      background: background,
+      theme: theme
+    });
+    populateConfig(opts);
     res.redirect("/");
   });
 
@@ -186,7 +203,9 @@ function uiCommand() {
       );
     }
     fs.readFile(`${outDir}/config.json`, function(err, data) {
-      res.render("blog.ejs", { profile: JSON.parse(data) });
+      res.render("blog.ejs", {
+        profile: JSON.parse(data)
+      });
     });
   });
 

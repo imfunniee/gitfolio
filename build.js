@@ -58,54 +58,33 @@ async function populateCSS({
   await fs.writeFileAsync(config, JSON.stringify(data, null, " "));
 }
 
-async function populateConfig(
-  sort,
-  order,
-  includeFork,
-  twitter,
-  linkedin,
-  medium,
-  dribbble
-) {
+async function populateConfig(opts) {
   const data = await getConfig();
-  data[0].sort = sort;
-  data[0].order = order;
-  data[0].includeFork = includeFork;
-  data[0].twitter = twitter; // added twitter
-  data[0].linkedin = linkedin; // added linkedin
-  data[0].medium = medium; // added medium
-  data[0].dribbble = dribbble; // added dribbble
+  Object.assign(data[0], opts);
   await fs.writeFileAsync(config, JSON.stringify(data, null, " "));
 }
 
 async function buildCommand(username, program) {
   await populateCSS(program);
-  let sort = program.sort ? program.sort : "created";
-  let order = program.order ? program.order : "asc";
-  let includeFork = program.fork ? true : false;
-  let twitter = program.twitter ? program.twitter : null;
-  let linkedin = program.linkedin ? program.linkedin : null;
-  let medium = program.medium ? program.medium : null;
-  let dribbble = program.dribbble ? program.dribbble : null;
-  await populateConfig(
-    sort,
-    order,
-    includeFork,
-    twitter,
-    linkedin,
-    medium,
-    dribbble
-  );
-  updateHTML(
-    ("%s", username),
-    sort,
-    order,
-    includeFork,
-    twitter,
-    linkedin,
-    medium,
-    dribbble
-  );
+  let types;
+  if (!program.include || !program.include.length) {
+    types = ["all"];
+  } else {
+    types = program.include;
+  }
+  const opts = {
+    sort: program.sort,
+    order: program.order,
+    includeFork: program.fork ? true : false,
+    types,
+    twitter: program.twitter,
+    linkedin: program.linkedin,
+    medium: program.medium,
+    dribbble: program.dribbble
+  };
+
+  await populateConfig(opts);
+  updateHTML(("%s", username), opts);
 }
 
 module.exports = {

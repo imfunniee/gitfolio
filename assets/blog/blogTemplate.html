@@ -103,9 +103,9 @@
         icon.setAttribute("href", user[0].userimg);
         icon.setAttribute("type", "image/png");
         document.getElementsByTagName("head")[0].appendChild(icon);
-        document.getElementById("profile_img_blog").style.background = `url('${
-          user[0].userimg
-        }') center center`;
+        document.getElementById(
+          "profile_img_blog"
+        ).style.background = `url('${user[0].userimg}') center center`;
         document.getElementById(
           "username_blog"
         ).innerHTML = `<span style="display:${

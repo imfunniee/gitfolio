@@ -1,11 +1,11 @@
 const fs = require("fs");
-const got = require("got");
 const emoji = require("github-emoji");
 const jsdom = require("jsdom").JSDOM,
   options = {
     resources: "usable"
   };
 const { getConfig, outDir } = require("./utils");
+const { getRepos, getUser } = require("./api");
 
 function convertToEmoji(text) {
   if (text == null) return;
@@ -35,16 +35,8 @@ function convertToEmoji(text) {
   }
 }
 
-module.exports.updateHTML = (
-  username,
-  sort,
-  order,
-  includeFork,
-  twitter,
-  linkedin,
-  medium,
-  dribbble
-) => {
+module.exports.updateHTML = (username, opts) => {
+  const { includeFork, twitter, linkedin, medium, dribbble } = opts;
   //add data to assets/index.html
   jsdom
     .fromFile(`${__dirname}/assets/index.html`, options)
@@ -54,38 +46,19 @@ module.exports.updateHTML = (
       (async () => {
         try {
           console.log("Building HTML/CSS...");
-          var repos = [];
-          var tempRepos;
-          var page = 1;
-          if (sort == "star") {
-            do {
-              tempRepos = await got(
-                `https://api.github.com/users/${username}/repos?per_page=100&page=${page++}`
-              );
-              tempRepos = JSON.parse(tempRepos.body);
-              repos = repos.concat(tempRepos);
-            } while (tempRepos.length == 100);
-            if (order == "desc") {
-              repos = repos.sort(function(a, b) {
-                return b.stargazers_count - a.stargazers_count;
-              });
-            } else {
-              repos = repos.sort(function(a, b) {
-                return a.stargazers_count - b.stargazers_count;
-              });
-            }
-          } else {
-            do {
-              tempRepos = await got(
-                `https://api.github.com/users/${username}/repos?sort=${sort}&order=${order}&per_page=100&page=${page++}`
-              );
-              tempRepos = JSON.parse(tempRepos.body);
-              repos = repos.concat(tempRepos);
-            } while (tempRepos.length == 100);
-          }
+          const repos = await getRepos(username, opts);
+
           for (var i = 0; i < repos.length; i++) {
+            let element;
             if (repos[i].fork == false) {
-              document.getElementById("work_section").innerHTML += `
+              element = document.getElementById("work_section");
+            } else if (includeFork == true) {
+              document.getElementById("forks").style.display = "block";
+              element = document.getElementById("forks_section");
+            } else {
+              continue;
+            }
+            element.innerHTML += `
                         <a href="${repos[i].html_url}" target="_blank">
                         <section>
                             <div class="section_title">${repos[i].name}</div>
@@ -102,8 +75,8 @@ module.exports.updateHTML = (
                                     ? "none"
                                     : "inline-block"
                                 };"><i class="fas fa-code"></i>&nbsp; ${
-                repos[i].language
-              }</span>
+              repos[i].language
+            }</span>
                                 <span><i class="fas fa-star"></i>&nbsp; ${
                                   repos[i].stargazers_count
                                 }</span>
@@ -113,55 +86,18 @@ module.exports.updateHTML = (
                             </div>
                         </section>
                         </a>`;
-            } else {
-              if (includeFork == true) {
-                document.getElementById("forks").style.display = "block";
-                document.getElementById("forks_section").innerHTML += `
-                            <a href="${repos[i].html_url}" target="_blank">
-                            <section>
-                                <div class="section_title">${
-                                  repos[i].name
-                                }</div>
-                                <div class="about_section">
-                                <span style="display:${
-                                  repos[i].description == undefined
-                                    ? "none"
-                                    : "block"
-                                };">${convertToEmoji(
-                  repos[i].description
-                )}</span>
-                                </div>
-                                <div class="bottom_section">
-                                    <span style="display:${
-                                      repos[i].language == null
-                                        ? "none"
-                                        : "inline-block"
-                                    };"><i class="fas fa-code"></i>&nbsp; ${
-                  repos[i].language
-                }</span>
-                                    <span><i class="fas fa-star"></i>&nbsp; ${
-                                      repos[i].stargazers_count
-                                    }</span>
-                                    <span><i class="fas fa-code-branch"></i>&nbsp; ${
-                                      repos[i].forks_count
-                                    }</span>
-                                </div>
-                            </section>
-                            </a>`;
-              }
-            }
           }
-          var user = await got(`https://api.github.com/users/${username}`);
-          user = JSON.parse(user.body);
+          const user = await getUser(username);
           document.title = user.login;
           var icon = document.createElement("link");
           icon.setAttribute("rel", "icon");
           icon.setAttribute("href", user.avatar_url);
           icon.setAttribute("type", "image/png");
+
           document.getElementsByTagName("head")[0].appendChild(icon);
-          document.getElementById("profile_img").style.background = `url('${
-            user.avatar_url
-          }') center center`;
+          document.getElementById(
+            "profile_img"
+          ).style.background = `url('${user.avatar_url}') center center`;
           document.getElementById(
             "username"
           ).innerHTML = `<span style="display:${
@@ -206,19 +142,20 @@ module.exports.updateHTML = (
                 <span style="display:${
                   medium == null ? "none !important" : "block"
                 };"><a href="https://www.medium.com/@${medium}/" target="_blank" class="socials"><i class="fab fa-medium-m"></i></a></span>
-                </div>`;
-
+                </div>
+                `;
           //add data to config.json
           const data = await getConfig();
           data[0].username = user.login;
           data[0].name = user.name;
           data[0].userimg = user.avatar_url;
+
           await fs.writeFile(
             `${outDir}/config.json`,
             JSON.stringify(data, null, " "),
             function(err) {
               if (err) throw err;
-              console.log("Config file updated.\n");
+              console.log("Config file updated.");
             }
           );
           await fs.writeFile(

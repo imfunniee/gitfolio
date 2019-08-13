@@ -7,10 +7,11 @@
   "scripts": {
     "cli": "OUT_DIR='./dist' node bin/gitfolio.js",
     "clean": "rm -rf ./dist/*",
+    "prettier": "prettier --write \"./**/*.{js,jsx,json,html,css,md}\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
-    "name": "imfunny and community",
+    "name": "@imfunniee and community",
     "email": "imfunny@wybemf.com",
     "url": "https://imfunniee.github.io"
   },
@@ -41,6 +42,7 @@
     "got": "^9.6.0",
     "handlebars": "^4.1.2",
     "jsdom": "^15.1.0",
-    "ncp": "^2.0.0"
+    "ncp": "^2.0.0",
+    "prettier": "^1.18.2"
   }
 }
