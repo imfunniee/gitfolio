@@ -38,7 +38,7 @@
     "commander": "^2.20.0",
     "ejs": "^2.6.2",
     "express": "^4.17.0",
-    "github-emoji": "^1.1.0",
+    "github-emoji": "^1.1.1",
     "got": "^9.6.0",
     "handlebars": "^4.1.2",
     "jsdom": "^15.1.0",
