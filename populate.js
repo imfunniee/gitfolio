@@ -18,14 +18,9 @@ function convertToEmoji(text) {
     });
     for (i = 0; i < str.length; i++) {
       if (emoji.URLS[str[i]] != undefined) {
-        var output = emoji.of(str[i]);
-        var emojiImage = output.url.replace(
-          "assets-cdn.github",
-          "github.githubassets"
-        );
         text = text.replace(
           `:${str[i]}:`,
-          `<img src="${emojiImage}" class="emoji">`
+          `<img src="${emoji.URLS[str[i]]}" class="emoji">`
         );
       }
     }
