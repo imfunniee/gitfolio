@@ -31,11 +31,11 @@ body {
 
 #spinner {
   animation: rotate 0.5s infinite linear;
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 60px;
   border: 2px solid var(--bg-color);
   border-bottom: 2px solid var(--text-color);
-  border-radius: 50%;
+  border-radius: 70%;
   margin: 0;
 }
 
