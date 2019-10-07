@@ -21,15 +21,23 @@ npm i gitfolio -g
 
 ### Let's Build
 
-Using the UI
+GitFolio has a user interface you can use to customize your GitFolio page.  To begin using the UI, first run this command.
 
 ```sh
 $ gitfolio ui
+
+>Starting...
+>The GUI is running on port 3000, Navigate to http://localhost:3000 in your browser
 ```
+In your browser, browse to the address to begin configuring your page.
+
+<img src="https://i.imgur.com/FDDujvE.png" width=50%>
 
 > Tip: You can use ui to create new blogs and for updating your folio too.
 
-or
+#### Using the command line
+
+You can also create your GitFolio page automatically by providing your GitHub user name in command line mode.
 
 ```sh
 gitfolio build <username>
@@ -140,9 +148,9 @@ Look for success or error in your terminal.
 
 This also adds content to `blog.json` file. This file helps in showcasing your blogs on your personal website as [cards](https://imfunniee.github.io/gitfolio/#blog_section). You could customize the JSON object that corresponds your current blog.
 
-Blog Demo? [here](https://imfunniee.github.io/gitfolio/blog/my-first-post/)
+[Click here](https://imfunniee.github.io/gitfolio/blog/my-first-post/) to see a Demo of the Blog feature in action. 
 
-Blog's default JSON Format
+#### Blog's default JSON Format
 
 ```
 {
