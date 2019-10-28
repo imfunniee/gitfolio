@@ -90,6 +90,22 @@ module.exports.updateHTML = (username, opts) => {
           icon.setAttribute("type", "image/png");
 
           document.getElementsByTagName("head")[0].appendChild(icon);
+
+          document.getElementsByTagName("head")[0].innerHTML += `
+    <meta name="description" content="${user.bio}" />
+
+    <meta property="og:image" content="${user.avatar_url}" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content="${user.login}" />
+    <meta property="og:url" content="${user.html_url}" />
+    <meta property="og:description" content="${user.bio}" />
+    <meta property="profile:username" content="${user.login}" />
+
+    <meta name="twitter:image:src" content="${user.avatar_url}" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="${user.login}" />
+    <meta name="twitter:description" content="${user.bio}" />`;
+
           document.getElementById(
             "profile_img"
           ).style.background = `url('${user.avatar_url}') center center`;
