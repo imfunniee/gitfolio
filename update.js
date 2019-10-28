@@ -18,7 +18,9 @@ async function updateCommand() {
     twitter: data[0].twitter,
     linkedin: data[0].linkedin,
     medium: data[0].medium,
-    dribbble: data[0].dribbble
+    dribbble: data[0].dribbble,
+    telegram: data[0].telegram,
+    email: data[0].email
   };
   updateHTML(username, opts);
 }

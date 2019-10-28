@@ -29,6 +29,8 @@ program
   .option("-l, --linkedin [username]", "specify linkedin username")
   .option("-m, --medium [username]", "specify medium username")
   .option("-d, --dribbble [username]", "specify dribbble username")
+  .option("-T, --telegram [username]", "specify telegram username")
+  .option("-e, --email [username]", "specify email")
   .action(buildCommand);
 
 program

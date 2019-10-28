@@ -31,7 +31,7 @@ function convertToEmoji(text) {
 }
 
 module.exports.updateHTML = (username, opts) => {
-  const { includeFork, twitter, linkedin, medium, dribbble } = opts;
+  const { includeFork, twitter, linkedin, medium, dribbble, telegram, email } = opts;
   //add data to assets/index.html
   jsdom
     .fromFile(`${__dirname}/assets/index.html`, options)
@@ -90,6 +90,22 @@ module.exports.updateHTML = (username, opts) => {
           icon.setAttribute("type", "image/png");
 
           document.getElementsByTagName("head")[0].appendChild(icon);
+
+          document.getElementsByTagName("head")[0].innerHTML += `
+    <meta name="description" content="${user.bio}" />
+
+    <meta property="og:image" content="${user.avatar_url}" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content="${user.login}" />
+    <meta property="og:url" content="${user.html_url}" />
+    <meta property="og:description" content="${user.bio}" />
+    <meta property="profile:username" content="${user.login}" />
+
+    <meta name="twitter:image:src" content="${user.avatar_url}" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="${user.login}" />
+    <meta name="twitter:description" content="${user.bio}" />`;
+
           document.getElementById(
             "profile_img"
           ).style.background = `url('${user.avatar_url}') center center`;
@@ -137,6 +153,12 @@ module.exports.updateHTML = (username, opts) => {
                 <span style="display:${
                   medium == null ? "none !important" : "block"
                 };"><a href="https://www.medium.com/@${medium}/" target="_blank" class="socials"><i class="fab fa-medium-m"></i></a></span>
+                <span style="display:${
+                  telegram == null ? "none !important" : "block"
+                };"><a href="https://t.me/@${telegram}" target="_blank" class="socials"><i class="fab fa-telegram"></i></a></span>
+                <span style="display:${
+                  email == null ? "none !important" : "block"
+                };"><a href="mailto:${email}" target="_blank" class="socials"><i class="fas fa-envelope"></i></a></span>
                 </div>
                 `;
           //add data to config.json
