@@ -31,7 +31,7 @@ function convertToEmoji(text) {
 }
 
 module.exports.updateHTML = (username, opts) => {
-  const { includeFork, twitter, linkedin, medium, dribbble } = opts;
+  const { includeFork, twitter, linkedin, medium, dribbble, telegram, email } = opts;
   //add data to assets/index.html
   jsdom
     .fromFile(`${__dirname}/assets/index.html`, options)
@@ -137,6 +137,12 @@ module.exports.updateHTML = (username, opts) => {
                 <span style="display:${
                   medium == null ? "none !important" : "block"
                 };"><a href="https://www.medium.com/@${medium}/" target="_blank" class="socials"><i class="fab fa-medium-m"></i></a></span>
+                <span style="display:${
+                  telegram == null ? "none !important" : "block"
+                };"><a href="https://t.me/@${telegram}" target="_blank" class="socials"><i class="fab fa-telegram"></i></a></span>
+                <span style="display:${
+                  email == null ? "none !important" : "block"
+                };"><a href="mailto:${email}" target="_blank" class="socials"><i class="fas fa-envelope"></i></a></span>
                 </div>
                 `;
           //add data to config.json

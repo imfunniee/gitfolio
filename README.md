@@ -98,10 +98,10 @@ You could also add in your custom CSS inside `index.css` to give it a more perso
 
 #### Add Social Media links on your profile
 
-Twitter, LinkedIn, Medium & Dribbble links to your profile while building
+Twitter, LinkedIn, Medium, Dribbble, Telegram & email links to your profile while building
 
 ```sh
-gitfolio build <username> --twitter <twitter_username> --linkedin <linkedin_username> --medium <medium_username> --dribbble <dribbble_username>
+gitfolio build <username> --twitter <twitter_username> --linkedin <linkedin_username> --medium <medium_username> --dribbble <dribbble_username> --telegram <telegram_username> --email <email_address>
 ```
 
 ### Let's Publish

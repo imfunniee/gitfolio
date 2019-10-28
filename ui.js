@@ -172,6 +172,8 @@ function uiCommand() {
     let linkedin = req.body.linkedin ? req.body.linkedin : null;
     let medium = req.body.medium ? req.body.medium : null;
     let dribbble = req.body.dribbble ? req.body.dribbble : null;
+    let telegram = req.body.telegram ? req.body.telegram : null;
+    let email = req.body.email ? req.body.email : null;
     let background = req.body.background
       ? req.body.background
       : "https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1500&q=80";
@@ -184,7 +186,9 @@ function uiCommand() {
       twitter: twitter,
       linkedin: linkedin,
       medium: medium,
-      dribbble: dribbble
+      dribbble: dribbble,
+      telegram: telegram,
+      email: email
     };
 
     updateHTML(username, opts);
