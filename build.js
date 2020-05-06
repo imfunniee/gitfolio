@@ -75,6 +75,7 @@ async function buildCommand(username, program) {
   const opts = {
     sort: program.sort,
     order: program.order,
+    limit: program.limit,
     includeFork: program.fork ? true : false,
     types,
     twitter: program.twitter,

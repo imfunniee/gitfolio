@@ -25,6 +25,7 @@ program
   .option("-f, --fork", "includes forks with repos")
   .option("-s, --sort [sort]", "set default sort for repository", "created")
   .option("-o, --order [order]", "set default order on sort", "asc")
+  .option("-L, --limit [limit]", "set default limit of repos", "Infinity")
   .option("-w, --twitter [username]", "specify twitter username")
   .option("-l, --linkedin [username]", "specify linkedin username")
   .option("-m, --medium [username]", "specify medium username")

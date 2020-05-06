@@ -71,6 +71,14 @@ To order the sorted repos provide `--order [orderBy]` argument while building. W
 $ gitfolio build <username> --sort star --order desc
 ```
 
+#### Limiting Repos
+
+To limit the repos provide `--limit [limit]` argument while building. Where `[limit]` can be any number. Default: `Infinity`
+
+```sh
+$ gitfolio build <username> --sort star --order desc --limit 10
+```
+
 #### Customize Themes
 
 Themes are specified using the `--theme [theme-name]` flag when running the `build` command. The available themes are

@@ -8,6 +8,7 @@ const got = require("got");
  * @param {('all' | 'owner' | 'member')[]} [opts.types]
  * @param {'created' | 'updated' | 'pushed' | 'full_name' | 'star'} [opts.sort]
  * @param {'desc' | 'asc'} [opts.order]
+ * @param {number} [opts.limit]
  */
 async function getRepos(username, opts = {}) {
   let tempRepos;
@@ -15,6 +16,7 @@ async function getRepos(username, opts = {}) {
   let repos = [];
 
   const sort = opts.sort;
+  const limit = opts.limit || (isNan(limit) ? Infinity : limit);
   const order = opts.order || (sort === "full_name" ? "asc" : "desc");
   const types = opts.types || [];
   let type = "all";
@@ -46,6 +48,10 @@ async function getRepos(username, opts = {}) {
         return a.stargazers_count - b.stargazers_count;
       }
     });
+  }
+
+  if (repos.length > limit) {
+    repos = repos.slice(0, limit);
   }
 
   return repos;
