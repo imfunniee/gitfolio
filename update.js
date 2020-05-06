@@ -13,6 +13,7 @@ async function updateCommand() {
   const opts = {
     sort: data[0].sort,
     order: data[0].order,
+    limit: data[0].limit,
     includeFork: data[0].includeFork,
     types: data[0].types,
     twitter: data[0].twitter,
