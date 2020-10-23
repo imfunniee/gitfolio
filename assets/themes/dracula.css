@@ -1,0 +1,49 @@
+:root {
+  --bg-color: #282a36;
+  --text-color: #f8f8f2;
+  --blog-gray-color: rgb(180, 180, 180);
+  --background-image: linear-gradient(
+      90deg,
+      #282a364d,
+      #282a36
+    ),
+    url("{{{background}}}");
+  --background-background: linear-gradient(
+      0deg,
+      #282a36,
+      #282a3699
+    ),
+    url("{{{background}}}") center center fixed;
+  --height: 50vh;
+}
+
+#display h1 {
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: #f8f8f2;
+}
+
+#blog-display h1 {
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: #f8f8f2;
+}
+
+.projects section {
+  background: #44475a;
+}
+
+#blog_section section {
+  background: #44475a;
+}
+
+@media (max-width: 800px) {
+  :root {
+    --background-image: linear-gradient(
+        0deg,
+        rgb(40, 42, 54),
+        rgba(40, 42, 54, 0)
+      ),
+      url("{{{background}}}") !important;
+  }
+}
