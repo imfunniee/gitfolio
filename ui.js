@@ -175,7 +175,7 @@ function uiCommand() {
     let background = req.body.background
       ? req.body.background
       : "https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1500&q=80";
-    let theme = req.body.theme == "on" ? "dark" : "light";
+    let theme = req.body.theme == "on" ? "dracula" : "light";
     const opts = {
       sort: sort,
       order: order,
