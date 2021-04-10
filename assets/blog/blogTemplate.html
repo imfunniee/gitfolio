@@ -112,7 +112,7 @@
           user[0].name == null || !user[0].name ? "none" : "block"
         };">${user[0].name}</span>@${user[0].username}<b id="blog_time"></b>`;
 
-        if ((user[0].theme = "dark.css")) {
+        if ((user[0].theme === "dark.css")) {
           document.querySelector("#background_overlay").style.background =
             "linear-gradient(0deg, rgba(10, 10, 10, 1), rgba(10, 10, 10, 0.1))";
         } else {
