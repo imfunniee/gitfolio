@@ -5,7 +5,7 @@
 
 ### personal website + blog for every github user
 
-Gitfolio will help you get started with a portfolio website where you could showcase your work + a blog that will help you spread your ideas into real world.
+Gitfolio will help you get started with a portfolio website where you could showcase your work + a blog that will help you spread your ideas into the real world.
 
 Check out this [live demo](https://imfunniee.github.io/gitfolio/) to see gitfolio in action.
 
