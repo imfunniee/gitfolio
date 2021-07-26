@@ -45,6 +45,14 @@ gitfolio run -p [port]
 
 🎉 Congrats, you just made yourself a personal website!
 
+### run in docker
+
+```sh
+git clone "https://github.com/imfunniee/gitfolio.git"
+sudo docker build --build-arg USERNAME=<username> -t gitfolio .
+sudo docker run -d -p  80:3000 gitfolio
+```
+
 ### Let's Customize
 
 #### Forks
