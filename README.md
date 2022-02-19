@@ -1,3 +1,5 @@
+### archived in favor on v2 release soon ;)
+
 <img src="https://i.imgur.com/eA6clZr.png">
 
 # Gitfolio 
